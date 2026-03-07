@@ -11,7 +11,7 @@ import frappe
 from frappe import _
 from frappe.utils import getdate, get_first_day, add_months
 
-from lifegence_mind_analyzer.api.session import has_analyzer_access
+from lifegence_industry.mind_analyzer.api.session import has_analyzer_access
 
 
 @frappe.whitelist()
@@ -143,7 +143,7 @@ def generate_monthly_report(report_month: str = None) -> dict:
     if not has_analyzer_access():
         frappe.throw(_("You don't have permission to view Mind Analyzer"))
 
-    from lifegence_mind_analyzer.services.report_generator import ReportGeneratorService
+    from lifegence_industry.mind_analyzer.services.report_generator import ReportGeneratorService
 
     user = frappe.session.user
 

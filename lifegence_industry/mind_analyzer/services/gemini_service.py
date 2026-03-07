@@ -115,7 +115,7 @@ class GeminiService:
             return
 
         try:
-            from lifegence_mind_analyzer.mind_analyzer.doctype.mind_analyzer_settings.mind_analyzer_settings import VoiceAnalyzerSettings
+            from lifegence_industry.mind_analyzer.mind_analyzer.doctype.mind_analyzer_settings.mind_analyzer_settings import VoiceAnalyzerSettings
             api_key = VoiceAnalyzerSettings.get_gemini_api_key()
 
             if api_key:

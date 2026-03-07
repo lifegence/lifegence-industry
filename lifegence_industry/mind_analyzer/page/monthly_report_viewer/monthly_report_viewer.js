@@ -50,7 +50,7 @@ class MonthlyReportViewer {
         const self = this;
 
         frappe.call({
-            method: 'lifegence_mind_analyzer.api.reports.get_available_report_months',
+            method: 'lifegence_industry.mind_analyzer.api.reports.get_available_report_months',
             callback: function(r) {
                 if (r.message && r.message.success) {
                     self.populateMonthSelector(r.message.months);
@@ -60,7 +60,7 @@ class MonthlyReportViewer {
 
         // Also load existing reports
         frappe.call({
-            method: 'lifegence_mind_analyzer.api.reports.get_my_monthly_reports',
+            method: 'lifegence_industry.mind_analyzer.api.reports.get_my_monthly_reports',
             callback: function(r) {
                 if (r.message && r.message.success && r.message.reports.length > 0) {
                     self.addReportsToSelector(r.message.reports);
@@ -116,7 +116,7 @@ class MonthlyReportViewer {
         this.showLoading();
 
         frappe.call({
-            method: 'lifegence_mind_analyzer.api.reports.get_monthly_report_detail',
+            method: 'lifegence_industry.mind_analyzer.api.reports.get_monthly_report_detail',
             args: { report_name: reportNameOrAction },
             callback: function(r) {
                 self.hideLoading();
@@ -144,7 +144,7 @@ class MonthlyReportViewer {
                 self.showLoading();
 
                 frappe.call({
-                    method: 'lifegence_mind_analyzer.api.reports.generate_monthly_report',
+                    method: 'lifegence_industry.mind_analyzer.api.reports.generate_monthly_report',
                     args: { report_month: month },
                     callback: function(r) {
                         self.hideLoading();
@@ -171,7 +171,7 @@ class MonthlyReportViewer {
         const self = this;
 
         frappe.call({
-            method: 'lifegence_mind_analyzer.api.reports.get_available_report_months',
+            method: 'lifegence_industry.mind_analyzer.api.reports.get_available_report_months',
             callback: function(r) {
                 if (!r.message || !r.message.success) {
                     frappe.msgprint(__('Failed to load available months'));

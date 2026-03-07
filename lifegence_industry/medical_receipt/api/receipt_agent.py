@@ -56,7 +56,7 @@ def validate_receipt_for_agent(receipt_name: str) -> Dict[str, Any]:
 
 		# Use the validation API if available
 		try:
-			from lifegence_medical_receipt.api.receipt_validation import validate_receipt
+			from lifegence_industry.medical_receipt.api.receipt_validation import validate_receipt
 			result = validate_receipt(receipt_name)
 			return {"success": True, "receipt_name": receipt_name, "validation": result}
 		except ImportError:

@@ -3,10 +3,10 @@ Demo Data Generator for Lifegence Mind Analyzer
 Creates realistic demo data for testing and demonstration purposes.
 
 Usage:
-    bench execute lifegence_mind_analyzer.scripts.create_demo_data.create_all_demo_data
+    bench execute lifegence_industry.mind_analyzer.scripts.create_demo_data.create_all_demo_data
 
 To clear demo data:
-    bench execute lifegence_mind_analyzer.scripts.create_demo_data.clear_demo_data
+    bench execute lifegence_industry.mind_analyzer.scripts.create_demo_data.clear_demo_data
 """
 
 import frappe
@@ -704,7 +704,7 @@ def create_monthly_report_demo_data():
 
     print("\n📊 Creating Monthly Report demo data...")
 
-    from lifegence_mind_analyzer.services.report_generator import ReportGeneratorService
+    from lifegence_industry.mind_analyzer.services.report_generator import ReportGeneratorService
     from frappe.utils import get_first_day, add_months, getdate
 
     # Get users with session data

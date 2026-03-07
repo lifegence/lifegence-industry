@@ -9,7 +9,7 @@ import frappe
 from frappe import _
 from frappe.utils import add_days, getdate
 
-from lifegence_mind_analyzer.api.session import has_analyzer_access
+from lifegence_industry.mind_analyzer.api.session import has_analyzer_access
 
 
 @frappe.whitelist()

@@ -6,7 +6,7 @@ import frappe
 from frappe import _
 from frappe.utils import now_datetime
 
-from lifegence_mind_analyzer.api.session import has_analyzer_access
+from lifegence_industry.mind_analyzer.api.session import has_analyzer_access
 
 
 @frappe.whitelist()
@@ -47,15 +47,15 @@ def analyze_audio(session_id: str, audio_data: str, format: str = "webm"):
         frappe.throw(_("Invalid audio data: {0}").format(str(e)))
 
     # Import analysis services
-    from lifegence_mind_analyzer.services.audio_processor import AudioProcessor
-    from lifegence_mind_analyzer.services.trigger_detector import TriggerDetector
+    from lifegence_industry.mind_analyzer.services.audio_processor import AudioProcessor
+    from lifegence_industry.mind_analyzer.services.trigger_detector import TriggerDetector
 
     # Process audio
     processor = AudioProcessor()
     stats = processor.process_audio(audio_bytes, format)
 
     # Save statistics
-    from lifegence_mind_analyzer.mind_analyzer.doctype.acoustic_statistics.acoustic_statistics import AcousticStatistics
+    from lifegence_industry.mind_analyzer.mind_analyzer.doctype.acoustic_statistics.acoustic_statistics import AcousticStatistics
     AcousticStatistics.create_from_stats(session.name, stats)
 
     # Detect triggers
@@ -63,18 +63,18 @@ def analyze_audio(session_id: str, audio_data: str, format: str = "webm"):
     triggers = detector.detect(stats, session.name)
 
     # Save triggers
-    from lifegence_mind_analyzer.mind_analyzer.doctype.voice_trigger_event.voice_trigger_event import VoiceTriggerEvent
+    from lifegence_industry.mind_analyzer.mind_analyzer.doctype.voice_trigger_event.voice_trigger_event import VoiceTriggerEvent
     for trigger in triggers:
         VoiceTriggerEvent.create_trigger(session.name, trigger)
 
     # Run analysis based on mode
     if session.mode == "Individual":
-        from lifegence_mind_analyzer.services.individual_analyzer import IndividualAnalyzer
+        from lifegence_industry.mind_analyzer.services.individual_analyzer import IndividualAnalyzer
         analyzer = IndividualAnalyzer()
         result = analyzer.analyze(stats, triggers)
 
         # Save result
-        from lifegence_mind_analyzer.mind_analyzer.doctype.individual_analysis_result.individual_analysis_result import IndividualAnalysisResult
+        from lifegence_industry.mind_analyzer.mind_analyzer.doctype.individual_analysis_result.individual_analysis_result import IndividualAnalysisResult
         result_doc = IndividualAnalysisResult.create_from_analysis(session.name, result)
 
         # Publish realtime update
@@ -97,12 +97,12 @@ def analyze_audio(session_id: str, audio_data: str, format: str = "webm"):
         }
 
     else:  # Meeting mode
-        from lifegence_mind_analyzer.services.meeting_analyzer import MeetingAnalyzer
+        from lifegence_industry.mind_analyzer.services.meeting_analyzer import MeetingAnalyzer
         analyzer = MeetingAnalyzer()
         result = analyzer.analyze(stats, triggers)
 
         # Save result
-        from lifegence_mind_analyzer.mind_analyzer.doctype.meeting_analysis_result.meeting_analysis_result import MeetingAnalysisResult
+        from lifegence_industry.mind_analyzer.mind_analyzer.doctype.meeting_analysis_result.meeting_analysis_result import MeetingAnalysisResult
         result_doc = MeetingAnalysisResult.create_from_analysis(session.name, result)
 
         # Publish realtime update

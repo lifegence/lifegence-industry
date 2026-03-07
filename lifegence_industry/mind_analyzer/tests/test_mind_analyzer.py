@@ -153,14 +153,14 @@ class TestVoiceAnalysisSession(FrappeTestCase):
     def test_get_active_session(self):
         """get_active_session returns active session for user."""
         session = _create_test_session()
-        from lifegence_mind_analyzer.mind_analyzer.doctype.voice_analysis_session.voice_analysis_session import VoiceAnalysisSession
+        from lifegence_industry.mind_analyzer.mind_analyzer.doctype.voice_analysis_session.voice_analysis_session import VoiceAnalysisSession
         active = VoiceAnalysisSession.get_active_session(TEST_USER)
         self.assertIsNotNone(active)
         self.assertEqual(active["name"], session.name)
 
     def test_no_active_session(self):
         """get_active_session returns None when no active session."""
-        from lifegence_mind_analyzer.mind_analyzer.doctype.voice_analysis_session.voice_analysis_session import VoiceAnalysisSession
+        from lifegence_industry.mind_analyzer.mind_analyzer.doctype.voice_analysis_session.voice_analysis_session import VoiceAnalysisSession
         active = VoiceAnalysisSession.get_active_session(TEST_USER)
         self.assertIsNone(active)
 
@@ -341,19 +341,19 @@ class TestSessionAPI(FrappeTestCase):
     def test_has_analyzer_access_with_role(self):
         """User with Mind Analyzer User role has access."""
         frappe.set_user(TEST_USER)
-        from lifegence_mind_analyzer.api.session import has_analyzer_access
+        from lifegence_industry.mind_analyzer.api.session import has_analyzer_access
         self.assertTrue(has_analyzer_access())
 
     def test_has_analyzer_access_guest_denied(self):
         """Guest user does not have access."""
         frappe.set_user("Guest")
-        from lifegence_mind_analyzer.api.session import has_analyzer_access
+        from lifegence_industry.mind_analyzer.api.session import has_analyzer_access
         self.assertFalse(has_analyzer_access())
 
     def test_start_session_api(self):
         """start_session creates an active session."""
         frappe.set_user(TEST_USER)
-        from lifegence_mind_analyzer.api.session import start_session
+        from lifegence_industry.mind_analyzer.api.session import start_session
         result = start_session(mode="Individual")
         self.assertTrue(result["success"])
         self.assertIsNotNone(result["session_id"])
@@ -370,7 +370,7 @@ class TestSessionAPI(FrappeTestCase):
     def test_start_session_blocks_duplicate(self):
         """Cannot start a second session while one is active."""
         frappe.set_user(TEST_USER)
-        from lifegence_mind_analyzer.api.session import start_session
+        from lifegence_industry.mind_analyzer.api.session import start_session
         result = start_session(mode="Individual")
         # Track for cleanup
         session = frappe.get_all(
@@ -385,7 +385,7 @@ class TestSessionAPI(FrappeTestCase):
     def test_start_session_invalid_mode(self):
         """Invalid mode raises validation error."""
         frappe.set_user(TEST_USER)
-        from lifegence_mind_analyzer.api.session import start_session
+        from lifegence_industry.mind_analyzer.api.session import start_session
         self.assertRaises(Exception, start_session, mode="Invalid")
 
 
@@ -408,7 +408,7 @@ class TestReportsAPI(FrappeTestCase):
     def test_get_summary_empty(self):
         """get_summary returns zeros when no sessions exist."""
         frappe.set_user(TEST_USER)
-        from lifegence_mind_analyzer.api.reports import get_summary
+        from lifegence_industry.mind_analyzer.api.reports import get_summary
         result = get_summary(days=30)
         self.assertEqual(result["total_sessions"], 0)
         self.assertIsNone(result["avg_stress"])
@@ -421,7 +421,7 @@ class TestReportsAPI(FrappeTestCase):
         frappe.db.commit()
 
         frappe.set_user(TEST_USER)
-        from lifegence_mind_analyzer.api.reports import get_summary
+        from lifegence_industry.mind_analyzer.api.reports import get_summary
         result = get_summary(days=30)
         self.assertEqual(result["total_sessions"], 1)
         self.assertEqual(result["individual_sessions"], 1)

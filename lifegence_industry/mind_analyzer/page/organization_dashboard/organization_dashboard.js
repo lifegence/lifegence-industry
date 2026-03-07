@@ -145,7 +145,7 @@ class OrganizationDashboard {
 
         return new Promise((resolve, reject) => {
             frappe.call({
-                method: 'lifegence_mind_analyzer.api.reports.get_organization_team_analysis',
+                method: 'lifegence_industry.mind_analyzer.api.reports.get_organization_team_analysis',
                 args: {
                     period: this.currentPeriod,
                     department: this.currentDepartment || null
@@ -169,7 +169,7 @@ class OrganizationDashboard {
 
         return new Promise((resolve, reject) => {
             frappe.call({
-                method: 'lifegence_mind_analyzer.api.reports.get_trigger_analysis',
+                method: 'lifegence_industry.mind_analyzer.api.reports.get_trigger_analysis',
                 args: {
                     period: this.currentPeriod,
                     department: this.currentDepartment || null
@@ -194,7 +194,7 @@ class OrganizationDashboard {
 
         return new Promise((resolve, reject) => {
             frappe.call({
-                method: 'lifegence_mind_analyzer.api.reports.get_department_summary',
+                method: 'lifegence_industry.mind_analyzer.api.reports.get_department_summary',
                 args: {
                     department: this.currentDepartment,
                     period: this.currentPeriod
@@ -215,7 +215,7 @@ class OrganizationDashboard {
 
         return new Promise((resolve, reject) => {
             frappe.call({
-                method: 'lifegence_mind_analyzer.api.reports.get_department_timeseries',
+                method: 'lifegence_industry.mind_analyzer.api.reports.get_department_timeseries',
                 args: {
                     period: this.currentPeriod
                 },
@@ -238,7 +238,7 @@ class OrganizationDashboard {
 
         return new Promise((resolve, reject) => {
             frappe.call({
-                method: 'lifegence_mind_analyzer.api.reports.get_department_comparison',
+                method: 'lifegence_industry.mind_analyzer.api.reports.get_department_comparison',
                 callback: function(r) {
                     if (r.message) {
                         self.data.deptComparison = r.message;

@@ -64,7 +64,7 @@ class MindAnalyzerDashboard {
     async loadSummary() {
         try {
             const response = await frappe.call({
-                method: 'lifegence_mind_analyzer.api.reports.get_summary',
+                method: 'lifegence_industry.mind_analyzer.api.reports.get_summary',
                 args: { days: 30 }
             });
 
@@ -88,7 +88,7 @@ class MindAnalyzerDashboard {
 
         try {
             const response = await frappe.call({
-                method: 'lifegence_mind_analyzer.api.session.get_session_history',
+                method: 'lifegence_industry.mind_analyzer.api.session.get_session_history',
                 args: {
                     limit: 50,
                     mode: mode || null,
@@ -147,7 +147,7 @@ class MindAnalyzerDashboard {
     async loadRecentTriggers() {
         try {
             const response = await frappe.call({
-                method: 'lifegence_mind_analyzer.api.reports.get_recent_triggers',
+                method: 'lifegence_industry.mind_analyzer.api.reports.get_recent_triggers',
                 args: { limit: 10 }
             });
 
@@ -178,7 +178,7 @@ class MindAnalyzerDashboard {
     async showSessionDetail(sessionName) {
         try {
             const response = await frappe.call({
-                method: 'lifegence_mind_analyzer.api.session.get_session_detail',
+                method: 'lifegence_industry.mind_analyzer.api.session.get_session_detail',
                 args: { session_name: sessionName }
             });
 

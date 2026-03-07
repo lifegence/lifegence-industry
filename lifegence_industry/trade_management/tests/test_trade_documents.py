@@ -774,7 +774,7 @@ class TestSanctionsListEntry(FrappeTestCase):
 
 class TestDocumentCheckService(TradeDocumentTestBase):
 	def test_check_empty_shipment(self):
-		from lifegence_trade.services.document_check import check_document_consistency
+		from lifegence_industry.trade_management.services.document_check import check_document_consistency
 		ts = self.create_trade_shipment()
 		results = check_document_consistency(ts.name)
 		# Should have document completeness checks
@@ -784,7 +784,7 @@ class TestDocumentCheckService(TradeDocumentTestBase):
 		self.assertTrue(len(missing) > 0)
 
 	def test_check_with_documents(self):
-		from lifegence_trade.services.document_check import check_document_consistency
+		from lifegence_industry.trade_management.services.document_check import check_document_consistency
 		ts = self.create_trade_shipment()
 		item_code = self.get_test_item()
 		incoterms = frappe.get_all("Incoterm", limit=1)

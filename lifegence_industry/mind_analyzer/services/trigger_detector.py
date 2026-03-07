@@ -63,7 +63,7 @@ class TriggerDetector:
     def _get_default_config(self) -> dict:
         """Get default configuration, optionally from settings"""
         try:
-            from lifegence_mind_analyzer.mind_analyzer.doctype.mind_analyzer_settings.mind_analyzer_settings import VoiceAnalyzerSettings
+            from lifegence_industry.mind_analyzer.mind_analyzer.doctype.mind_analyzer_settings.mind_analyzer_settings import VoiceAnalyzerSettings
             return VoiceAnalyzerSettings.get_trigger_config()
         except Exception:
             return {

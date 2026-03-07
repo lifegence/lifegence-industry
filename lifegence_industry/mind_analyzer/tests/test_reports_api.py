@@ -142,7 +142,7 @@ class TestSessionEndAPI(FrappeTestCase):
         session = _create_test_session()
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import end_session
+        from lifegence_industry.mind_analyzer.api.session import end_session
 
         result = end_session(name=session.name)
 
@@ -155,7 +155,7 @@ class TestSessionEndAPI(FrappeTestCase):
         session = _create_test_session()
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import end_session
+        from lifegence_industry.mind_analyzer.api.session import end_session
 
         result = end_session(session_id=session.session_id)
 
@@ -168,7 +168,7 @@ class TestSessionEndAPI(FrappeTestCase):
         """end_session throws when no active session exists."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import end_session
+        from lifegence_industry.mind_analyzer.api.session import end_session
 
         self.assertRaises(Exception, end_session)
 
@@ -178,7 +178,7 @@ class TestSessionEndAPI(FrappeTestCase):
         """get_active_session returns active=False when no session exists."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import get_active_session
+        from lifegence_industry.mind_analyzer.api.session import get_active_session
 
         result = get_active_session()
 
@@ -189,7 +189,7 @@ class TestSessionEndAPI(FrappeTestCase):
         session = _create_test_session()
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import get_active_session
+        from lifegence_industry.mind_analyzer.api.session import get_active_session
 
         result = get_active_session()
 
@@ -208,7 +208,7 @@ class TestSessionEndAPI(FrappeTestCase):
 
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import get_session_history
+        from lifegence_industry.mind_analyzer.api.session import get_session_history
 
         result = get_session_history()
 
@@ -221,7 +221,7 @@ class TestSessionEndAPI(FrappeTestCase):
         """get_session_history returns empty list when no completed sessions."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import get_session_history
+        from lifegence_industry.mind_analyzer.api.session import get_session_history
 
         result = get_session_history()
 
@@ -235,7 +235,7 @@ class TestSessionEndAPI(FrappeTestCase):
         session = _create_test_session(mode="Individual")
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import get_session_detail
+        from lifegence_industry.mind_analyzer.api.session import get_session_detail
 
         result = get_session_detail(session_name=session.name)
 
@@ -249,7 +249,7 @@ class TestSessionEndAPI(FrappeTestCase):
         session = _create_test_session(mode="Meeting")
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import get_session_detail
+        from lifegence_industry.mind_analyzer.api.session import get_session_detail
 
         result = get_session_detail(session_name=session.name)
 
@@ -264,7 +264,7 @@ class TestSessionEndAPI(FrappeTestCase):
         session = _create_test_session()
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import cancel_session
+        from lifegence_industry.mind_analyzer.api.session import cancel_session
 
         result = cancel_session(name=session.name)
 
@@ -276,7 +276,7 @@ class TestSessionEndAPI(FrappeTestCase):
         """cancel_session throws when no active session is found."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.session import cancel_session
+        from lifegence_industry.mind_analyzer.api.session import cancel_session
 
         self.assertRaises(Exception, cancel_session)
 
@@ -303,7 +303,7 @@ class TestReportsSummaryAPI(FrappeTestCase):
         """get_recent_triggers returns empty list when no triggers exist."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.reports_summary import get_recent_triggers
+        from lifegence_industry.mind_analyzer.api.reports_summary import get_recent_triggers
 
         result = get_recent_triggers()
 
@@ -324,7 +324,7 @@ class TestReportsSummaryAPI(FrappeTestCase):
 
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.reports_summary import get_recent_triggers
+        from lifegence_industry.mind_analyzer.api.reports_summary import get_recent_triggers
 
         result = get_recent_triggers()
 
@@ -358,7 +358,7 @@ class TestReportsDepartmentAPI(FrappeTestCase):
 
         frappe.set_user("Administrator")
 
-        from lifegence_mind_analyzer.api.reports_department import (
+        from lifegence_industry.mind_analyzer.api.reports_department import (
             get_department_summary,
         )
 
@@ -376,7 +376,7 @@ class TestReportsDepartmentAPI(FrappeTestCase):
 
         frappe.set_user("Administrator")
 
-        from lifegence_mind_analyzer.api.reports_department import (
+        from lifegence_industry.mind_analyzer.api.reports_department import (
             get_department_timeseries,
         )
 
@@ -396,7 +396,7 @@ class TestReportsDepartmentAPI(FrappeTestCase):
 
         frappe.set_user("Administrator")
 
-        from lifegence_mind_analyzer.api.reports_department import (
+        from lifegence_industry.mind_analyzer.api.reports_department import (
             get_department_comparison,
         )
 
@@ -434,7 +434,7 @@ class TestReportsTeamAPI(FrappeTestCase):
 
         frappe.set_user("Administrator")
 
-        from lifegence_mind_analyzer.api.reports_team import get_team_analysis
+        from lifegence_industry.mind_analyzer.api.reports_team import get_team_analysis
 
         # Administrator typically has no Employee record in test environments.
         # If one exists, this test verifies the flow still works without error.
@@ -455,7 +455,7 @@ class TestReportsTeamAPI(FrappeTestCase):
 
         frappe.set_user("Administrator")
 
-        from lifegence_mind_analyzer.api.reports_team import (
+        from lifegence_industry.mind_analyzer.api.reports_team import (
             get_organization_team_analysis,
         )
 
@@ -491,7 +491,7 @@ class TestReportsTriggersAPI(FrappeTestCase):
         """get_trigger_analysis returns dict with expected keys."""
         frappe.set_user("Administrator")
 
-        from lifegence_mind_analyzer.api.reports_triggers import get_trigger_analysis
+        from lifegence_industry.mind_analyzer.api.reports_triggers import get_trigger_analysis
 
         result = get_trigger_analysis(period="month")
 
@@ -529,7 +529,7 @@ class TestReportsExportAPI(FrappeTestCase):
 
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.reports_export import export_session_data
+        from lifegence_industry.mind_analyzer.api.reports_export import export_session_data
 
         result = export_session_data(
             session_id=session.session_id, format="json"
@@ -545,7 +545,7 @@ class TestReportsExportAPI(FrappeTestCase):
 
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.reports_export import export_session_data
+        from lifegence_industry.mind_analyzer.api.reports_export import export_session_data
 
         result = export_session_data(
             session_id=session.session_id, format="csv"
@@ -577,7 +577,7 @@ class TestReportsMonthlyAPI(FrappeTestCase):
         """get_my_monthly_reports returns empty list when no reports exist."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.reports_monthly import (
+        from lifegence_industry.mind_analyzer.api.reports_monthly import (
             get_my_monthly_reports,
         )
 
@@ -591,7 +591,7 @@ class TestReportsMonthlyAPI(FrappeTestCase):
         """get_available_report_months returns empty months when no sessions."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.reports_monthly import (
+        from lifegence_industry.mind_analyzer.api.reports_monthly import (
             get_available_report_months,
         )
 
@@ -605,7 +605,7 @@ class TestReportsMonthlyAPI(FrappeTestCase):
         """get_latest_monthly_report returns success=False when no reports."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.reports_monthly import (
+        from lifegence_industry.mind_analyzer.api.reports_monthly import (
             get_latest_monthly_report,
         )
 
@@ -617,7 +617,7 @@ class TestReportsMonthlyAPI(FrappeTestCase):
         """compare_monthly_reports throws when fewer than 2 reports given."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.reports_monthly import (
+        from lifegence_industry.mind_analyzer.api.reports_monthly import (
             compare_monthly_reports,
         )
 
@@ -627,7 +627,7 @@ class TestReportsMonthlyAPI(FrappeTestCase):
 
     def test_calc_percent_change_normal(self):
         """_calc_percent_change(100, 120) returns 20.0."""
-        from lifegence_mind_analyzer.api.reports_monthly import (
+        from lifegence_industry.mind_analyzer.api.reports_monthly import (
             _calc_percent_change,
         )
 
@@ -635,7 +635,7 @@ class TestReportsMonthlyAPI(FrappeTestCase):
 
     def test_calc_percent_change_zero_old(self):
         """_calc_percent_change(0, 100) returns None (avoid division by zero)."""
-        from lifegence_mind_analyzer.api.reports_monthly import (
+        from lifegence_industry.mind_analyzer.api.reports_monthly import (
             _calc_percent_change,
         )
 
@@ -643,7 +643,7 @@ class TestReportsMonthlyAPI(FrappeTestCase):
 
     def test_calc_percent_change_none_old(self):
         """_calc_percent_change(None, 100) returns None."""
-        from lifegence_mind_analyzer.api.reports_monthly import (
+        from lifegence_industry.mind_analyzer.api.reports_monthly import (
             _calc_percent_change,
         )
 
@@ -651,7 +651,7 @@ class TestReportsMonthlyAPI(FrappeTestCase):
 
     def test_calc_percent_change_none_new(self):
         """_calc_percent_change(100, None) returns None."""
-        from lifegence_mind_analyzer.api.reports_monthly import (
+        from lifegence_industry.mind_analyzer.api.reports_monthly import (
             _calc_percent_change,
         )
 
@@ -659,7 +659,7 @@ class TestReportsMonthlyAPI(FrappeTestCase):
 
     def test_calc_percent_change_decrease(self):
         """_calc_percent_change(200, 150) returns -25.0."""
-        from lifegence_mind_analyzer.api.reports_monthly import (
+        from lifegence_industry.mind_analyzer.api.reports_monthly import (
             _calc_percent_change,
         )
 
@@ -689,7 +689,7 @@ class TestAnalysisAPI(FrappeTestCase):
         session = _create_test_session()
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.analysis import get_session_results
+        from lifegence_industry.mind_analyzer.api.analysis import get_session_results
 
         result = get_session_results(name=session.name)
 
@@ -704,7 +704,7 @@ class TestAnalysisAPI(FrappeTestCase):
         session = _create_test_session()
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.analysis import get_session_results
+        from lifegence_industry.mind_analyzer.api.analysis import get_session_results
 
         result = get_session_results(session_id=session.session_id)
 
@@ -714,7 +714,7 @@ class TestAnalysisAPI(FrappeTestCase):
         """get_session_results throws when session does not exist."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.analysis import get_session_results
+        from lifegence_industry.mind_analyzer.api.analysis import get_session_results
 
         self.assertRaises(
             Exception, get_session_results, session_id="nonexistent-uuid-1234"
@@ -724,7 +724,7 @@ class TestAnalysisAPI(FrappeTestCase):
         """get_trend_data returns total_sessions=0 when no sessions exist."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.analysis import get_trend_data
+        from lifegence_industry.mind_analyzer.api.analysis import get_trend_data
 
         result = get_trend_data(days=30)
 
@@ -739,7 +739,7 @@ class TestAnalysisAPI(FrappeTestCase):
 
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.analysis import get_trend_data
+        from lifegence_industry.mind_analyzer.api.analysis import get_trend_data
 
         result = get_trend_data(days=30)
 
@@ -750,7 +750,7 @@ class TestAnalysisAPI(FrappeTestCase):
         session = _create_test_session()
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.analysis import get_latest_result
+        from lifegence_industry.mind_analyzer.api.analysis import get_latest_result
 
         result = get_latest_result(session_id=session.session_id)
 
@@ -762,7 +762,7 @@ class TestAnalysisAPI(FrappeTestCase):
         """get_latest_result throws when session UUID does not exist."""
         frappe.set_user(TEST_USER)
 
-        from lifegence_mind_analyzer.api.analysis import get_latest_result
+        from lifegence_industry.mind_analyzer.api.analysis import get_latest_result
 
         self.assertRaises(
             Exception, get_latest_result, session_id="nonexistent-uuid-5678"
@@ -779,7 +779,7 @@ class TestReportsShimIntegrity(FrappeTestCase):
 
     def test_summary_exports(self):
         """Summary functions are importable from the reports shim."""
-        from lifegence_mind_analyzer.api.reports import (
+        from lifegence_industry.mind_analyzer.api.reports import (
             get_summary,
             get_recent_triggers,
         )
@@ -789,7 +789,7 @@ class TestReportsShimIntegrity(FrappeTestCase):
 
     def test_department_exports(self):
         """Department functions are importable from the reports shim."""
-        from lifegence_mind_analyzer.api.reports import (
+        from lifegence_industry.mind_analyzer.api.reports import (
             get_department_summary,
             get_department_timeseries,
             get_department_comparison,
@@ -801,7 +801,7 @@ class TestReportsShimIntegrity(FrappeTestCase):
 
     def test_team_exports(self):
         """Team functions are importable from the reports shim."""
-        from lifegence_mind_analyzer.api.reports import (
+        from lifegence_industry.mind_analyzer.api.reports import (
             get_team_analysis,
             get_organization_team_analysis,
         )
@@ -811,19 +811,19 @@ class TestReportsShimIntegrity(FrappeTestCase):
 
     def test_triggers_export(self):
         """Trigger analysis function is importable from the reports shim."""
-        from lifegence_mind_analyzer.api.reports import get_trigger_analysis
+        from lifegence_industry.mind_analyzer.api.reports import get_trigger_analysis
 
         self.assertTrue(callable(get_trigger_analysis))
 
     def test_export_exports(self):
         """Export function is importable from the reports shim."""
-        from lifegence_mind_analyzer.api.reports import export_session_data
+        from lifegence_industry.mind_analyzer.api.reports import export_session_data
 
         self.assertTrue(callable(export_session_data))
 
     def test_monthly_exports(self):
         """Monthly report functions are importable from the reports shim."""
-        from lifegence_mind_analyzer.api.reports import (
+        from lifegence_industry.mind_analyzer.api.reports import (
             get_my_monthly_reports,
             get_monthly_report_detail,
             get_latest_monthly_report,

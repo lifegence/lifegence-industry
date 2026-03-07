@@ -538,7 +538,7 @@ class TestFeeCalculationAPI(FrappeTestCase):
 
 	def test_calculate_fee_returns_structure(self):
 		"""calculate_fee returns dict with expected keys."""
-		from lifegence_medical_receipt.api.fee_calculation import calculate_fee
+		from lifegence_industry.medical_receipt.api.fee_calculation import calculate_fee
 
 		doc = frappe.get_doc({
 			"doctype": "Patient Encounter",
@@ -561,7 +561,7 @@ class TestFeeCalculationAPI(FrappeTestCase):
 
 	def test_calculate_fee_updates_encounter(self):
 		"""calculate_fee updates the encounter document."""
-		from lifegence_medical_receipt.api.fee_calculation import calculate_fee
+		from lifegence_industry.medical_receipt.api.fee_calculation import calculate_fee
 
 		# Create a service with exact points (fetch_from overrides explicit values)
 		svc_100 = _create_service("SVC-FEE-100", "テスト100点", 100, "初再診")
@@ -598,7 +598,7 @@ class TestReceiptGenerationAPI(FrappeTestCase):
 
 	def test_generate_monthly_receipts_summary(self):
 		"""generate_monthly_receipts returns summary with batch info."""
-		from lifegence_medical_receipt.api.receipt_generation import generate_monthly_receipts
+		from lifegence_industry.medical_receipt.api.receipt_generation import generate_monthly_receipts
 
 		# Create and submit an encounter
 		doc = frappe.get_doc({
@@ -623,7 +623,7 @@ class TestReceiptGenerationAPI(FrappeTestCase):
 
 	def test_generate_groups_by_patient(self):
 		"""Monthly generation groups encounters by patient insurance."""
-		from lifegence_medical_receipt.api.receipt_generation import generate_monthly_receipts
+		from lifegence_industry.medical_receipt.api.receipt_generation import generate_monthly_receipts
 
 		# Create a service with exact points (fetch_from overrides explicit values)
 		svc_100 = _create_service("SVC-GEN-100", "テスト100点", 100, "初再診")
@@ -664,7 +664,7 @@ class TestReceiptValidationAPI(FrappeTestCase):
 
 	def test_validation_detects_no_details(self):
 		"""Validation flags receipt with no detail lines."""
-		from lifegence_medical_receipt.api.receipt_validation import validate_receipt
+		from lifegence_industry.medical_receipt.api.receipt_validation import validate_receipt
 
 		receipt = frappe.get_doc({
 			"doctype": "Receipt",
@@ -681,7 +681,7 @@ class TestReceiptValidationAPI(FrappeTestCase):
 
 	def test_validation_detects_no_diagnoses(self):
 		"""Validation flags receipt with no diagnoses."""
-		from lifegence_medical_receipt.api.receipt_validation import validate_receipt
+		from lifegence_industry.medical_receipt.api.receipt_validation import validate_receipt
 
 		receipt = frappe.get_doc({
 			"doctype": "Receipt",
@@ -701,7 +701,7 @@ class TestReceiptValidationAPI(FrappeTestCase):
 
 	def test_validation_passes_for_complete_receipt(self):
 		"""Validation passes for a complete receipt with details and diagnoses."""
-		from lifegence_medical_receipt.api.receipt_validation import validate_receipt
+		from lifegence_industry.medical_receipt.api.receipt_validation import validate_receipt
 
 		receipt = frappe.get_doc({
 			"doctype": "Receipt",

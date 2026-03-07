@@ -20,7 +20,7 @@ def export_session_data(session_id: str, format: str = "json"):
     Returns:
         dict/str: Exported data
     """
-    from lifegence_mind_analyzer.api.analysis import get_session_results
+    from lifegence_industry.mind_analyzer.api.analysis import get_session_results
 
     data = get_session_results(session_id=session_id)
 

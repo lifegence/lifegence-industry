@@ -14,36 +14,36 @@ All report functions have been split into focused modules:
 """
 
 # Summary
-from lifegence_mind_analyzer.api.reports_summary import (  # noqa: F401
+from lifegence_industry.mind_analyzer.api.reports_summary import (  # noqa: F401
     get_summary,
     get_recent_triggers,
 )
 
 # Department
-from lifegence_mind_analyzer.api.reports_department import (  # noqa: F401
+from lifegence_industry.mind_analyzer.api.reports_department import (  # noqa: F401
     get_department_summary,
     get_department_timeseries,
     get_department_comparison,
 )
 
 # Team
-from lifegence_mind_analyzer.api.reports_team import (  # noqa: F401
+from lifegence_industry.mind_analyzer.api.reports_team import (  # noqa: F401
     get_team_analysis,
     get_organization_team_analysis,
 )
 
 # Triggers
-from lifegence_mind_analyzer.api.reports_triggers import (  # noqa: F401
+from lifegence_industry.mind_analyzer.api.reports_triggers import (  # noqa: F401
     get_trigger_analysis,
 )
 
 # Export
-from lifegence_mind_analyzer.api.reports_export import (  # noqa: F401
+from lifegence_industry.mind_analyzer.api.reports_export import (  # noqa: F401
     export_session_data,
 )
 
 # Monthly
-from lifegence_mind_analyzer.api.reports_monthly import (  # noqa: F401
+from lifegence_industry.mind_analyzer.api.reports_monthly import (  # noqa: F401
     get_my_monthly_reports,
     get_monthly_report_detail,
     get_latest_monthly_report,

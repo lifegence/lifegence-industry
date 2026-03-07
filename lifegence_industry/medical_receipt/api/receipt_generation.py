@@ -120,7 +120,7 @@ def generate_monthly_receipts(year, month):
 
 	# Auto-validate if setting is enabled
 	if settings.auto_validate_on_generate:
-		from lifegence_medical_receipt.api.receipt_validation import validate_receipt
+		from lifegence_industry.medical_receipt.api.receipt_validation import validate_receipt
 
 		error_count = 0
 		receipts = frappe.get_all("Receipt", filters={"receipt_batch": batch.name})

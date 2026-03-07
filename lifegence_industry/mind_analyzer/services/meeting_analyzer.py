@@ -10,7 +10,7 @@ from typing import Dict, List, Optional
 
 import frappe
 
-from lifegence_mind_analyzer.services.gemini_service import GeminiService
+from lifegence_industry.mind_analyzer.services.gemini_service import GeminiService
 
 
 class MeetingAnalyzer:
