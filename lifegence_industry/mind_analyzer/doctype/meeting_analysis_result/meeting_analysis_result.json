@@ -1,0 +1,142 @@
+{
+  "actions": [],
+  "autoname": "format:MAR-{####}",
+  "creation": "2025-02-04 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "session",
+    "timestamp",
+    "analysis_confidence",
+    "ps_metrics_section",
+    "speak_up",
+    "respect_interaction",
+    "error_tolerance",
+    "column_break_ps",
+    "power_balance",
+    "overall_ps",
+    "details_section",
+    "key_moments",
+    "speaker_stats"
+  ],
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Session",
+      "options": "Voice Analysis Session",
+      "reqd": 1
+    },
+    {
+      "fieldname": "timestamp",
+      "fieldtype": "Datetime",
+      "in_list_view": 1,
+      "label": "Timestamp",
+      "reqd": 1
+    },
+    {
+      "fieldname": "analysis_confidence",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Analysis Confidence",
+      "description": "Confidence level of analysis (0-1)"
+    },
+    {
+      "fieldname": "ps_metrics_section",
+      "fieldtype": "Section Break",
+      "label": "Psychological Safety Metrics"
+    },
+    {
+      "fieldname": "speak_up",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Speak Up",
+      "description": "Freedom to speak up (0-1)"
+    },
+    {
+      "fieldname": "respect_interaction",
+      "fieldtype": "Float",
+      "label": "Respect Interaction",
+      "description": "Interpersonal respect (0-1)"
+    },
+    {
+      "fieldname": "error_tolerance",
+      "fieldtype": "Float",
+      "label": "Error Tolerance",
+      "description": "Tolerance for mistakes (0-1)"
+    },
+    {
+      "fieldname": "column_break_ps",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "power_balance",
+      "fieldtype": "Float",
+      "label": "Power Balance",
+      "description": "Balance of speaking time (0-1)"
+    },
+    {
+      "fieldname": "overall_ps",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Overall PS Score",
+      "description": "Overall psychological safety (0-1)"
+    },
+    {
+      "fieldname": "details_section",
+      "fieldtype": "Section Break",
+      "label": "Details"
+    },
+    {
+      "fieldname": "key_moments",
+      "fieldtype": "JSON",
+      "label": "Key Moments",
+      "description": "Important events during the meeting"
+    },
+    {
+      "fieldname": "speaker_stats",
+      "fieldtype": "JSON",
+      "label": "Speaker Statistics",
+      "description": "Speaking time and interaction stats per speaker"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-02-04 10:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Mind Analyzer",
+  "name": "Meeting Analysis Result",
+  "naming_rule": "Expression",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "read": 1,
+      "role": "Mind Analyzer User",
+      "write": 1
+    },
+    {
+      "read": 1,
+      "report": 1,
+      "role": "Mind Analyzer Manager"
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": [],
+  "track_changes": 0
+}

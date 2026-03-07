@@ -1,0 +1,173 @@
+{
+	"charts": [],
+	"content": "[{\"id\":\"heading\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>レセプト管理</b></span>\",\"col\":12}},{\"id\":\"sc1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Patient Encounter\",\"col\":4}},{\"id\":\"sc2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Receipt\",\"col\":4}},{\"id\":\"sc3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Receipt Batch\",\"col\":4}}]",
+	"creation": "2026-02-14 00:00:00.000000",
+	"custom_blocks": [],
+	"doctype": "Workspace",
+	"for_user": "",
+	"hide_custom": 0,
+	"icon": "health",
+	"idx": 0,
+	"is_hidden": 0,
+	"label": "Medical Receipt",
+	"links": [
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Encounters",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Patient Encounter",
+			"link_count": 0,
+			"link_to": "Patient Encounter",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Patient Insurance Info",
+			"link_count": 0,
+			"link_to": "Patient Insurance Info",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Receipts",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Receipt",
+			"link_count": 0,
+			"link_to": "Receipt",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Receipt Batch",
+			"link_count": 0,
+			"link_to": "Receipt Batch",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Receipt Validation Log",
+			"link_count": 0,
+			"link_to": "Receipt Validation Log",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Masters",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Medical Service Master",
+			"link_count": 0,
+			"link_to": "Medical Service Master",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Disease Master",
+			"link_count": 0,
+			"link_to": "Disease Master",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Fee Schedule Revision",
+			"link_count": 0,
+			"link_to": "Fee Schedule Revision",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Settings",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Medical Receipt Settings",
+			"link_count": 0,
+			"link_to": "Medical Receipt Settings",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		}
+	],
+	"modified": "2026-02-14 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Medical Receipt",
+	"name": "Medical Receipt",
+	"number_cards": [],
+	"owner": "Administrator",
+	"parent_page": "",
+	"public": 1,
+	"restrict_to_domain": "",
+	"roles": [],
+	"sequence_id": 55.0,
+	"shortcuts": [
+		{
+			"color": "Blue",
+			"doc_view": "List",
+			"label": "Patient Encounter",
+			"link_to": "Patient Encounter",
+			"type": "DocType"
+		},
+		{
+			"color": "Green",
+			"doc_view": "List",
+			"label": "Receipt",
+			"link_to": "Receipt",
+			"type": "DocType"
+		},
+		{
+			"color": "Orange",
+			"doc_view": "List",
+			"label": "Receipt Batch",
+			"link_to": "Receipt Batch",
+			"type": "DocType"
+		}
+	],
+	"title": "レセプト",
+	"type": "Workspace"
+}

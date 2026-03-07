@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "creation": "2026-02-11 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "encounter",
+  "encounter_date",
+  "medical_service",
+  "service_name",
+  "service_code",
+  "fee_points",
+  "quantity",
+  "line_total_points"
+ ],
+ "fields": [
+  {
+   "fieldname": "encounter",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "診療記録",
+   "options": "Patient Encounter"
+  },
+  {
+   "fieldname": "encounter_date",
+   "fieldtype": "Date",
+   "fetch_from": "encounter.encounter_date",
+   "in_list_view": 1,
+   "label": "診療日",
+   "read_only": 1
+  },
+  {
+   "fieldname": "medical_service",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "診療行為",
+   "options": "Medical Service Master"
+  },
+  {
+   "fieldname": "service_name",
+   "fieldtype": "Data",
+   "fetch_from": "medical_service.service_name",
+   "label": "名称",
+   "read_only": 1
+  },
+  {
+   "fieldname": "service_code",
+   "fieldtype": "Data",
+   "fetch_from": "medical_service.service_code",
+   "label": "コード",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fee_points",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "点数"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "回数"
+  },
+  {
+   "fieldname": "line_total_points",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "小計点数",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-02-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Medical Receipt",
+ "name": "Receipt Detail Line",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

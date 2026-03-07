@@ -1,0 +1,611 @@
+{
+	"actions": [],
+	"autoname": "naming_series:",
+	"creation": "2026-02-28 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"naming_series",
+		"shipment_type",
+		"transport_mode",
+		"status",
+		"column_break_header",
+		"company",
+		"posting_date",
+		"amended_from",
+		"parties_section",
+		"shipper_type",
+		"shipper",
+		"shipper_name",
+		"consignee_type",
+		"consignee",
+		"consignee_name",
+		"column_break_parties",
+		"notify_party",
+		"notify_party_name",
+		"freight_forwarder",
+		"customs_broker",
+		"carrier_section",
+		"shipping_line",
+		"vessel_name",
+		"voyage_no",
+		"column_break_carrier",
+		"airline",
+		"flight_no",
+		"terms_section",
+		"incoterm",
+		"named_place",
+		"column_break_terms",
+		"currency",
+		"exchange_rate",
+		"payment_terms",
+		"route_section",
+		"country_of_origin",
+		"port_of_loading",
+		"column_break_route",
+		"country_of_destination",
+		"port_of_discharge",
+		"place_of_delivery",
+		"schedule_dates_section",
+		"cargo_ready_date",
+		"etd",
+		"atd",
+		"column_break_schedule_dates",
+		"eta",
+		"ata",
+		"delivery_date",
+		"items_section",
+		"items",
+		"totals_section",
+		"total_packages",
+		"total_gross_weight",
+		"total_net_weight",
+		"column_break_totals",
+		"total_volume",
+		"total_value",
+		"containers_section",
+		"containers",
+		"charges_section",
+		"charges",
+		"total_charges",
+		"schedule_milestones_section",
+		"schedule",
+		"documents_section",
+		"documents",
+		"erpnext_section",
+		"sales_order",
+		"delivery_note",
+		"column_break_erpnext",
+		"purchase_order",
+		"purchase_receipt",
+		"letter_of_credit",
+		"notes_section",
+		"remarks",
+		"column_break_notes",
+		"internal_notes"
+	],
+	"fields": [
+		{
+			"default": "TS-EXP-.YYYY.-",
+			"fieldname": "naming_series",
+			"fieldtype": "Select",
+			"label": "Series",
+			"options": "TS-EXP-.YYYY.-\nTS-IMP-.YYYY.-",
+			"reqd": 1,
+			"set_only_once": 1
+		},
+		{
+			"default": "Export",
+			"fieldname": "shipment_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Shipment Type",
+			"options": "Export\nImport",
+			"reqd": 1
+		},
+		{
+			"default": "Sea FCL",
+			"fieldname": "transport_mode",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Transport Mode",
+			"options": "Sea FCL\nSea LCL\nAir\nExpress\nMultimodal",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Status",
+			"options": "Draft\nBooked\nShipped\nIn Transit\nArrived\nCustoms Cleared\nDelivered\nCancelled",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "company",
+			"fieldtype": "Link",
+			"label": "Company",
+			"options": "Company",
+			"reqd": 1,
+			"default": "{frappe.defaults.get_user_default('Company')}"
+		},
+		{
+			"default": "Today",
+			"fieldname": "posting_date",
+			"fieldtype": "Date",
+			"label": "Posting Date",
+			"reqd": 1
+		},
+		{
+			"fieldname": "amended_from",
+			"fieldtype": "Link",
+			"label": "Amended From",
+			"no_copy": 1,
+			"options": "Trade Shipment",
+			"print_hide": 1,
+			"read_only": 1
+		},
+		{
+			"fieldname": "parties_section",
+			"fieldtype": "Section Break",
+			"label": "Parties"
+		},
+		{
+			"default": "Customer",
+			"fieldname": "shipper_type",
+			"fieldtype": "Select",
+			"label": "Shipper Type",
+			"options": "Customer\nSupplier\nCompany",
+			"reqd": 1
+		},
+		{
+			"fieldname": "shipper",
+			"fieldtype": "Dynamic Link",
+			"label": "Shipper",
+			"options": "shipper_type",
+			"reqd": 1
+		},
+		{
+			"fieldname": "shipper_name",
+			"fieldtype": "Data",
+			"label": "Shipper Name",
+			"read_only": 1
+		},
+		{
+			"default": "Customer",
+			"fieldname": "consignee_type",
+			"fieldtype": "Select",
+			"label": "Consignee Type",
+			"options": "Customer\nSupplier\nCompany",
+			"reqd": 1
+		},
+		{
+			"fieldname": "consignee",
+			"fieldtype": "Dynamic Link",
+			"label": "Consignee",
+			"options": "consignee_type",
+			"reqd": 1
+		},
+		{
+			"fieldname": "consignee_name",
+			"fieldtype": "Data",
+			"label": "Consignee Name",
+			"read_only": 1
+		},
+		{
+			"fieldname": "column_break_parties",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "notify_party",
+			"fieldtype": "Data",
+			"label": "Notify Party"
+		},
+		{
+			"fieldname": "notify_party_name",
+			"fieldtype": "Data",
+			"label": "Notify Party Name"
+		},
+		{
+			"fieldname": "freight_forwarder",
+			"fieldtype": "Link",
+			"label": "Freight Forwarder",
+			"options": "Freight Forwarder"
+		},
+		{
+			"fieldname": "customs_broker",
+			"fieldtype": "Link",
+			"label": "Customs Broker",
+			"options": "Customs Broker"
+		},
+		{
+			"depends_on": "eval:['Sea FCL','Sea LCL'].includes(doc.transport_mode)",
+			"fieldname": "carrier_section",
+			"fieldtype": "Section Break",
+			"label": "Carrier"
+		},
+		{
+			"depends_on": "eval:['Sea FCL','Sea LCL'].includes(doc.transport_mode)",
+			"fieldname": "shipping_line",
+			"fieldtype": "Link",
+			"label": "Shipping Line",
+			"options": "Supplier"
+		},
+		{
+			"fieldname": "vessel_name",
+			"fieldtype": "Data",
+			"label": "Vessel Name"
+		},
+		{
+			"fieldname": "voyage_no",
+			"fieldtype": "Data",
+			"label": "Voyage No"
+		},
+		{
+			"fieldname": "column_break_carrier",
+			"fieldtype": "Column Break"
+		},
+		{
+			"depends_on": "eval:doc.transport_mode=='Air'",
+			"fieldname": "airline",
+			"fieldtype": "Link",
+			"label": "Airline",
+			"options": "Supplier"
+		},
+		{
+			"depends_on": "eval:doc.transport_mode=='Air'",
+			"fieldname": "flight_no",
+			"fieldtype": "Data",
+			"label": "Flight No"
+		},
+		{
+			"fieldname": "terms_section",
+			"fieldtype": "Section Break",
+			"label": "Trade Terms"
+		},
+		{
+			"fieldname": "incoterm",
+			"fieldtype": "Link",
+			"label": "Incoterm",
+			"options": "Incoterm",
+			"reqd": 1
+		},
+		{
+			"fieldname": "named_place",
+			"fieldtype": "Data",
+			"label": "Named Place"
+		},
+		{
+			"fieldname": "column_break_terms",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency",
+			"reqd": 1
+		},
+		{
+			"default": "1",
+			"fieldname": "exchange_rate",
+			"fieldtype": "Float",
+			"label": "Exchange Rate",
+			"reqd": 1
+		},
+		{
+			"fieldname": "payment_terms",
+			"fieldtype": "Link",
+			"label": "Payment Terms",
+			"options": "Payment Terms Template"
+		},
+		{
+			"fieldname": "route_section",
+			"fieldtype": "Section Break",
+			"label": "Route"
+		},
+		{
+			"fieldname": "country_of_origin",
+			"fieldtype": "Link",
+			"label": "Country of Origin",
+			"options": "Country",
+			"reqd": 1
+		},
+		{
+			"fieldname": "port_of_loading",
+			"fieldtype": "Link",
+			"label": "Port of Loading",
+			"options": "Port Master"
+		},
+		{
+			"fieldname": "column_break_route",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "country_of_destination",
+			"fieldtype": "Link",
+			"label": "Country of Destination",
+			"options": "Country",
+			"reqd": 1
+		},
+		{
+			"fieldname": "port_of_discharge",
+			"fieldtype": "Link",
+			"label": "Port of Discharge",
+			"options": "Port Master"
+		},
+		{
+			"fieldname": "place_of_delivery",
+			"fieldtype": "Data",
+			"label": "Place of Delivery"
+		},
+		{
+			"fieldname": "schedule_dates_section",
+			"fieldtype": "Section Break",
+			"label": "Schedule"
+		},
+		{
+			"fieldname": "cargo_ready_date",
+			"fieldtype": "Date",
+			"label": "Cargo Ready Date"
+		},
+		{
+			"fieldname": "etd",
+			"fieldtype": "Date",
+			"in_list_view": 1,
+			"label": "ETD"
+		},
+		{
+			"fieldname": "atd",
+			"fieldtype": "Date",
+			"label": "ATD"
+		},
+		{
+			"fieldname": "column_break_schedule_dates",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "eta",
+			"fieldtype": "Date",
+			"in_list_view": 1,
+			"label": "ETA"
+		},
+		{
+			"fieldname": "ata",
+			"fieldtype": "Date",
+			"label": "ATA"
+		},
+		{
+			"fieldname": "delivery_date",
+			"fieldtype": "Date",
+			"label": "Delivery Date"
+		},
+		{
+			"fieldname": "items_section",
+			"fieldtype": "Section Break",
+			"label": "Items"
+		},
+		{
+			"fieldname": "items",
+			"fieldtype": "Table",
+			"label": "Items",
+			"options": "Trade Shipment Item",
+			"reqd": 1
+		},
+		{
+			"fieldname": "totals_section",
+			"fieldtype": "Section Break",
+			"label": "Totals"
+		},
+		{
+			"fieldname": "total_packages",
+			"fieldtype": "Int",
+			"label": "Total Packages",
+			"read_only": 1
+		},
+		{
+			"fieldname": "total_gross_weight",
+			"fieldtype": "Float",
+			"label": "Total Gross Weight (kg)",
+			"read_only": 1
+		},
+		{
+			"fieldname": "total_net_weight",
+			"fieldtype": "Float",
+			"label": "Total Net Weight (kg)",
+			"read_only": 1
+		},
+		{
+			"fieldname": "column_break_totals",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "total_volume",
+			"fieldtype": "Float",
+			"label": "Total Volume (CBM)",
+			"read_only": 1
+		},
+		{
+			"fieldname": "total_value",
+			"fieldtype": "Currency",
+			"label": "Total Value",
+			"read_only": 1
+		},
+		{
+			"collapsible": 1,
+			"depends_on": "eval:['Sea FCL'].includes(doc.transport_mode)",
+			"fieldname": "containers_section",
+			"fieldtype": "Section Break",
+			"label": "Containers"
+		},
+		{
+			"fieldname": "containers",
+			"fieldtype": "Table",
+			"label": "Containers",
+			"options": "Trade Container"
+		},
+		{
+			"fieldname": "charges_section",
+			"fieldtype": "Section Break",
+			"label": "Charges"
+		},
+		{
+			"fieldname": "charges",
+			"fieldtype": "Table",
+			"label": "Charges",
+			"options": "Trade Charge"
+		},
+		{
+			"fieldname": "total_charges",
+			"fieldtype": "Currency",
+			"label": "Total Charges",
+			"read_only": 1
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "schedule_milestones_section",
+			"fieldtype": "Section Break",
+			"label": "Schedule Milestones"
+		},
+		{
+			"fieldname": "schedule",
+			"fieldtype": "Table",
+			"label": "Schedule",
+			"options": "Trade Schedule"
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "documents_section",
+			"fieldtype": "Section Break",
+			"label": "Documents"
+		},
+		{
+			"fieldname": "documents",
+			"fieldtype": "Table",
+			"label": "Documents",
+			"options": "Trade Document Link"
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "erpnext_section",
+			"fieldtype": "Section Break",
+			"label": "ERPNext References"
+		},
+		{
+			"fieldname": "sales_order",
+			"fieldtype": "Link",
+			"label": "Sales Order",
+			"options": "Sales Order"
+		},
+		{
+			"fieldname": "delivery_note",
+			"fieldtype": "Link",
+			"label": "Delivery Note",
+			"options": "Delivery Note"
+		},
+		{
+			"fieldname": "column_break_erpnext",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "purchase_order",
+			"fieldtype": "Link",
+			"label": "Purchase Order",
+			"options": "Purchase Order"
+		},
+		{
+			"fieldname": "purchase_receipt",
+			"fieldtype": "Link",
+			"label": "Purchase Receipt",
+			"options": "Purchase Receipt"
+		},
+		{
+			"fieldname": "letter_of_credit",
+			"fieldtype": "Data",
+			"label": "Letter of Credit"
+		},
+		{
+			"fieldname": "notes_section",
+			"fieldtype": "Section Break",
+			"label": "Notes"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "column_break_notes",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "internal_notes",
+			"fieldtype": "Text",
+			"label": "Internal Notes"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"is_submittable": 1,
+	"links": [],
+	"modified": "2026-02-28 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Trade Shipment",
+	"naming_rule": "By \"Naming Series\" field",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"amend": 1,
+			"cancel": 1,
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"submit": 1,
+			"write": 1
+		},
+		{
+			"amend": 1,
+			"cancel": 1,
+			"create": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "Stock Manager",
+			"share": 1,
+			"submit": 1,
+			"write": 1
+		},
+		{
+			"create": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "Stock User",
+			"share": 1,
+			"write": 1
+		}
+	],
+	"search_fields": "shipment_type,transport_mode,shipper_name,consignee_name,status",
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "shipper_name",
+	"track_changes": 1
+}

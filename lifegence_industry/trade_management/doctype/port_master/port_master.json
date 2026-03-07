@@ -1,0 +1,134 @@
+{
+	"actions": [],
+	"autoname": "field:port_code",
+	"creation": "2026-02-28 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"port_code",
+		"port_name",
+		"port_name_ja",
+		"column_break_basic",
+		"port_type",
+		"country",
+		"subdivision",
+		"is_active",
+		"location_section",
+		"latitude",
+		"column_break_location",
+		"longitude"
+	],
+	"fields": [
+		{
+			"fieldname": "port_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Port Code (UN/LOCODE)",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "port_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Port Name",
+			"reqd": 1
+		},
+		{
+			"fieldname": "port_name_ja",
+			"fieldtype": "Data",
+			"label": "Port Name (Japanese)"
+		},
+		{
+			"fieldname": "column_break_basic",
+			"fieldtype": "Column Break"
+		},
+		{
+			"default": "Seaport",
+			"fieldname": "port_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Port Type",
+			"options": "Seaport\nAirport\nInland\nMultimodal",
+			"reqd": 1
+		},
+		{
+			"fieldname": "country",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Country",
+			"options": "Country",
+			"reqd": 1
+		},
+		{
+			"fieldname": "subdivision",
+			"fieldtype": "Data",
+			"label": "Subdivision (State/Prefecture)"
+		},
+		{
+			"default": "1",
+			"fieldname": "is_active",
+			"fieldtype": "Check",
+			"label": "Is Active"
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "location_section",
+			"fieldtype": "Section Break",
+			"label": "Location"
+		},
+		{
+			"fieldname": "latitude",
+			"fieldtype": "Float",
+			"label": "Latitude"
+		},
+		{
+			"fieldname": "column_break_location",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "longitude",
+			"fieldtype": "Float",
+			"label": "Longitude"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-02-28 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Port Master",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		},
+		{
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "All",
+			"share": 1
+		}
+	],
+	"sort_field": "port_code",
+	"sort_order": "ASC",
+	"states": [],
+	"title_field": "port_name",
+	"track_changes": 1,
+	"allow_rename": 1
+}

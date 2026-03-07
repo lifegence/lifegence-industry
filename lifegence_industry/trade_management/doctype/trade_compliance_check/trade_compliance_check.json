@@ -1,0 +1,170 @@
+{
+	"actions": [],
+	"autoname": "naming_series:",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"naming_series",
+		"check_type",
+		"column_break_header",
+		"trade_shipment",
+		"check_date",
+		"target_section",
+		"checked_entity",
+		"column_break_target",
+		"result",
+		"matched_entries_section",
+		"matched_entries",
+		"assessment_section",
+		"ai_assessment",
+		"review_section",
+		"reviewed_by",
+		"review_date",
+		"column_break_review",
+		"review_decision",
+		"review_notes"
+	],
+	"fields": [
+		{
+			"default": "TCC-.YYYY.-",
+			"fieldname": "naming_series",
+			"fieldtype": "Select",
+			"label": "Series",
+			"options": "TCC-.YYYY.-",
+			"reqd": 1,
+			"set_only_once": 1
+		},
+		{
+			"fieldname": "check_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Check Type",
+			"options": "Sanctions Screening\nExport Control\nDual Use\nDenied Party",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "trade_shipment",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Trade Shipment",
+			"options": "Trade Shipment",
+			"reqd": 1
+		},
+		{
+			"default": "Now",
+			"fieldname": "check_date",
+			"fieldtype": "Datetime",
+			"label": "Check Date",
+			"reqd": 1
+		},
+		{
+			"fieldname": "target_section",
+			"fieldtype": "Section Break",
+			"label": "Target"
+		},
+		{
+			"fieldname": "checked_entity",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Checked Entity",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_target",
+			"fieldtype": "Column Break"
+		},
+		{
+			"default": "Clear",
+			"fieldname": "result",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Result",
+			"options": "Clear\nHit\nPossible Match\nError",
+			"reqd": 1
+		},
+		{
+			"fieldname": "matched_entries_section",
+			"fieldtype": "Section Break",
+			"label": "Matched Entries"
+		},
+		{
+			"fieldname": "matched_entries",
+			"fieldtype": "Table",
+			"label": "Matched Entries",
+			"options": "Compliance Match Entry"
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "assessment_section",
+			"fieldtype": "Section Break",
+			"label": "AI Assessment"
+		},
+		{
+			"fieldname": "ai_assessment",
+			"fieldtype": "Text",
+			"label": "AI Assessment"
+		},
+		{
+			"fieldname": "review_section",
+			"fieldtype": "Section Break",
+			"label": "Review"
+		},
+		{
+			"fieldname": "reviewed_by",
+			"fieldtype": "Link",
+			"label": "Reviewed By",
+			"options": "User"
+		},
+		{
+			"fieldname": "review_date",
+			"fieldtype": "Datetime",
+			"label": "Review Date"
+		},
+		{
+			"fieldname": "column_break_review",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "review_decision",
+			"fieldtype": "Select",
+			"label": "Review Decision",
+			"options": "\nApproved\nBlocked\nEscalated"
+		},
+		{
+			"fieldname": "review_notes",
+			"fieldtype": "Small Text",
+			"label": "Review Notes"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Trade Compliance Check",
+	"naming_rule": "By \"Naming Series\" field",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		}
+	],
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 1
+}

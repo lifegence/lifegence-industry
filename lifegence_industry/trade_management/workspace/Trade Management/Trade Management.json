@@ -1,0 +1,344 @@
+{
+	"charts": [],
+	"content": null,
+	"creation": "2026-02-28 00:00:00.000000",
+	"custom_blocks": [],
+	"doctype": "Workspace",
+	"for_user": "",
+	"hide_custom": 0,
+	"icon": "ship",
+	"idx": 0,
+	"is_hidden": 0,
+	"label": "Trade Management",
+	"links": [
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Trade Operations",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Trade Shipment",
+			"link_count": 0,
+			"link_to": "Trade Shipment",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Trade Documents",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Bill of Lading",
+			"link_count": 0,
+			"link_to": "Bill of Lading",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Air Waybill",
+			"link_count": 0,
+			"link_to": "Air Waybill",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Commercial Invoice",
+			"link_count": 0,
+			"link_to": "Commercial Invoice",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Packing List",
+			"link_count": 0,
+			"link_to": "Packing List",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Certificate of Origin",
+			"link_count": 0,
+			"link_to": "Certificate of Origin",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Finance & Credit",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Letter of Credit",
+			"link_count": 0,
+			"link_to": "Letter of Credit",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Customs & Compliance",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Customs Declaration",
+			"link_count": 0,
+			"link_to": "Customs Declaration",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Trade Compliance Check",
+			"link_count": 0,
+			"link_to": "Trade Compliance Check",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Customs Tariff Rate",
+			"link_count": 0,
+			"link_to": "Customs Tariff Rate",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Masters",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Port Master",
+			"link_count": 0,
+			"link_to": "Port Master",
+			"link_type": "DocType",
+			"onboard": 1,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Shipping Line",
+			"link_count": 0,
+			"link_to": "Shipping Line",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Airline Master",
+			"link_count": 0,
+			"link_to": "Airline Master",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Vessel Master",
+			"link_count": 0,
+			"link_to": "Vessel Master",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Freight Forwarder",
+			"link_count": 0,
+			"link_to": "Freight Forwarder",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Customs Broker",
+			"link_count": 0,
+			"link_to": "Customs Broker",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Sanctions",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Sanctions List Entry",
+			"link_count": 0,
+			"link_to": "Sanctions List Entry",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Reports",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 1,
+			"label": "Trade Shipment Summary",
+			"link_count": 0,
+			"link_to": "Trade Shipment Summary",
+			"link_type": "Report",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 1,
+			"label": "Customs Duty Report",
+			"link_count": 0,
+			"link_to": "Customs Duty Report",
+			"link_type": "Report",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 1,
+			"label": "L/C Utilization",
+			"link_count": 0,
+			"link_to": "L/C Utilization",
+			"link_type": "Report",
+			"onboard": 0,
+			"type": "Link"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Settings",
+			"link_count": 0,
+			"onboard": 0,
+			"type": "Card Break"
+		},
+		{
+			"hidden": 0,
+			"is_query_report": 0,
+			"label": "Trade Settings",
+			"link_count": 0,
+			"link_to": "Trade Settings",
+			"link_type": "DocType",
+			"onboard": 0,
+			"type": "Link"
+		}
+	],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Trade Management",
+	"owner": "Administrator",
+	"parent_page": "",
+	"public": 1,
+	"restrict_to_domain": "",
+	"roles": [],
+	"sequence_id": 60.0,
+	"shortcuts": [
+		{
+			"color": "Blue",
+			"doc_view": "List",
+			"label": "Trade Shipments",
+			"link_to": "Trade Shipment",
+			"type": "DocType"
+		},
+		{
+			"color": "Green",
+			"doc_view": "List",
+			"label": "Bills of Lading",
+			"link_to": "Bill of Lading",
+			"type": "DocType"
+		},
+		{
+			"color": "Orange",
+			"doc_view": "List",
+			"label": "Commercial Invoices",
+			"link_to": "Commercial Invoice",
+			"type": "DocType"
+		},
+		{
+			"color": "Red",
+			"doc_view": "List",
+			"label": "Customs Declarations",
+			"link_to": "Customs Declaration",
+			"type": "DocType"
+		},
+		{
+			"color": "Yellow",
+			"doc_view": "List",
+			"label": "Letters of Credit",
+			"link_to": "Letter of Credit",
+			"type": "DocType"
+		},
+		{
+			"color": "Grey",
+			"doc_view": "",
+			"label": "Trade Settings",
+			"link_to": "Trade Settings",
+			"type": "DocType"
+		}
+	],
+	"title": "貿易管理"
+}

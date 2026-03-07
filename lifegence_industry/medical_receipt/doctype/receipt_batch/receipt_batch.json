@@ -1,0 +1,152 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-02-11 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "batch_year",
+  "batch_month",
+  "cb_batch",
+  "status",
+  "insurance_type",
+  "stats_section",
+  "receipt_count",
+  "total_points",
+  "cb_stats",
+  "total_amount",
+  "error_count",
+  "export_section",
+  "export_file",
+  "cb_export",
+  "exported_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "BATCH-.YYYY.-.MM.-",
+   "default": "BATCH-.YYYY.-.MM.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "batch_year",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "\u8acb\u6c42\u5e74",
+   "reqd": 1
+  },
+  {
+   "fieldname": "batch_month",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "\u8acb\u6c42\u6708",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_batch",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u30b9\u30c6\u30fc\u30bf\u30b9",
+   "options": "Draft\nGenerated\nValidated\nExported\nSubmitted",
+   "default": "Draft"
+  },
+  {
+   "fieldname": "insurance_type",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "\u4fdd\u967a\u7a2e\u5225\u30d5\u30a3\u30eb\u30bf",
+   "options": "\n\u793e\u4fdd\n\u56fd\u4fdd\n\u5f8c\u671f\u9ad8\u9f62\u8005\n\u516c\u8cbb\n\u81ea\u8cbb"
+  },
+  {
+   "fieldname": "stats_section",
+   "fieldtype": "Section Break",
+   "label": "Statistics"
+  },
+  {
+   "fieldname": "receipt_count",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "\u30ec\u30bb\u30d7\u30c8\u4ef6\u6570",
+   "read_only": 1,
+   "default": "0"
+  },
+  {
+   "fieldname": "total_points",
+   "fieldtype": "Int",
+   "label": "\u5408\u8a08\u70b9\u6570",
+   "read_only": 1,
+   "default": "0"
+  },
+  {
+   "fieldname": "cb_stats",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "\u5408\u8a08\u91d1\u984d",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_count",
+   "fieldtype": "Int",
+   "label": "\u30a8\u30e9\u30fc\u4ef6\u6570",
+   "read_only": 1,
+   "default": "0"
+  },
+  {
+   "fieldname": "export_section",
+   "fieldtype": "Section Break",
+   "label": "Export"
+  },
+  {
+   "fieldname": "export_file",
+   "fieldtype": "Attach",
+   "label": "\u30a8\u30af\u30b9\u30dd\u30fc\u30c8\u30d5\u30a1\u30a4\u30eb",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_export",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "exported_date",
+   "fieldtype": "Datetime",
+   "label": "\u30a8\u30af\u30b9\u30dd\u30fc\u30c8\u65e5\u6642",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-02-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Medical Receipt",
+ "name": "Receipt Batch",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "role": "All"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

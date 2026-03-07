@@ -1,0 +1,331 @@
+{
+	"actions": [],
+	"autoname": "field:bl_number",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"bl_number",
+		"bl_type",
+		"bl_status",
+		"column_break_header",
+		"trade_shipment",
+		"date_of_issue",
+		"on_board_date",
+		"carrier_section",
+		"shipping_line",
+		"vessel_name",
+		"column_break_carrier",
+		"voyage_no",
+		"parties_section",
+		"shipper_name",
+		"shipper_address",
+		"column_break_parties",
+		"consignee_name",
+		"consignee_address",
+		"notify_section",
+		"notify_party_name",
+		"notify_party_address",
+		"route_section",
+		"port_of_loading",
+		"place_of_receipt",
+		"column_break_route",
+		"port_of_discharge",
+		"place_of_delivery",
+		"cargo_section",
+		"description_of_goods",
+		"total_packages",
+		"column_break_cargo",
+		"gross_weight",
+		"measurement",
+		"freight_section",
+		"freight_prepaid_or_collect",
+		"originals_section",
+		"original_count",
+		"originals_received_date",
+		"column_break_originals",
+		"originals_released_date",
+		"place_of_issue",
+		"remarks_section",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "bl_number",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "B/L Number",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"default": "Master B/L",
+			"fieldname": "bl_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "B/L Type",
+			"options": "Master B/L\nHouse B/L\nSea Waybill",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "bl_status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "B/L Status",
+			"options": "Draft\nOriginal Issued\nSurrendered\nReleased\nAccomplished",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "trade_shipment",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Trade Shipment",
+			"options": "Trade Shipment",
+			"reqd": 1
+		},
+		{
+			"fieldname": "date_of_issue",
+			"fieldtype": "Date",
+			"label": "Date of Issue",
+			"reqd": 1
+		},
+		{
+			"fieldname": "on_board_date",
+			"fieldtype": "Date",
+			"label": "On Board Date"
+		},
+		{
+			"fieldname": "carrier_section",
+			"fieldtype": "Section Break",
+			"label": "Carrier"
+		},
+		{
+			"fieldname": "shipping_line",
+			"fieldtype": "Link",
+			"label": "Shipping Line",
+			"options": "Shipping Line",
+			"reqd": 1
+		},
+		{
+			"fieldname": "vessel_name",
+			"fieldtype": "Link",
+			"label": "Vessel",
+			"options": "Vessel Master"
+		},
+		{
+			"fieldname": "column_break_carrier",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "voyage_no",
+			"fieldtype": "Data",
+			"label": "Voyage No"
+		},
+		{
+			"fieldname": "parties_section",
+			"fieldtype": "Section Break",
+			"label": "Parties"
+		},
+		{
+			"fieldname": "shipper_name",
+			"fieldtype": "Small Text",
+			"label": "Shipper",
+			"reqd": 1
+		},
+		{
+			"fieldname": "shipper_address",
+			"fieldtype": "Small Text",
+			"label": "Shipper Address",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_parties",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "consignee_name",
+			"fieldtype": "Small Text",
+			"label": "Consignee",
+			"reqd": 1
+		},
+		{
+			"fieldname": "consignee_address",
+			"fieldtype": "Small Text",
+			"label": "Consignee Address"
+		},
+		{
+			"fieldname": "notify_section",
+			"fieldtype": "Section Break",
+			"label": "Notify Party"
+		},
+		{
+			"fieldname": "notify_party_name",
+			"fieldtype": "Small Text",
+			"label": "Notify Party"
+		},
+		{
+			"fieldname": "notify_party_address",
+			"fieldtype": "Small Text",
+			"label": "Notify Party Address"
+		},
+		{
+			"fieldname": "route_section",
+			"fieldtype": "Section Break",
+			"label": "Route"
+		},
+		{
+			"fieldname": "port_of_loading",
+			"fieldtype": "Link",
+			"label": "Port of Loading",
+			"options": "Port Master",
+			"reqd": 1
+		},
+		{
+			"fieldname": "place_of_receipt",
+			"fieldtype": "Data",
+			"label": "Place of Receipt"
+		},
+		{
+			"fieldname": "column_break_route",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "port_of_discharge",
+			"fieldtype": "Link",
+			"label": "Port of Discharge",
+			"options": "Port Master",
+			"reqd": 1
+		},
+		{
+			"fieldname": "place_of_delivery",
+			"fieldtype": "Data",
+			"label": "Place of Delivery"
+		},
+		{
+			"fieldname": "cargo_section",
+			"fieldtype": "Section Break",
+			"label": "Cargo"
+		},
+		{
+			"fieldname": "description_of_goods",
+			"fieldtype": "Text",
+			"label": "Description of Goods",
+			"reqd": 1
+		},
+		{
+			"fieldname": "total_packages",
+			"fieldtype": "Int",
+			"label": "Total Packages",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_cargo",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "gross_weight",
+			"fieldtype": "Float",
+			"label": "Gross Weight (kg)",
+			"reqd": 1
+		},
+		{
+			"fieldname": "measurement",
+			"fieldtype": "Float",
+			"label": "Measurement (CBM)"
+		},
+		{
+			"fieldname": "freight_section",
+			"fieldtype": "Section Break",
+			"label": "Freight"
+		},
+		{
+			"default": "Prepaid",
+			"fieldname": "freight_prepaid_or_collect",
+			"fieldtype": "Select",
+			"label": "Freight",
+			"options": "Prepaid\nCollect",
+			"reqd": 1
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "originals_section",
+			"fieldtype": "Section Break",
+			"label": "Original Management"
+		},
+		{
+			"default": "3",
+			"fieldname": "original_count",
+			"fieldtype": "Int",
+			"label": "Original Count"
+		},
+		{
+			"fieldname": "originals_received_date",
+			"fieldtype": "Date",
+			"label": "Originals Received Date"
+		},
+		{
+			"fieldname": "column_break_originals",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "originals_released_date",
+			"fieldtype": "Date",
+			"label": "Originals Released Date"
+		},
+		{
+			"fieldname": "place_of_issue",
+			"fieldtype": "Data",
+			"label": "Place of Issue"
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "remarks_section",
+			"fieldtype": "Section Break",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text",
+			"label": "Remarks"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Bill of Lading",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1, "delete": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "System Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock User", "share": 1, "write": 1
+		}
+	],
+	"search_fields": "bl_type,bl_status,trade_shipment,shipping_line",
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "bl_number",
+	"track_changes": 1
+}

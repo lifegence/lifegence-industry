@@ -1,0 +1,81 @@
+{
+	"actions": [],
+	"autoname": "field:forwarder_name",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"forwarder_name",
+		"iata_code",
+		"jiffa_member",
+		"column_break_basic",
+		"specialties",
+		"regions",
+		"supplier"
+	],
+	"fields": [
+		{
+			"fieldname": "forwarder_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Forwarder Name",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "iata_code",
+			"fieldtype": "Data",
+			"label": "IATA Code"
+		},
+		{
+			"default": "0",
+			"fieldname": "jiffa_member",
+			"fieldtype": "Check",
+			"in_list_view": 1,
+			"label": "JIFFA Member"
+		},
+		{
+			"fieldname": "column_break_basic",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "specialties",
+			"fieldtype": "Small Text",
+			"in_list_view": 1,
+			"label": "Specialties"
+		},
+		{
+			"fieldname": "regions",
+			"fieldtype": "Small Text",
+			"label": "Regions"
+		},
+		{
+			"fieldname": "supplier",
+			"fieldtype": "Link",
+			"label": "Supplier",
+			"options": "Supplier"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Freight Forwarder",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1, "delete": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "System Manager", "share": 1, "write": 1
+		},
+		{
+			"read": 1, "role": "All"
+		}
+	],
+	"sort_field": "forwarder_name",
+	"sort_order": "ASC",
+	"states": [],
+	"track_changes": 1
+}

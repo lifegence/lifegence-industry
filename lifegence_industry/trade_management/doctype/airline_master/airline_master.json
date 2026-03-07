@@ -1,0 +1,84 @@
+{
+	"actions": [],
+	"autoname": "field:iata_code",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"iata_code",
+		"icao_code",
+		"airline_prefix",
+		"column_break_basic",
+		"airline_name",
+		"country",
+		"supplier"
+	],
+	"fields": [
+		{
+			"fieldname": "iata_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "IATA Code",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "icao_code",
+			"fieldtype": "Data",
+			"label": "ICAO Code"
+		},
+		{
+			"fieldname": "airline_prefix",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "AWB Prefix (3-digit)",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_basic",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "airline_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Airline Name",
+			"reqd": 1
+		},
+		{
+			"fieldname": "country",
+			"fieldtype": "Link",
+			"label": "Country",
+			"options": "Country"
+		},
+		{
+			"fieldname": "supplier",
+			"fieldtype": "Link",
+			"label": "Supplier",
+			"options": "Supplier"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Airline Master",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1, "delete": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "System Manager", "share": 1, "write": 1
+		},
+		{
+			"read": 1, "role": "All"
+		}
+	],
+	"sort_field": "airline_name",
+	"sort_order": "ASC",
+	"states": [],
+	"title_field": "airline_name",
+	"track_changes": 1
+}

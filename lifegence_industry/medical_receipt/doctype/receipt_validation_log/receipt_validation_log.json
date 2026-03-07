@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-02-11 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "receipt",
+  "log_type",
+  "check_name",
+  "cb_log",
+  "checked_by",
+  "checked_date",
+  "message_section",
+  "message"
+ ],
+ "fields": [
+  {
+   "fieldname": "receipt",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u30ec\u30bb\u30d7\u30c8",
+   "options": "Receipt",
+   "reqd": 1
+  },
+  {
+   "fieldname": "log_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u7a2e\u5225",
+   "options": "Error\nWarning\nInfo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "check_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u30c1\u30a7\u30c3\u30af\u540d",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_log",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "checked_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u70b9\u691c\u8005",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "checked_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "\u70b9\u691c\u65e5\u6642",
+   "reqd": 1
+  },
+  {
+   "fieldname": "message_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "message",
+   "fieldtype": "Text",
+   "label": "\u8a73\u7d30",
+   "reqd": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-02-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Medical Receipt",
+ "name": "Receipt Validation Log",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "All"
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

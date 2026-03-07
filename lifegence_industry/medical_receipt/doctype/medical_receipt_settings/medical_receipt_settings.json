@@ -1,0 +1,136 @@
+{
+ "actions": [],
+ "creation": "2026-02-11 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "clinic_section",
+  "clinic_code",
+  "clinic_name",
+  "cb_clinic",
+  "clinic_prefecture",
+  "clinic_address",
+  "insurance_section",
+  "default_insurance_type",
+  "point_unit_price",
+  "cb_insurance",
+  "current_fee_schedule",
+  "submission_section",
+  "submission_method",
+  "submission_deadline_day",
+  "cb_submission",
+  "auto_validate_on_generate"
+ ],
+ "fields": [
+  {
+   "fieldname": "clinic_section",
+   "fieldtype": "Section Break",
+   "label": "Clinic Information"
+  },
+  {
+   "fieldname": "clinic_code",
+   "fieldtype": "Data",
+   "label": "\u533b\u7642\u6a5f\u95a2\u30b3\u30fc\u30c9",
+   "reqd": 1,
+   "description": "7-digit clinic code"
+  },
+  {
+   "fieldname": "clinic_name",
+   "fieldtype": "Data",
+   "label": "\u533b\u7642\u6a5f\u95a2\u540d\u79f0",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_clinic",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "clinic_prefecture",
+   "fieldtype": "Select",
+   "label": "\u90fd\u9053\u5e9c\u770c",
+   "reqd": 1,
+   "options": "\u5317\u6d77\u9053\n\u9752\u68ee\u770c\n\u5ca9\u624b\u770c\n\u5bae\u57ce\u770c\n\u79cb\u7530\u770c\n\u5c71\u5f62\u770c\n\u798f\u5cf6\u770c\n\u8328\u57ce\u770c\n\u6803\u6728\u770c\n\u7fa4\u99ac\u770c\n\u57fc\u7389\u770c\n\u5343\u8449\u770c\n\u6771\u4eac\u90fd\n\u795e\u5948\u5ddd\u770c\n\u65b0\u6f5f\u770c\n\u5bcc\u5c71\u770c\n\u77f3\u5ddd\u770c\n\u798f\u4e95\u770c\n\u5c71\u68a8\u770c\n\u9577\u91ce\u770c\n\u5c90\u961c\u770c\n\u9759\u5ca1\u770c\n\u611b\u77e5\u770c\n\u4e09\u91cd\u770c\n\u6ecb\u8cc0\u770c\n\u4eac\u90fd\u5e9c\n\u5927\u962a\u5e9c\n\u5175\u5eab\u770c\n\u5948\u826f\u770c\n\u548c\u6b4c\u5c71\u770c\n\u9ce5\u53d6\u770c\n\u5cf6\u6839\u770c\n\u5ca1\u5c71\u770c\n\u5e83\u5cf6\u770c\n\u5c71\u53e3\u770c\n\u5fb3\u5cf6\u770c\n\u9999\u5ddd\u770c\n\u611b\u5a9b\u770c\n\u9ad8\u77e5\u770c\n\u798f\u5ca1\u770c\n\u4f50\u8cc0\u770c\n\u9577\u5d0e\u770c\n\u718a\u672c\u770c\n\u5927\u5206\u770c\n\u5bae\u5d0e\u770c\n\u9e7f\u5150\u5cf6\u770c\n\u6c96\u7e04\u770c"
+  },
+  {
+   "fieldname": "clinic_address",
+   "fieldtype": "Data",
+   "label": "\u4f4f\u6240"
+  },
+  {
+   "fieldname": "insurance_section",
+   "fieldtype": "Section Break",
+   "label": "Insurance & Fee"
+  },
+  {
+   "fieldname": "default_insurance_type",
+   "fieldtype": "Select",
+   "label": "\u30c7\u30d5\u30a9\u30eb\u30c8\u4fdd\u967a\u7a2e\u5225",
+   "options": "\u793e\u4fdd\n\u56fd\u4fdd\n\u5f8c\u671f\u9ad8\u9f62\u8005\n\u516c\u8cbb\n\u81ea\u8cbb"
+  },
+  {
+   "fieldname": "point_unit_price",
+   "fieldtype": "Currency",
+   "label": "\u70b9\u5358\u4f4d\u4fa1\u683c",
+   "default": "10"
+  },
+  {
+   "fieldname": "cb_insurance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_fee_schedule",
+   "fieldtype": "Link",
+   "label": "\u73fe\u884c\u70b9\u6570\u8868",
+   "options": "Fee Schedule Revision"
+  },
+  {
+   "fieldname": "submission_section",
+   "fieldtype": "Section Break",
+   "label": "Submission"
+  },
+  {
+   "fieldname": "submission_method",
+   "fieldtype": "Select",
+   "label": "\u63d0\u51fa\u65b9\u6cd5",
+   "options": "\u96fb\u5b50\n\u7d19"
+  },
+  {
+   "fieldname": "submission_deadline_day",
+   "fieldtype": "Int",
+   "label": "\u63d0\u51fa\u671f\u9650\u65e5",
+   "default": "10"
+  },
+  {
+   "fieldname": "cb_submission",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "auto_validate_on_generate",
+   "fieldtype": "Check",
+   "label": "\u751f\u6210\u6642\u81ea\u52d5\u70b9\u691c",
+   "default": "0"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-02-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Medical Receipt",
+ "name": "Medical Receipt Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

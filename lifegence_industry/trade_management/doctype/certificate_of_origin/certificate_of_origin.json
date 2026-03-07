@@ -1,0 +1,213 @@
+{
+	"actions": [],
+	"autoname": "field:coo_number",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"coo_number",
+		"coo_type",
+		"column_break_header",
+		"trade_shipment",
+		"date_of_issue",
+		"application_date",
+		"authority_section",
+		"issuing_authority",
+		"fta_agreement",
+		"column_break_authority",
+		"origin_criterion",
+		"parties_section",
+		"exporter_name",
+		"exporter_address",
+		"column_break_parties",
+		"consignee_name",
+		"route_section",
+		"country_of_origin",
+		"column_break_route",
+		"country_of_destination",
+		"transport_details",
+		"items_section",
+		"items",
+		"remarks_section",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "coo_number",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "CoO Number",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"default": "Non-Preferential",
+			"fieldname": "coo_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "CoO Type",
+			"options": "Non-Preferential\nPreferential (EPA/FTA)\nGSP Form A\nRCEP",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "trade_shipment",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Trade Shipment",
+			"options": "Trade Shipment",
+			"reqd": 1
+		},
+		{
+			"fieldname": "date_of_issue",
+			"fieldtype": "Date",
+			"label": "Date of Issue",
+			"reqd": 1
+		},
+		{
+			"fieldname": "application_date",
+			"fieldtype": "Date",
+			"label": "Application Date"
+		},
+		{
+			"fieldname": "authority_section",
+			"fieldtype": "Section Break",
+			"label": "Issuing Authority"
+		},
+		{
+			"fieldname": "issuing_authority",
+			"fieldtype": "Data",
+			"label": "Issuing Authority",
+			"reqd": 1
+		},
+		{
+			"fieldname": "fta_agreement",
+			"fieldtype": "Data",
+			"label": "FTA/EPA Agreement"
+		},
+		{
+			"fieldname": "column_break_authority",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "origin_criterion",
+			"fieldtype": "Select",
+			"label": "Origin Criterion",
+			"options": "\nWO\nPE\nCTC\nVA\nSP"
+		},
+		{
+			"fieldname": "parties_section",
+			"fieldtype": "Section Break",
+			"label": "Parties"
+		},
+		{
+			"fieldname": "exporter_name",
+			"fieldtype": "Small Text",
+			"label": "Exporter",
+			"reqd": 1
+		},
+		{
+			"fieldname": "exporter_address",
+			"fieldtype": "Small Text",
+			"label": "Exporter Address",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_parties",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "consignee_name",
+			"fieldtype": "Small Text",
+			"label": "Consignee",
+			"reqd": 1
+		},
+		{
+			"fieldname": "route_section",
+			"fieldtype": "Section Break",
+			"label": "Route"
+		},
+		{
+			"fieldname": "country_of_origin",
+			"fieldtype": "Link",
+			"label": "Country of Origin",
+			"options": "Country",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_route",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "country_of_destination",
+			"fieldtype": "Link",
+			"label": "Country of Destination",
+			"options": "Country",
+			"reqd": 1
+		},
+		{
+			"fieldname": "transport_details",
+			"fieldtype": "Small Text",
+			"label": "Transport Details"
+		},
+		{
+			"fieldname": "items_section",
+			"fieldtype": "Section Break",
+			"label": "Items"
+		},
+		{
+			"fieldname": "items",
+			"fieldtype": "Table",
+			"label": "Items",
+			"options": "CoO Item",
+			"reqd": 1
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "remarks_section",
+			"fieldtype": "Section Break",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text",
+			"label": "Remarks"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Certificate of Origin",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1, "delete": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "System Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock User", "share": 1, "write": 1
+		}
+	],
+	"search_fields": "coo_type,trade_shipment,exporter_name",
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "coo_number",
+	"track_changes": 1
+}

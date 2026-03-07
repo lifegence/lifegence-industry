@@ -1,0 +1,221 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-02-11 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "patient_insurance",
+  "patient_name",
+  "cb_receipt_info",
+  "claim_year",
+  "claim_month",
+  "insurance_type",
+  "status",
+  "receipt_batch",
+  "validation_section",
+  "validated_by",
+  "validated_date",
+  "cb_validation",
+  "validation_errors",
+  "validation_warnings",
+  "details_section",
+  "details",
+  "diagnoses_section",
+  "receipt_diagnoses",
+  "totals_section",
+  "total_points",
+  "total_amount",
+  "cb_totals",
+  "copay_amount",
+  "insurance_claim_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RCP-.YYYY.-.MM.-",
+   "default": "RCP-.YYYY.-.MM.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "patient_insurance",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u60a3\u8005\u4fdd\u967a",
+   "options": "Patient Insurance Info",
+   "reqd": 1
+  },
+  {
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "fetch_from": "patient_insurance.patient_name",
+   "in_list_view": 1,
+   "label": "\u60a3\u8005\u540d",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_receipt_info",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "claim_year",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "\u8acb\u6c42\u5e74",
+   "reqd": 1
+  },
+  {
+   "fieldname": "claim_month",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "\u8acb\u6c42\u6708",
+   "reqd": 1
+  },
+  {
+   "fieldname": "insurance_type",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "\u4fdd\u967a\u7a2e\u5225",
+   "options": "\u793e\u4fdd\n\u56fd\u4fdd\n\u5f8c\u671f\u9ad8\u9f62\u8005\n\u516c\u8cbb\n\u81ea\u8cbb"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u30b9\u30c6\u30fc\u30bf\u30b9",
+   "options": "Draft\nValidated\nApproved\nSubmitted\nReturned\nCancelled",
+   "default": "Draft"
+  },
+  {
+   "fieldname": "receipt_batch",
+   "fieldtype": "Link",
+   "label": "\u30d0\u30c3\u30c1",
+   "options": "Receipt Batch"
+  },
+  {
+   "fieldname": "validation_section",
+   "fieldtype": "Section Break",
+   "label": "Validation"
+  },
+  {
+   "fieldname": "validated_by",
+   "fieldtype": "Link",
+   "label": "\u70b9\u691c\u8005",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "validated_date",
+   "fieldtype": "Datetime",
+   "label": "\u70b9\u691c\u65e5\u6642",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_validation",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "validation_errors",
+   "fieldtype": "Int",
+   "label": "\u30a8\u30e9\u30fc\u4ef6\u6570",
+   "read_only": 1,
+   "default": "0"
+  },
+  {
+   "fieldname": "validation_warnings",
+   "fieldtype": "Int",
+   "label": "\u8b66\u544a\u4ef6\u6570",
+   "read_only": 1,
+   "default": "0"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "label": "\u660e\u7d30",
+   "options": "Receipt Detail Line"
+  },
+  {
+   "fieldname": "diagnoses_section",
+   "fieldtype": "Section Break",
+   "label": "Diagnoses"
+  },
+  {
+   "fieldname": "receipt_diagnoses",
+   "fieldtype": "Table",
+   "label": "\u50b7\u75c5\u540d",
+   "options": "Encounter Diagnosis"
+  },
+  {
+   "fieldname": "totals_section",
+   "fieldtype": "Section Break",
+   "label": "Totals"
+  },
+  {
+   "fieldname": "total_points",
+   "fieldtype": "Int",
+   "label": "\u5408\u8a08\u70b9\u6570",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "\u5408\u8a08\u91d1\u984d",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb_totals",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "copay_amount",
+   "fieldtype": "Currency",
+   "label": "\u81ea\u5df1\u8ca0\u62c5\u984d",
+   "read_only": 1
+  },
+  {
+   "fieldname": "insurance_claim_amount",
+   "fieldtype": "Currency",
+   "label": "\u4fdd\u967a\u8acb\u6c42\u984d",
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-02-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Medical Receipt",
+ "name": "Receipt",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "role": "System Manager",
+   "submit": 1,
+   "cancel": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "submit": 1,
+   "role": "All"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

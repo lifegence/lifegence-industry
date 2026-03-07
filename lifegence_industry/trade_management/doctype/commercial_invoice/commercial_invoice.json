@@ -1,0 +1,269 @@
+{
+	"actions": [],
+	"autoname": "naming_series:",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"naming_series",
+		"trade_shipment",
+		"invoice_date",
+		"column_break_header",
+		"currency",
+		"linked_sales_invoice",
+		"seller_section",
+		"seller_name",
+		"seller_address",
+		"column_break_seller",
+		"buyer_name",
+		"buyer_address",
+		"terms_section",
+		"incoterm",
+		"named_place",
+		"column_break_terms",
+		"payment_terms",
+		"route_section",
+		"country_of_origin",
+		"port_of_loading",
+		"column_break_route",
+		"port_of_discharge",
+		"vessel_name",
+		"bl_awb_no",
+		"items_section",
+		"items",
+		"totals_section",
+		"subtotal",
+		"freight",
+		"column_break_totals",
+		"insurance",
+		"total_amount",
+		"remarks_section",
+		"remarks"
+	],
+	"fields": [
+		{
+			"default": "CI-.YYYY.-",
+			"fieldname": "naming_series",
+			"fieldtype": "Select",
+			"label": "Series",
+			"options": "CI-.YYYY.-",
+			"reqd": 1,
+			"set_only_once": 1
+		},
+		{
+			"fieldname": "trade_shipment",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Trade Shipment",
+			"options": "Trade Shipment",
+			"reqd": 1
+		},
+		{
+			"default": "Today",
+			"fieldname": "invoice_date",
+			"fieldtype": "Date",
+			"in_list_view": 1,
+			"label": "Invoice Date",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency",
+			"reqd": 1
+		},
+		{
+			"fieldname": "linked_sales_invoice",
+			"fieldtype": "Link",
+			"label": "Sales Invoice",
+			"options": "Sales Invoice"
+		},
+		{
+			"fieldname": "seller_section",
+			"fieldtype": "Section Break",
+			"label": "Parties"
+		},
+		{
+			"fieldname": "seller_name",
+			"fieldtype": "Small Text",
+			"label": "Seller",
+			"reqd": 1
+		},
+		{
+			"fieldname": "seller_address",
+			"fieldtype": "Small Text",
+			"label": "Seller Address",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_seller",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "buyer_name",
+			"fieldtype": "Small Text",
+			"label": "Buyer",
+			"reqd": 1
+		},
+		{
+			"fieldname": "buyer_address",
+			"fieldtype": "Small Text",
+			"label": "Buyer Address",
+			"reqd": 1
+		},
+		{
+			"fieldname": "terms_section",
+			"fieldtype": "Section Break",
+			"label": "Trade Terms"
+		},
+		{
+			"fieldname": "incoterm",
+			"fieldtype": "Link",
+			"label": "Incoterm",
+			"options": "Incoterm",
+			"reqd": 1
+		},
+		{
+			"fieldname": "named_place",
+			"fieldtype": "Data",
+			"label": "Named Place"
+		},
+		{
+			"fieldname": "column_break_terms",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "payment_terms",
+			"fieldtype": "Small Text",
+			"label": "Payment Terms"
+		},
+		{
+			"fieldname": "route_section",
+			"fieldtype": "Section Break",
+			"label": "Shipment Details"
+		},
+		{
+			"fieldname": "country_of_origin",
+			"fieldtype": "Link",
+			"label": "Country of Origin",
+			"options": "Country",
+			"reqd": 1
+		},
+		{
+			"fieldname": "port_of_loading",
+			"fieldtype": "Link",
+			"label": "Port of Loading",
+			"options": "Port Master"
+		},
+		{
+			"fieldname": "column_break_route",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "port_of_discharge",
+			"fieldtype": "Link",
+			"label": "Port of Discharge",
+			"options": "Port Master"
+		},
+		{
+			"fieldname": "vessel_name",
+			"fieldtype": "Data",
+			"label": "Vessel / Flight"
+		},
+		{
+			"fieldname": "bl_awb_no",
+			"fieldtype": "Data",
+			"label": "B/L or AWB No"
+		},
+		{
+			"fieldname": "items_section",
+			"fieldtype": "Section Break",
+			"label": "Items"
+		},
+		{
+			"fieldname": "items",
+			"fieldtype": "Table",
+			"label": "Items",
+			"options": "Commercial Invoice Item",
+			"reqd": 1
+		},
+		{
+			"fieldname": "totals_section",
+			"fieldtype": "Section Break",
+			"label": "Totals"
+		},
+		{
+			"fieldname": "subtotal",
+			"fieldtype": "Currency",
+			"label": "Subtotal",
+			"read_only": 1
+		},
+		{
+			"fieldname": "freight",
+			"fieldtype": "Currency",
+			"label": "Freight"
+		},
+		{
+			"fieldname": "column_break_totals",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "insurance",
+			"fieldtype": "Currency",
+			"label": "Insurance"
+		},
+		{
+			"fieldname": "total_amount",
+			"fieldtype": "Currency",
+			"label": "Total Amount",
+			"read_only": 1
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "remarks_section",
+			"fieldtype": "Section Break",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text",
+			"label": "Remarks"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Commercial Invoice",
+	"naming_rule": "By \"Naming Series\" field",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1, "delete": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "System Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock User", "share": 1, "write": 1
+		}
+	],
+	"search_fields": "trade_shipment,seller_name,buyer_name",
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 1
+}

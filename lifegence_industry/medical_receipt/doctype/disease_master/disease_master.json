@@ -1,0 +1,79 @@
+{
+ "actions": [],
+ "autoname": "field:disease_code",
+ "creation": "2026-02-11 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "disease_code",
+  "disease_name",
+  "cb_disease",
+  "icd10_code",
+  "disease_category",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "disease_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u50b7\u75c5\u30b3\u30fc\u30c9",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "disease_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u50b7\u75c5\u540d",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_disease",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "icd10_code",
+   "fieldtype": "Data",
+   "label": "ICD-10\u30b3\u30fc\u30c9"
+  },
+  {
+   "fieldname": "disease_category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "\u5206\u985e",
+   "options": "\u4e3b\u75c5\n\u526f\u75c5"
+  },
+  {
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "\u6709\u52b9",
+   "default": "1"
+  }
+ ],
+ "links": [],
+ "modified": "2026-02-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Medical Receipt",
+ "name": "Disease Master",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "role": "All"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,147 @@
+{
+	"actions": [],
+	"creation": "2026-02-28 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"item_code",
+		"item_name",
+		"description",
+		"column_break_item",
+		"customs_tariff_number",
+		"country_of_origin",
+		"qty",
+		"uom",
+		"column_break_amount",
+		"rate",
+		"amount",
+		"weight_section",
+		"gross_weight",
+		"net_weight",
+		"column_break_weight",
+		"volume",
+		"packages",
+		"marks_and_numbers"
+	],
+	"fields": [
+		{
+			"fieldname": "item_code",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Item Code",
+			"options": "Item",
+			"reqd": 1
+		},
+		{
+			"fetch_from": "item_code.item_name",
+			"fieldname": "item_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Item Name",
+			"read_only": 1
+		},
+		{
+			"fieldname": "description",
+			"fieldtype": "Small Text",
+			"label": "Description"
+		},
+		{
+			"fieldname": "column_break_item",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fetch_from": "item_code.customs_tariff_number",
+			"fieldname": "customs_tariff_number",
+			"fieldtype": "Link",
+			"label": "HS Code",
+			"options": "Customs Tariff Number"
+		},
+		{
+			"fetch_from": "item_code.country_of_origin",
+			"fieldname": "country_of_origin",
+			"fieldtype": "Link",
+			"label": "Country of Origin",
+			"options": "Country"
+		},
+		{
+			"fieldname": "qty",
+			"fieldtype": "Float",
+			"in_list_view": 1,
+			"label": "Qty",
+			"reqd": 1
+		},
+		{
+			"fieldname": "uom",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "UOM",
+			"options": "UOM",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_amount",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "rate",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "Rate",
+			"reqd": 1
+		},
+		{
+			"fieldname": "amount",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "Amount",
+			"read_only": 1
+		},
+		{
+			"fieldname": "weight_section",
+			"fieldtype": "Section Break",
+			"label": "Weight & Volume"
+		},
+		{
+			"fieldname": "gross_weight",
+			"fieldtype": "Float",
+			"label": "Gross Weight (kg)"
+		},
+		{
+			"fieldname": "net_weight",
+			"fieldtype": "Float",
+			"label": "Net Weight (kg)"
+		},
+		{
+			"fieldname": "column_break_weight",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "volume",
+			"fieldtype": "Float",
+			"label": "Volume (CBM)"
+		},
+		{
+			"fieldname": "packages",
+			"fieldtype": "Int",
+			"label": "Packages"
+		},
+		{
+			"fieldname": "marks_and_numbers",
+			"fieldtype": "Data",
+			"label": "Marks and Numbers"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"istable": 1,
+	"links": [],
+	"modified": "2026-02-28 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Trade Shipment Item",
+	"owner": "Administrator",
+	"permissions": [],
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 0
+}

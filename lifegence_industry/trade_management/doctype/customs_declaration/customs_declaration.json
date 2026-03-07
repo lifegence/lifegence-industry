@@ -1,0 +1,308 @@
+{
+	"actions": [],
+	"autoname": "naming_series:",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"naming_series",
+		"declaration_type",
+		"status",
+		"column_break_header",
+		"trade_shipment",
+		"declaration_number",
+		"declaration_date",
+		"permission_date",
+		"customs_office",
+		"declarant_section",
+		"declarant",
+		"column_break_declarant",
+		"importer_exporter_type",
+		"importer_exporter",
+		"importer_exporter_code",
+		"value_section",
+		"invoice_amount",
+		"invoice_currency",
+		"column_break_value",
+		"exchange_rate_customs",
+		"customs_value",
+		"customs_value_jpy",
+		"items_section",
+		"items",
+		"tax_section",
+		"total_duty",
+		"total_consumption_tax",
+		"column_break_tax",
+		"total_local_tax",
+		"total_taxes",
+		"erpnext_section",
+		"landed_cost_voucher",
+		"column_break_erpnext",
+		"purchase_invoice",
+		"attachment_section",
+		"remarks",
+		"amended_from"
+	],
+	"fields": [
+		{
+			"default": "CD-IMP-.YYYY.-",
+			"fieldname": "naming_series",
+			"fieldtype": "Select",
+			"label": "Series",
+			"options": "CD-IMP-.YYYY.-\nCD-EXP-.YYYY.-",
+			"reqd": 1,
+			"set_only_once": 1
+		},
+		{
+			"default": "Import",
+			"fieldname": "declaration_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Declaration Type",
+			"options": "Export\nImport\nRe-Export\nRe-Import",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nSubmitted\nUnder Review\nApproved\nRejected\nAmended\nCancelled",
+			"read_only": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "trade_shipment",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Trade Shipment",
+			"options": "Trade Shipment",
+			"reqd": 1
+		},
+		{
+			"fieldname": "declaration_number",
+			"fieldtype": "Data",
+			"label": "Declaration Number",
+			"description": "Customs-assigned declaration number"
+		},
+		{
+			"default": "Today",
+			"fieldname": "declaration_date",
+			"fieldtype": "Date",
+			"label": "Declaration Date",
+			"reqd": 1
+		},
+		{
+			"fieldname": "permission_date",
+			"fieldtype": "Date",
+			"label": "Permission Date"
+		},
+		{
+			"fieldname": "customs_office",
+			"fieldtype": "Data",
+			"label": "Customs Office",
+			"reqd": 1
+		},
+		{
+			"fieldname": "declarant_section",
+			"fieldtype": "Section Break",
+			"label": "Declarant"
+		},
+		{
+			"fieldname": "declarant",
+			"fieldtype": "Link",
+			"label": "Declarant (Customs Broker)",
+			"options": "Customs Broker",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_declarant",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "importer_exporter_type",
+			"fieldtype": "Select",
+			"label": "Importer/Exporter Type",
+			"options": "Customer\nSupplier\nCompany",
+			"reqd": 1
+		},
+		{
+			"fieldname": "importer_exporter",
+			"fieldtype": "Dynamic Link",
+			"label": "Importer/Exporter",
+			"options": "importer_exporter_type",
+			"reqd": 1
+		},
+		{
+			"fieldname": "importer_exporter_code",
+			"fieldtype": "Data",
+			"label": "Importer/Exporter Code",
+			"description": "Customs registration number"
+		},
+		{
+			"fieldname": "value_section",
+			"fieldtype": "Section Break",
+			"label": "Value"
+		},
+		{
+			"fieldname": "invoice_amount",
+			"fieldtype": "Currency",
+			"label": "Invoice Amount",
+			"options": "invoice_currency",
+			"reqd": 1
+		},
+		{
+			"fieldname": "invoice_currency",
+			"fieldtype": "Link",
+			"label": "Invoice Currency",
+			"options": "Currency",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_value",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "exchange_rate_customs",
+			"fieldtype": "Float",
+			"label": "Exchange Rate (Customs)",
+			"precision": "6"
+		},
+		{
+			"fieldname": "customs_value",
+			"fieldtype": "Currency",
+			"label": "Customs Value (CIF/FOB)",
+			"options": "invoice_currency",
+			"reqd": 1
+		},
+		{
+			"fieldname": "customs_value_jpy",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "Customs Value (JPY)",
+			"reqd": 1
+		},
+		{
+			"fieldname": "items_section",
+			"fieldtype": "Section Break",
+			"label": "Items"
+		},
+		{
+			"fieldname": "items",
+			"fieldtype": "Table",
+			"label": "Declaration Items",
+			"options": "Customs Declaration Item",
+			"reqd": 1
+		},
+		{
+			"fieldname": "tax_section",
+			"fieldtype": "Section Break",
+			"label": "Taxes"
+		},
+		{
+			"fieldname": "total_duty",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "Total Duty",
+			"read_only": 1
+		},
+		{
+			"fieldname": "total_consumption_tax",
+			"fieldtype": "Currency",
+			"label": "Total Consumption Tax",
+			"read_only": 1
+		},
+		{
+			"fieldname": "column_break_tax",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "total_local_tax",
+			"fieldtype": "Currency",
+			"label": "Total Local Tax",
+			"read_only": 1
+		},
+		{
+			"fieldname": "total_taxes",
+			"fieldtype": "Currency",
+			"label": "Total Taxes",
+			"read_only": 1
+		},
+		{
+			"fieldname": "erpnext_section",
+			"fieldtype": "Section Break",
+			"label": "ERPNext Integration"
+		},
+		{
+			"fieldname": "landed_cost_voucher",
+			"fieldtype": "Link",
+			"label": "Landed Cost Voucher",
+			"options": "Landed Cost Voucher",
+			"read_only": 1
+		},
+		{
+			"fieldname": "column_break_erpnext",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "purchase_invoice",
+			"fieldtype": "Link",
+			"label": "Purchase Invoice",
+			"options": "Purchase Invoice",
+			"read_only": 1
+		},
+		{
+			"fieldname": "attachment_section",
+			"fieldtype": "Section Break",
+			"label": "Notes"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "amended_from",
+			"fieldtype": "Link",
+			"label": "Amended From",
+			"no_copy": 1,
+			"options": "Customs Declaration",
+			"print_hide": 1,
+			"read_only": 1
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"is_submittable": 1,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Customs Declaration",
+	"naming_rule": "By \"Naming Series\" field",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"amend": 1,
+			"cancel": 1,
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"submit": 1,
+			"write": 1
+		}
+	],
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 1
+}

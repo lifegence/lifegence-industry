@@ -1,0 +1,285 @@
+<div class="org-dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <h1>Organization Dashboard</h1>
+        <p class="subtitle">Team Wellness & Psychological Safety Analysis</p>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="stat-employees">--</div>
+                <div class="stat-label">Employees</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="stat-sessions">--</div>
+                <div class="stat-label">Sessions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="stat-triggers">--</div>
+                <div class="stat-label">Triggers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="stat-period">--</div>
+                <div class="stat-label">Period</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filters -->
+    <div class="filters-bar">
+        <div class="filter-group">
+            <label>Department</label>
+            <select class="form-control" id="department-filter">
+                <option value="">All Departments</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Period</label>
+            <select class="form-control" id="period-filter">
+                <option value="week">Past Week</option>
+                <option value="month" selected>Past Month</option>
+                <option value="quarter">Past Quarter</option>
+            </select>
+        </div>
+        <button class="btn-refresh" id="refresh-btn">
+            <i class="fa fa-refresh"></i> Refresh
+        </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" data-tab="overview">Overview</button>
+        <button class="tab" data-tab="timeseries">Trends</button>
+        <button class="tab" data-tab="team">Team Analysis</button>
+        <button class="tab" data-tab="triggers">Triggers</button>
+    </div>
+
+    <!-- Overview Tab -->
+    <div id="tab-overview" class="tab-content active">
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-value high" id="kpi-stress">--%</div>
+                <div class="kpi-label">Avg Stress</div>
+                <div class="kpi-sublabel">Lower is better</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value low" id="kpi-ps">--%</div>
+                <div class="kpi-label">Avg PS Score</div>
+                <div class="kpi-sublabel">Higher is better</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value info" id="kpi-participation">--%</div>
+                <div class="kpi-label">Participation</div>
+                <div class="kpi-sublabel">Active users</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value medium" id="kpi-triggers-per-session">--</div>
+                <div class="kpi-label">Triggers/Session</div>
+                <div class="kpi-sublabel">Average</div>
+            </div>
+        </div>
+
+        <!-- Summary Table -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-table text-muted"></i>
+                <h2>Team Member Summary</h2>
+            </div>
+            <div id="summary-table-container">
+                <table class="comparison-table" id="summary-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left;">Member</th>
+                            <th>Sessions</th>
+                            <th>Stress</th>
+                            <th>PS Score</th>
+                            <th>Triggers</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="summary-table-body">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Alerts Section -->
+        <div class="card featured" id="alerts-card" style="display: none;">
+            <div class="card-header">
+                <i class="fa fa-exclamation-triangle text-warning"></i>
+                <h2>Attention Required</h2>
+            </div>
+            <ul class="evidence-list" id="alerts-list">
+                <!-- Dynamic alerts -->
+            </ul>
+        </div>
+
+        <!-- No Alerts -->
+        <div class="card" id="no-alerts-card">
+            <div class="no-alerts">
+                <div class="icon-large"><i class="fa fa-check"></i></div>
+                <p>No alerts at this time</p>
+                <small>All metrics within normal ranges</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trends Tab -->
+    <div id="tab-timeseries" class="tab-content">
+        <!-- Department Comparison -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-building text-muted"></i>
+                <h2>Department Comparison</h2>
+            </div>
+            <p class="chart-description">Compare stress and psychological safety scores across departments.</p>
+            <div id="chart-dept-comparison" class="chart-container"></div>
+        </div>
+
+        <!-- Department Time Series -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-area-chart text-muted"></i>
+                <h2>Department Stress Trends</h2>
+            </div>
+            <p class="chart-description">Track stress levels by department over the selected period.</p>
+            <div id="chart-dept-timeseries" class="chart-container-large"></div>
+        </div>
+
+        <!-- Department PS Score Time Series -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-shield text-muted"></i>
+                <h2>Department PS Score Trends</h2>
+            </div>
+            <p class="chart-description">Psychological safety score trends by department.</p>
+            <div id="chart-dept-ps-timeseries" class="chart-container-large"></div>
+        </div>
+
+        <!-- Individual Member Trends -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-line-chart text-muted"></i>
+                <h2>Individual Member Comparison</h2>
+            </div>
+            <p class="chart-description">Compare stress and PS scores across individual team members.</p>
+            <div id="chart-stress-timeline" class="chart-container"></div>
+        </div>
+
+        <!-- Session Activity Heatmap -->
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-th text-muted"></i>
+                <h2>Session Activity Heatmap</h2>
+            </div>
+            <p class="chart-description">Session activity distribution by department and time.</p>
+            <div id="chart-session-heatmap" class="chart-container"></div>
+        </div>
+    </div>
+
+    <!-- Team Analysis Tab -->
+    <div id="tab-team" class="tab-content">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-dashboard text-muted"></i>
+                <h2>Team Metrics Overview</h2>
+            </div>
+
+            <!-- Gauge Row -->
+            <div class="gauge-row">
+                <div>
+                    <div class="chart-title" style="text-align: center;">Avg Stress</div>
+                    <div id="gauge-stress" class="chart-container-small"></div>
+                </div>
+                <div>
+                    <div class="chart-title" style="text-align: center;">Avg PS Score</div>
+                    <div id="gauge-ps" class="chart-container-small"></div>
+                </div>
+                <div>
+                    <div class="chart-title" style="text-align: center;">Participation</div>
+                    <div id="gauge-participation" class="chart-container-small"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-users text-muted"></i>
+                <h2>Team Members</h2>
+                <span class="member-count" id="member-count">-- members</span>
+            </div>
+            <div id="team-grid" class="team-grid">
+                <!-- Dynamic team cards -->
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-pie-chart text-muted"></i>
+                <h2>Member Comparison Radar</h2>
+            </div>
+            <div id="chart-radar" class="chart-container"></div>
+        </div>
+    </div>
+
+    <!-- Triggers Tab -->
+    <div id="tab-triggers" class="tab-content">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-bolt text-muted"></i>
+                <h2>Trigger Analysis</h2>
+            </div>
+            <p class="chart-description">Analysis of stress triggers detected during sessions.</p>
+
+            <div class="kpi-grid" style="margin-bottom: 1.5rem;">
+                <div class="kpi-card">
+                    <div class="kpi-value high" id="trigger-total">--</div>
+                    <div class="kpi-label">Total Triggers</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value medium" id="trigger-per-session">--</div>
+                    <div class="kpi-label">Per Session</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value info" id="trigger-most-common">--</div>
+                    <div class="kpi-label">Most Common</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value" id="trigger-high-severity">--</div>
+                    <div class="kpi-label">High Severity</div>
+                </div>
+            </div>
+
+            <div class="chart-title">Triggers by Type</div>
+            <div id="chart-triggers-bar" class="chart-container"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-list text-muted"></i>
+                <h2>Trigger Breakdown</h2>
+            </div>
+            <div id="trigger-breakdown-list" class="trigger-breakdown-list">
+                <!-- Dynamic trigger breakdown -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+        <i class="fa fa-info-circle"></i> This analysis is for reference only. It should not be used for clinical or medical diagnosis.
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Powered by Mind Analyzer | Lifegence</p>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Loading data...</p>
+        </div>
+    </div>
+</div>

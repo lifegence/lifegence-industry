@@ -1,0 +1,243 @@
+<div class="monthly-report-container">
+    <!-- Report Selector -->
+    <div class="report-selector-section">
+        <div class="frappe-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label">{{ __("Select Report") }}</label>
+                        <select class="form-control report-select" id="report-month-select">
+                            <option value="">{{ __("Loading...") }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">&nbsp;</label>
+                        <div>
+                            <button class="btn btn-primary btn-sm" id="generate-report-btn">
+                                <i class="fa fa-plus"></i> {{ __("Generate New Report") }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Content -->
+    <div class="report-content" id="report-content" style="display: none;">
+        <!-- Header -->
+        <div class="report-header">
+            <h2 class="report-title">
+                <span id="report-month-title"></span>
+                <span class="report-subtitle">{{ __("Monthly Wellness Report") }}</span>
+            </h2>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="report-section">
+            <h3 class="section-title">
+                <i class="fa fa-bar-chart"></i> {{ __("Executive Summary") }}
+            </h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="summary-card overall-score">
+                        <div class="score-circle">
+                            <span id="overall-score">--</span>
+                        </div>
+                        <div class="score-label">{{ __("Overall Score") }}</div>
+                        <div class="score-trend" id="overall-trend"></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="summary-card">
+                        <div class="metric-value" id="total-sessions">--</div>
+                        <div class="metric-label">{{ __("Total Sessions") }}</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="summary-card">
+                        <div class="metric-value" id="total-time">--</div>
+                        <div class="metric-label">{{ __("Analysis Time (min)") }}</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="summary-card">
+                        <div class="metric-value" id="total-triggers">--</div>
+                        <div class="metric-label">{{ __("Triggers Detected") }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights -->
+        <div class="report-section ai-insights-section">
+            <h3 class="section-title">
+                <i class="fa fa-lightbulb-o"></i> {{ __("AI Insights") }}
+            </h3>
+            <div class="ai-summary-card">
+                <div class="ai-summary" id="ai-summary"></div>
+            </div>
+            <div class="ai-advice-card">
+                <h4>{{ __("Recommendations") }}</h4>
+                <div class="ai-advice" id="ai-advice"></div>
+            </div>
+            <div class="focus-areas">
+                <h4>{{ __("Focus Areas") }}</h4>
+                <div class="focus-tags" id="focus-areas"></div>
+            </div>
+        </div>
+
+        <!-- Individual Metrics -->
+        <div class="report-section">
+            <h3 class="section-title">
+                <i class="fa fa-user"></i> {{ __("Individual Analysis") }}
+            </h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <span class="metric-name">{{ __("Stress Level") }}</span>
+                            <div class="metric-bar-container">
+                                <div class="metric-bar stress" id="stress-bar"></div>
+                            </div>
+                            <span class="metric-percent" id="stress-value">--</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-name">{{ __("Anxiety") }}</span>
+                            <div class="metric-bar-container">
+                                <div class="metric-bar anxiety" id="anxiety-bar"></div>
+                            </div>
+                            <span class="metric-percent" id="anxiety-value">--</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-name">{{ __("Cognitive Load") }}</span>
+                            <div class="metric-bar-container">
+                                <div class="metric-bar cognitive" id="cognitive-bar"></div>
+                            </div>
+                            <span class="metric-percent" id="cognitive-value">--</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-name">{{ __("Confidence") }}</span>
+                            <div class="metric-bar-container">
+                                <div class="metric-bar confidence" id="confidence-bar"></div>
+                            </div>
+                            <span class="metric-percent" id="confidence-value">--</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-name">{{ __("Stability") }}</span>
+                            <div class="metric-bar-container">
+                                <div class="metric-bar stability" id="stability-bar"></div>
+                            </div>
+                            <span class="metric-percent" id="stability-value">--</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container" id="stress-trend-chart">
+                        <!-- Chart will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meeting Metrics -->
+        <div class="report-section" id="meeting-section">
+            <h3 class="section-title">
+                <i class="fa fa-users"></i> {{ __("Meeting Analysis") }}
+            </h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="ps-score-card">
+                        <div class="ps-score-circle">
+                            <span id="ps-score">--</span>
+                        </div>
+                        <div class="ps-label">{{ __("Psychological Safety") }}</div>
+                        <div class="meeting-count">
+                            <span id="meeting-count">--</span> {{ __("meetings analyzed") }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="ps-breakdown">
+                        <div class="ps-metric">
+                            <span class="ps-name">{{ __("Speak Up") }}</span>
+                            <div class="ps-bar-container">
+                                <div class="ps-bar" id="speak-up-bar"></div>
+                            </div>
+                            <span class="ps-percent" id="speak-up-value">--</span>
+                        </div>
+                        <div class="ps-metric">
+                            <span class="ps-name">{{ __("Respect") }}</span>
+                            <div class="ps-bar-container">
+                                <div class="ps-bar" id="respect-bar"></div>
+                            </div>
+                            <span class="ps-percent" id="respect-value">--</span>
+                        </div>
+                        <div class="ps-metric">
+                            <span class="ps-name">{{ __("Error Tolerance") }}</span>
+                            <div class="ps-bar-container">
+                                <div class="ps-bar" id="error-tolerance-bar"></div>
+                            </div>
+                            <span class="ps-percent" id="error-tolerance-value">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trigger Analysis -->
+        <div class="report-section">
+            <h3 class="section-title">
+                <i class="fa fa-exclamation-triangle"></i> {{ __("Trigger Analysis") }}
+            </h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="trigger-stats">
+                        <div class="trigger-stat">
+                            <span class="stat-value" id="trigger-total">--</span>
+                            <span class="stat-label">{{ __("Total Triggers") }}</span>
+                        </div>
+                        <div class="trigger-stat">
+                            <span class="stat-value" id="trigger-high">--</span>
+                            <span class="stat-label">{{ __("High Severity") }}</span>
+                        </div>
+                        <div class="trigger-stat">
+                            <span class="stat-value" id="trigger-common">--</span>
+                            <span class="stat-label">{{ __("Most Common") }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container" id="trigger-chart">
+                        <!-- Chart will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Trend -->
+        <div class="report-section">
+            <h3 class="section-title">
+                <i class="fa fa-line-chart"></i> {{ __("Weekly Trend") }}
+            </h3>
+            <div class="chart-container full-width" id="weekly-trend-chart">
+                <!-- Chart will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- No Report Message -->
+    <div class="no-report-message" id="no-report-message" style="display: none;">
+        <div class="empty-state">
+            <i class="fa fa-file-text-o"></i>
+            <h3>{{ __("No Report Available") }}</h3>
+            <p>{{ __("Select a month to view the report or generate a new one.") }}</p>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-indicator" id="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+        <p>{{ __("Loading report...") }}</p>
+    </div>
+</div>

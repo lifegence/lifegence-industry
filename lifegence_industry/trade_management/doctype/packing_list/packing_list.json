@@ -1,0 +1,225 @@
+{
+	"actions": [],
+	"autoname": "naming_series:",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"naming_series",
+		"trade_shipment",
+		"packing_date",
+		"column_break_header",
+		"commercial_invoice",
+		"seller_section",
+		"seller_name",
+		"seller_address",
+		"column_break_seller",
+		"buyer_name",
+		"buyer_address",
+		"shipment_section",
+		"country_of_origin",
+		"port_of_loading",
+		"column_break_shipment",
+		"port_of_discharge",
+		"vessel_name",
+		"items_section",
+		"items",
+		"totals_section",
+		"total_packages",
+		"total_gross_weight",
+		"column_break_totals",
+		"total_net_weight",
+		"total_volume",
+		"remarks_section",
+		"remarks"
+	],
+	"fields": [
+		{
+			"default": "PL-.YYYY.-",
+			"fieldname": "naming_series",
+			"fieldtype": "Select",
+			"label": "Series",
+			"options": "PL-.YYYY.-",
+			"reqd": 1,
+			"set_only_once": 1
+		},
+		{
+			"fieldname": "trade_shipment",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Trade Shipment",
+			"options": "Trade Shipment",
+			"reqd": 1
+		},
+		{
+			"default": "Today",
+			"fieldname": "packing_date",
+			"fieldtype": "Date",
+			"in_list_view": 1,
+			"label": "Packing Date",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "commercial_invoice",
+			"fieldtype": "Link",
+			"label": "Commercial Invoice",
+			"options": "Commercial Invoice"
+		},
+		{
+			"fieldname": "seller_section",
+			"fieldtype": "Section Break",
+			"label": "Parties"
+		},
+		{
+			"fieldname": "seller_name",
+			"fieldtype": "Small Text",
+			"label": "Seller",
+			"reqd": 1
+		},
+		{
+			"fieldname": "seller_address",
+			"fieldtype": "Small Text",
+			"label": "Seller Address",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_seller",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "buyer_name",
+			"fieldtype": "Small Text",
+			"label": "Buyer",
+			"reqd": 1
+		},
+		{
+			"fieldname": "buyer_address",
+			"fieldtype": "Small Text",
+			"label": "Buyer Address",
+			"reqd": 1
+		},
+		{
+			"fieldname": "shipment_section",
+			"fieldtype": "Section Break",
+			"label": "Shipment Details"
+		},
+		{
+			"fieldname": "country_of_origin",
+			"fieldtype": "Link",
+			"label": "Country of Origin",
+			"options": "Country"
+		},
+		{
+			"fieldname": "port_of_loading",
+			"fieldtype": "Link",
+			"label": "Port of Loading",
+			"options": "Port Master"
+		},
+		{
+			"fieldname": "column_break_shipment",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "port_of_discharge",
+			"fieldtype": "Link",
+			"label": "Port of Discharge",
+			"options": "Port Master"
+		},
+		{
+			"fieldname": "vessel_name",
+			"fieldtype": "Data",
+			"label": "Vessel / Flight"
+		},
+		{
+			"fieldname": "items_section",
+			"fieldtype": "Section Break",
+			"label": "Items"
+		},
+		{
+			"fieldname": "items",
+			"fieldtype": "Table",
+			"label": "Items",
+			"options": "Packing List Item",
+			"reqd": 1
+		},
+		{
+			"fieldname": "totals_section",
+			"fieldtype": "Section Break",
+			"label": "Totals"
+		},
+		{
+			"fieldname": "total_packages",
+			"fieldtype": "Int",
+			"label": "Total Packages",
+			"read_only": 1
+		},
+		{
+			"fieldname": "total_gross_weight",
+			"fieldtype": "Float",
+			"label": "Total Gross Weight (kg)",
+			"read_only": 1
+		},
+		{
+			"fieldname": "column_break_totals",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "total_net_weight",
+			"fieldtype": "Float",
+			"label": "Total Net Weight (kg)",
+			"read_only": 1
+		},
+		{
+			"fieldname": "total_volume",
+			"fieldtype": "Float",
+			"label": "Total Volume (CBM)",
+			"read_only": 1
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "remarks_section",
+			"fieldtype": "Section Break",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text",
+			"label": "Remarks"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Packing List",
+	"naming_rule": "By \"Naming Series\" field",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1, "delete": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "System Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock User", "share": 1, "write": 1
+		}
+	],
+	"search_fields": "trade_shipment,seller_name,buyer_name",
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 1
+}

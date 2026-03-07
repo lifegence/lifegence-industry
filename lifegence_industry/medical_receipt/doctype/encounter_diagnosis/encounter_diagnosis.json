@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "creation": "2026-02-11 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "disease",
+  "disease_name",
+  "icd10_code",
+  "diagnosis_type",
+  "onset_date",
+  "outcome"
+ ],
+ "fields": [
+  {
+   "fieldname": "disease",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "傷病名",
+   "options": "Disease Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "disease_name",
+   "fieldtype": "Data",
+   "fetch_from": "disease.disease_name",
+   "in_list_view": 1,
+   "label": "名称",
+   "read_only": 1
+  },
+  {
+   "fieldname": "icd10_code",
+   "fieldtype": "Data",
+   "fetch_from": "disease.icd10_code",
+   "label": "ICD-10",
+   "read_only": 1
+  },
+  {
+   "fieldname": "diagnosis_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "種別",
+   "options": "主病名\n副病名"
+  },
+  {
+   "fieldname": "onset_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "発症日"
+  },
+  {
+   "fieldname": "outcome",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "転帰",
+   "options": "継続\n治癒\n死亡\n中止"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-02-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Medical Receipt",
+ "name": "Encounter Diagnosis",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

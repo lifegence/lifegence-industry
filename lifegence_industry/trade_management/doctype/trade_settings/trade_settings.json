@@ -1,0 +1,155 @@
+{
+	"actions": [],
+	"creation": "2026-02-28 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"defaults_section",
+		"default_export_incoterm",
+		"default_import_incoterm",
+		"column_break_defaults",
+		"default_customs_broker",
+		"default_freight_forwarder",
+		"company_codes_section",
+		"company_importer_code",
+		"column_break_codes",
+		"company_exporter_code",
+		"automation_section",
+		"auto_create_shipment_from_so",
+		"auto_create_shipment_from_po",
+		"auto_create_landed_cost",
+		"column_break_automation",
+		"auto_compliance_check",
+		"ai_section",
+		"enable_ai_hs_suggestion",
+		"enable_ai_document_check"
+	],
+	"fields": [
+		{
+			"fieldname": "defaults_section",
+			"fieldtype": "Section Break",
+			"label": "Defaults"
+		},
+		{
+			"fieldname": "default_export_incoterm",
+			"fieldtype": "Link",
+			"label": "Default Export Incoterm",
+			"options": "Incoterm"
+		},
+		{
+			"fieldname": "default_import_incoterm",
+			"fieldtype": "Link",
+			"label": "Default Import Incoterm",
+			"options": "Incoterm"
+		},
+		{
+			"fieldname": "column_break_defaults",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "default_customs_broker",
+			"fieldtype": "Link",
+			"label": "Default Customs Broker",
+			"options": "Customs Broker"
+		},
+		{
+			"fieldname": "default_freight_forwarder",
+			"fieldtype": "Link",
+			"label": "Default Freight Forwarder",
+			"options": "Freight Forwarder"
+		},
+		{
+			"fieldname": "company_codes_section",
+			"fieldtype": "Section Break",
+			"label": "Company Codes"
+		},
+		{
+			"fieldname": "company_importer_code",
+			"fieldtype": "Data",
+			"label": "Company Importer Code"
+		},
+		{
+			"fieldname": "column_break_codes",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "company_exporter_code",
+			"fieldtype": "Data",
+			"label": "Company Exporter Code"
+		},
+		{
+			"fieldname": "automation_section",
+			"fieldtype": "Section Break",
+			"label": "Automation"
+		},
+		{
+			"fieldname": "auto_create_shipment_from_so",
+			"fieldtype": "Check",
+			"label": "Auto Create Shipment from Sales Order",
+			"default": "0"
+		},
+		{
+			"fieldname": "auto_create_shipment_from_po",
+			"fieldtype": "Check",
+			"label": "Auto Create Shipment from Purchase Order",
+			"default": "0"
+		},
+		{
+			"fieldname": "auto_create_landed_cost",
+			"fieldtype": "Check",
+			"label": "Auto Create Landed Cost",
+			"default": "1"
+		},
+		{
+			"fieldname": "column_break_automation",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "auto_compliance_check",
+			"fieldtype": "Check",
+			"label": "Auto Compliance Check",
+			"default": "0"
+		},
+		{
+			"fieldname": "ai_section",
+			"fieldtype": "Section Break",
+			"label": "AI Features",
+			"collapsible": 1
+		},
+		{
+			"fieldname": "enable_ai_hs_suggestion",
+			"fieldtype": "Check",
+			"label": "Enable AI HS Suggestion",
+			"default": "0"
+		},
+		{
+			"fieldname": "enable_ai_document_check",
+			"fieldtype": "Check",
+			"label": "Enable AI Document Check",
+			"default": "0"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"issingle": 1,
+	"links": [],
+	"modified": "2026-02-28 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Trade Settings",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"email": 1,
+			"print": 1,
+			"read": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		}
+	],
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 1
+}

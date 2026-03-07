@@ -1,0 +1,137 @@
+{
+	"actions": [],
+	"autoname": "hash",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"entity_name",
+		"entity_type",
+		"column_break_header",
+		"list_source",
+		"entry_id",
+		"details_section",
+		"aliases",
+		"country",
+		"column_break_details",
+		"program",
+		"reason",
+		"date_listed",
+		"date_removed",
+		"active_section",
+		"is_active"
+	],
+	"fields": [
+		{
+			"fieldname": "entity_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Entity Name",
+			"reqd": 1
+		},
+		{
+			"default": "Individual",
+			"fieldname": "entity_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Entity Type",
+			"options": "Individual\nOrganization\nVessel\nAircraft",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "list_source",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "List Source",
+			"options": "OFAC SDN\nEU Consolidated\nUN Security Council\nJapan METI\nOther",
+			"reqd": 1
+		},
+		{
+			"fieldname": "entry_id",
+			"fieldtype": "Data",
+			"label": "Entry ID",
+			"unique": 1
+		},
+		{
+			"fieldname": "details_section",
+			"fieldtype": "Section Break",
+			"label": "Details"
+		},
+		{
+			"fieldname": "aliases",
+			"fieldtype": "Small Text",
+			"label": "Aliases"
+		},
+		{
+			"fieldname": "country",
+			"fieldtype": "Link",
+			"label": "Country",
+			"options": "Country"
+		},
+		{
+			"fieldname": "column_break_details",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "program",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Program"
+		},
+		{
+			"fieldname": "reason",
+			"fieldtype": "Small Text",
+			"label": "Reason"
+		},
+		{
+			"fieldname": "date_listed",
+			"fieldtype": "Date",
+			"label": "Date Listed"
+		},
+		{
+			"fieldname": "date_removed",
+			"fieldtype": "Date",
+			"label": "Date Removed"
+		},
+		{
+			"fieldname": "active_section",
+			"fieldtype": "Section Break"
+		},
+		{
+			"default": "1",
+			"fieldname": "is_active",
+			"fieldtype": "Check",
+			"label": "Is Active"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Sanctions List Entry",
+	"naming_rule": "Random",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		}
+	],
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 0
+}

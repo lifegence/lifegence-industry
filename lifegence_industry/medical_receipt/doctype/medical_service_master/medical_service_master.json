@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "autoname": "field:service_code",
+ "creation": "2026-02-11 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "service_code",
+  "service_name",
+  "cb_service",
+  "service_name_short",
+  "service_category",
+  "fee_section",
+  "fee_points",
+  "fee_schedule_revision",
+  "validity_section",
+  "effective_from",
+  "effective_to",
+  "cb_active",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "service_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u8a3a\u7642\u884c\u70ba\u30b3\u30fc\u30c9",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "service_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u8a3a\u7642\u884c\u70ba\u540d\u79f0",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_service",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "service_name_short",
+   "fieldtype": "Data",
+   "label": "\u7565\u79f0"
+  },
+  {
+   "fieldname": "service_category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u533a\u5206",
+   "options": "\u521d\u518d\u8a3a\n\u533b\u5b66\u7ba1\u7406\n\u5728\u5b85\n\u6295\u85ac\n\u6ce8\u5c04\n\u51e6\u7f6e\n\u624b\u8853\n\u691c\u67fb\n\u753b\u50cf\u8a3a\u65ad\n\u30ea\u30cf\u30d3\u30ea\n\u305d\u306e\u4ed6",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fee_section",
+   "fieldtype": "Section Break",
+   "label": "Fee"
+  },
+  {
+   "fieldname": "fee_points",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "\u70b9\u6570",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fee_schedule_revision",
+   "fieldtype": "Link",
+   "label": "\u6539\u5b9a",
+   "options": "Fee Schedule Revision"
+  },
+  {
+   "fieldname": "validity_section",
+   "fieldtype": "Section Break",
+   "label": "Validity"
+  },
+  {
+   "fieldname": "effective_from",
+   "fieldtype": "Date",
+   "label": "\u9069\u7528\u958b\u59cb\u65e5",
+   "reqd": 1
+  },
+  {
+   "fieldname": "effective_to",
+   "fieldtype": "Date",
+   "label": "\u9069\u7528\u7d42\u4e86\u65e5"
+  },
+  {
+   "fieldname": "cb_active",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "\u6709\u52b9",
+   "default": "1"
+  }
+ ],
+ "links": [],
+ "modified": "2026-02-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Medical Receipt",
+ "name": "Medical Service Master",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "role": "All"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

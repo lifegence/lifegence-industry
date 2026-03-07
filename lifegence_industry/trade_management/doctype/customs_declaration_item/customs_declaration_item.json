@@ -1,0 +1,156 @@
+{
+	"actions": [],
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"item_code",
+		"description",
+		"column_break_item",
+		"hs_code",
+		"country_of_origin",
+		"qty",
+		"uom",
+		"value_section",
+		"statistical_value",
+		"customs_value",
+		"duty_section",
+		"duty_rate",
+		"duty_amount",
+		"column_break_duty",
+		"preferential_rate",
+		"preferential_agreement",
+		"tax_section",
+		"consumption_tax_rate",
+		"consumption_tax_amount"
+	],
+	"fields": [
+		{
+			"fieldname": "item_code",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Item Code",
+			"options": "Item"
+		},
+		{
+			"fieldname": "description",
+			"fieldtype": "Small Text",
+			"in_list_view": 1,
+			"label": "Description",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_item",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "hs_code",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "HS Code",
+			"options": "Customs Tariff Number",
+			"reqd": 1
+		},
+		{
+			"fieldname": "country_of_origin",
+			"fieldtype": "Link",
+			"label": "Country of Origin",
+			"options": "Country",
+			"reqd": 1
+		},
+		{
+			"fieldname": "qty",
+			"fieldtype": "Float",
+			"in_list_view": 1,
+			"label": "Qty",
+			"reqd": 1
+		},
+		{
+			"fieldname": "uom",
+			"fieldtype": "Link",
+			"label": "UOM",
+			"options": "UOM",
+			"reqd": 1
+		},
+		{
+			"fieldname": "value_section",
+			"fieldtype": "Section Break",
+			"label": "Value"
+		},
+		{
+			"fieldname": "statistical_value",
+			"fieldtype": "Currency",
+			"label": "Statistical Value",
+			"reqd": 1
+		},
+		{
+			"fieldname": "customs_value",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "Customs Value",
+			"reqd": 1
+		},
+		{
+			"fieldname": "duty_section",
+			"fieldtype": "Section Break",
+			"label": "Duty"
+		},
+		{
+			"fieldname": "duty_rate",
+			"fieldtype": "Percent",
+			"in_list_view": 1,
+			"label": "Duty Rate (%)"
+		},
+		{
+			"fieldname": "duty_amount",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "Duty Amount",
+			"read_only": 1
+		},
+		{
+			"fieldname": "column_break_duty",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "preferential_rate",
+			"fieldtype": "Percent",
+			"label": "Preferential Rate (%)"
+		},
+		{
+			"fieldname": "preferential_agreement",
+			"fieldtype": "Data",
+			"label": "Preferential Agreement"
+		},
+		{
+			"fieldname": "tax_section",
+			"fieldtype": "Section Break",
+			"label": "Tax"
+		},
+		{
+			"default": "10",
+			"fieldname": "consumption_tax_rate",
+			"fieldtype": "Percent",
+			"label": "Consumption Tax Rate (%)"
+		},
+		{
+			"fieldname": "consumption_tax_amount",
+			"fieldtype": "Currency",
+			"label": "Consumption Tax Amount",
+			"read_only": 1
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"istable": 1,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Customs Declaration Item",
+	"owner": "Administrator",
+	"permissions": [],
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 0
+}

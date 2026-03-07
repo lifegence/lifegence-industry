@@ -1,0 +1,335 @@
+{
+	"actions": [],
+	"autoname": "field:lc_number",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"lc_number",
+		"lc_type",
+		"status",
+		"column_break_header",
+		"trade_shipment",
+		"date_of_issue",
+		"parties_section",
+		"applicant_type",
+		"applicant",
+		"column_break_parties",
+		"beneficiary_type",
+		"beneficiary",
+		"bank_section",
+		"issuing_bank",
+		"column_break_bank",
+		"advising_bank",
+		"confirming_bank",
+		"amount_section",
+		"lc_amount",
+		"currency",
+		"tolerance_percentage",
+		"column_break_amount",
+		"drawn_amount",
+		"balance",
+		"dates_section",
+		"expiry_date",
+		"latest_shipment_date",
+		"column_break_dates",
+		"presentation_period",
+		"conditions_section",
+		"partial_shipments",
+		"transshipment",
+		"column_break_conditions",
+		"required_documents",
+		"additional_conditions",
+		"amendments_section",
+		"amendments",
+		"charges_section",
+		"opening_charge",
+		"column_break_charges",
+		"advising_charge",
+		"negotiation_charge",
+		"notes_section",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "lc_number",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "L/C Number",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"default": "Irrevocable",
+			"fieldname": "lc_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "L/C Type",
+			"options": "Irrevocable\nIrrevocable Confirmed\nStandby\nTransferable\nRevolving\nBack-to-Back",
+			"reqd": 1
+		},
+		{
+			"default": "Draft",
+			"fieldname": "status",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Status",
+			"options": "Draft\nIssued\nAdvised\nAmended\nPartially Drawn\nFully Drawn\nExpired\nCancelled"
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "trade_shipment",
+			"fieldtype": "Link",
+			"label": "Trade Shipment",
+			"options": "Trade Shipment"
+		},
+		{
+			"default": "Today",
+			"fieldname": "date_of_issue",
+			"fieldtype": "Date",
+			"label": "Date of Issue",
+			"reqd": 1
+		},
+		{
+			"fieldname": "parties_section",
+			"fieldtype": "Section Break",
+			"label": "Parties"
+		},
+		{
+			"fieldname": "applicant_type",
+			"fieldtype": "Select",
+			"label": "Applicant Type",
+			"options": "Customer\nSupplier\nCompany",
+			"reqd": 1
+		},
+		{
+			"fieldname": "applicant",
+			"fieldtype": "Dynamic Link",
+			"label": "Applicant (Buyer)",
+			"options": "applicant_type",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_parties",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "beneficiary_type",
+			"fieldtype": "Select",
+			"label": "Beneficiary Type",
+			"options": "Customer\nSupplier\nCompany",
+			"reqd": 1
+		},
+		{
+			"fieldname": "beneficiary",
+			"fieldtype": "Dynamic Link",
+			"label": "Beneficiary (Seller)",
+			"options": "beneficiary_type",
+			"reqd": 1
+		},
+		{
+			"fieldname": "bank_section",
+			"fieldtype": "Section Break",
+			"label": "Banks"
+		},
+		{
+			"fieldname": "issuing_bank",
+			"fieldtype": "Data",
+			"label": "Issuing Bank",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_bank",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "advising_bank",
+			"fieldtype": "Data",
+			"label": "Advising Bank"
+		},
+		{
+			"fieldname": "confirming_bank",
+			"fieldtype": "Data",
+			"label": "Confirming Bank"
+		},
+		{
+			"fieldname": "amount_section",
+			"fieldtype": "Section Break",
+			"label": "Amount"
+		},
+		{
+			"fieldname": "lc_amount",
+			"fieldtype": "Currency",
+			"in_list_view": 1,
+			"label": "L/C Amount",
+			"options": "currency",
+			"reqd": 1
+		},
+		{
+			"fieldname": "currency",
+			"fieldtype": "Link",
+			"label": "Currency",
+			"options": "Currency",
+			"reqd": 1
+		},
+		{
+			"fieldname": "tolerance_percentage",
+			"fieldtype": "Percent",
+			"label": "Tolerance (%)"
+		},
+		{
+			"fieldname": "column_break_amount",
+			"fieldtype": "Column Break"
+		},
+		{
+			"default": "0",
+			"fieldname": "drawn_amount",
+			"fieldtype": "Currency",
+			"label": "Drawn Amount",
+			"options": "currency",
+			"read_only": 1
+		},
+		{
+			"fieldname": "balance",
+			"fieldtype": "Currency",
+			"label": "Balance",
+			"options": "currency",
+			"read_only": 1
+		},
+		{
+			"fieldname": "dates_section",
+			"fieldtype": "Section Break",
+			"label": "Dates"
+		},
+		{
+			"fieldname": "expiry_date",
+			"fieldtype": "Date",
+			"label": "Expiry Date",
+			"reqd": 1
+		},
+		{
+			"fieldname": "latest_shipment_date",
+			"fieldtype": "Date",
+			"label": "Latest Shipment Date"
+		},
+		{
+			"fieldname": "column_break_dates",
+			"fieldtype": "Column Break"
+		},
+		{
+			"default": "21",
+			"fieldname": "presentation_period",
+			"fieldtype": "Int",
+			"label": "Presentation Period (Days)"
+		},
+		{
+			"fieldname": "conditions_section",
+			"fieldtype": "Section Break",
+			"label": "Conditions"
+		},
+		{
+			"default": "Allowed",
+			"fieldname": "partial_shipments",
+			"fieldtype": "Select",
+			"label": "Partial Shipments",
+			"options": "Allowed\nNot Allowed"
+		},
+		{
+			"default": "Allowed",
+			"fieldname": "transshipment",
+			"fieldtype": "Select",
+			"label": "Transshipment",
+			"options": "Allowed\nNot Allowed"
+		},
+		{
+			"fieldname": "column_break_conditions",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "required_documents",
+			"fieldtype": "Text",
+			"label": "Required Documents"
+		},
+		{
+			"fieldname": "additional_conditions",
+			"fieldtype": "Text",
+			"label": "Additional Conditions"
+		},
+		{
+			"fieldname": "amendments_section",
+			"fieldtype": "Section Break",
+			"label": "Amendments"
+		},
+		{
+			"fieldname": "amendments",
+			"fieldtype": "Table",
+			"label": "Amendments",
+			"options": "LC Amendment"
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "charges_section",
+			"fieldtype": "Section Break",
+			"label": "Charges"
+		},
+		{
+			"fieldname": "opening_charge",
+			"fieldtype": "Currency",
+			"label": "Opening Charge"
+		},
+		{
+			"fieldname": "column_break_charges",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "advising_charge",
+			"fieldtype": "Currency",
+			"label": "Advising Charge"
+		},
+		{
+			"fieldname": "negotiation_charge",
+			"fieldtype": "Currency",
+			"label": "Negotiation Charge"
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "notes_section",
+			"fieldtype": "Section Break",
+			"label": "Notes"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text",
+			"label": "Remarks"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Letter of Credit",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		}
+	],
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 1
+}

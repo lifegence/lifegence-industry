@@ -1,0 +1,136 @@
+{
+	"actions": [],
+	"autoname": "hash",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"customs_tariff_number",
+		"rate_type",
+		"column_break_header",
+		"country",
+		"fta_agreement",
+		"rate_section",
+		"duty_rate",
+		"specific_duty",
+		"specific_duty_unit",
+		"column_break_rate",
+		"effective_from",
+		"effective_to",
+		"notes_section",
+		"notes"
+	],
+	"fields": [
+		{
+			"fieldname": "customs_tariff_number",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "HS Code",
+			"options": "Customs Tariff Number",
+			"reqd": 1
+		},
+		{
+			"default": "General",
+			"fieldname": "rate_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"label": "Rate Type",
+			"options": "General\nWTO\nEPA\nGSP\nTemporary",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "country",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Country",
+			"options": "Country",
+			"description": "Leave blank for all countries"
+		},
+		{
+			"depends_on": "eval:doc.rate_type=='EPA'",
+			"fieldname": "fta_agreement",
+			"fieldtype": "Data",
+			"label": "FTA/EPA Agreement"
+		},
+		{
+			"fieldname": "rate_section",
+			"fieldtype": "Section Break",
+			"label": "Rate"
+		},
+		{
+			"fieldname": "duty_rate",
+			"fieldtype": "Percent",
+			"in_list_view": 1,
+			"label": "Duty Rate (%)",
+			"reqd": 1
+		},
+		{
+			"fieldname": "specific_duty",
+			"fieldtype": "Currency",
+			"label": "Specific Duty",
+			"description": "For quantity-based duties"
+		},
+		{
+			"fieldname": "specific_duty_unit",
+			"fieldtype": "Data",
+			"label": "Specific Duty Unit",
+			"description": "e.g. kg, L"
+		},
+		{
+			"fieldname": "column_break_rate",
+			"fieldtype": "Column Break"
+		},
+		{
+			"default": "Today",
+			"fieldname": "effective_from",
+			"fieldtype": "Date",
+			"in_list_view": 1,
+			"label": "Effective From",
+			"reqd": 1
+		},
+		{
+			"fieldname": "effective_to",
+			"fieldtype": "Date",
+			"label": "Effective To"
+		},
+		{
+			"fieldname": "notes_section",
+			"fieldtype": "Section Break"
+		},
+		{
+			"fieldname": "notes",
+			"fieldtype": "Small Text",
+			"label": "Notes"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Customs Tariff Rate",
+	"naming_rule": "Random",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		}
+	],
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"track_changes": 1
+}

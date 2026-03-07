@@ -1,0 +1,109 @@
+{
+	"actions": [],
+	"autoname": "field:imo_number",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"imo_number",
+		"vessel_name",
+		"shipping_line",
+		"column_break_basic",
+		"vessel_type",
+		"flag_country",
+		"specs_section",
+		"built_year",
+		"column_break_specs",
+		"dwt",
+		"teu_capacity"
+	],
+	"fields": [
+		{
+			"fieldname": "imo_number",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "IMO Number",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "vessel_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Vessel Name",
+			"reqd": 1
+		},
+		{
+			"fieldname": "shipping_line",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Shipping Line",
+			"options": "Shipping Line"
+		},
+		{
+			"fieldname": "column_break_basic",
+			"fieldtype": "Column Break"
+		},
+		{
+			"default": "Container",
+			"fieldname": "vessel_type",
+			"fieldtype": "Select",
+			"label": "Vessel Type",
+			"options": "Container\nBulk\nTanker\nRoRo\nGeneral"
+		},
+		{
+			"fieldname": "flag_country",
+			"fieldtype": "Link",
+			"label": "Flag Country",
+			"options": "Country"
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "specs_section",
+			"fieldtype": "Section Break",
+			"label": "Specifications"
+		},
+		{
+			"fieldname": "built_year",
+			"fieldtype": "Int",
+			"label": "Built Year"
+		},
+		{
+			"fieldname": "column_break_specs",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "dwt",
+			"fieldtype": "Float",
+			"label": "DWT (tons)"
+		},
+		{
+			"fieldname": "teu_capacity",
+			"fieldtype": "Int",
+			"label": "TEU Capacity"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Vessel Master",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1, "delete": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "System Manager", "share": 1, "write": 1
+		},
+		{
+			"read": 1, "role": "All"
+		}
+	],
+	"sort_field": "vessel_name",
+	"sort_order": "ASC",
+	"states": [],
+	"title_field": "vessel_name",
+	"track_changes": 1
+}

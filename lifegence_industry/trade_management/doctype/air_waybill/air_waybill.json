@@ -1,0 +1,304 @@
+{
+	"actions": [],
+	"autoname": "field:awb_number",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"awb_number",
+		"awb_type",
+		"column_break_header",
+		"trade_shipment",
+		"date_of_issue",
+		"carrier_section",
+		"airline",
+		"flight_no",
+		"column_break_carrier",
+		"flight_date",
+		"parties_section",
+		"shipper_name",
+		"shipper_address",
+		"column_break_parties",
+		"consignee_name",
+		"consignee_address",
+		"route_section",
+		"airport_of_departure",
+		"column_break_route",
+		"airport_of_destination",
+		"routing",
+		"cargo_section",
+		"pieces",
+		"gross_weight",
+		"column_break_cargo",
+		"chargeable_weight",
+		"volume_weight",
+		"commodity_section",
+		"commodity_description",
+		"nature_of_goods",
+		"charges_section",
+		"freight_prepaid_or_collect",
+		"rate_per_kg",
+		"column_break_charges",
+		"weight_charge",
+		"valuation_charge",
+		"total_charge",
+		"remarks_section",
+		"remarks"
+	],
+	"fields": [
+		{
+			"fieldname": "awb_number",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "AWB Number",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"default": "Master AWB",
+			"fieldname": "awb_type",
+			"fieldtype": "Select",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "AWB Type",
+			"options": "Master AWB\nHouse AWB",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_header",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "trade_shipment",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"in_standard_filter": 1,
+			"label": "Trade Shipment",
+			"options": "Trade Shipment",
+			"reqd": 1
+		},
+		{
+			"fieldname": "date_of_issue",
+			"fieldtype": "Date",
+			"label": "Date of Issue",
+			"reqd": 1
+		},
+		{
+			"fieldname": "carrier_section",
+			"fieldtype": "Section Break",
+			"label": "Carrier"
+		},
+		{
+			"fieldname": "airline",
+			"fieldtype": "Link",
+			"label": "Airline",
+			"options": "Airline Master",
+			"reqd": 1
+		},
+		{
+			"fieldname": "flight_no",
+			"fieldtype": "Data",
+			"label": "Flight No"
+		},
+		{
+			"fieldname": "column_break_carrier",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "flight_date",
+			"fieldtype": "Date",
+			"label": "Flight Date"
+		},
+		{
+			"fieldname": "parties_section",
+			"fieldtype": "Section Break",
+			"label": "Parties"
+		},
+		{
+			"fieldname": "shipper_name",
+			"fieldtype": "Small Text",
+			"label": "Shipper",
+			"reqd": 1
+		},
+		{
+			"fieldname": "shipper_address",
+			"fieldtype": "Small Text",
+			"label": "Shipper Address",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_parties",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "consignee_name",
+			"fieldtype": "Small Text",
+			"label": "Consignee",
+			"reqd": 1
+		},
+		{
+			"fieldname": "consignee_address",
+			"fieldtype": "Small Text",
+			"label": "Consignee Address",
+			"reqd": 1
+		},
+		{
+			"fieldname": "route_section",
+			"fieldtype": "Section Break",
+			"label": "Route"
+		},
+		{
+			"fieldname": "airport_of_departure",
+			"fieldtype": "Link",
+			"label": "Airport of Departure",
+			"options": "Port Master",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_route",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "airport_of_destination",
+			"fieldtype": "Link",
+			"label": "Airport of Destination",
+			"options": "Port Master",
+			"reqd": 1
+		},
+		{
+			"fieldname": "routing",
+			"fieldtype": "Data",
+			"label": "Routing"
+		},
+		{
+			"fieldname": "cargo_section",
+			"fieldtype": "Section Break",
+			"label": "Cargo"
+		},
+		{
+			"fieldname": "pieces",
+			"fieldtype": "Int",
+			"label": "Pieces",
+			"reqd": 1
+		},
+		{
+			"fieldname": "gross_weight",
+			"fieldtype": "Float",
+			"label": "Gross Weight (kg)",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_cargo",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "chargeable_weight",
+			"fieldtype": "Float",
+			"label": "Chargeable Weight (kg)",
+			"reqd": 1
+		},
+		{
+			"fieldname": "volume_weight",
+			"fieldtype": "Float",
+			"label": "Volume Weight (kg)"
+		},
+		{
+			"fieldname": "commodity_section",
+			"fieldtype": "Section Break",
+			"label": "Commodity"
+		},
+		{
+			"fieldname": "commodity_description",
+			"fieldtype": "Text",
+			"label": "Commodity Description",
+			"reqd": 1
+		},
+		{
+			"default": "General",
+			"fieldname": "nature_of_goods",
+			"fieldtype": "Select",
+			"label": "Nature of Goods",
+			"options": "General\nPerishable\nDangerous\nValuable"
+		},
+		{
+			"fieldname": "charges_section",
+			"fieldtype": "Section Break",
+			"label": "Charges"
+		},
+		{
+			"default": "Prepaid",
+			"fieldname": "freight_prepaid_or_collect",
+			"fieldtype": "Select",
+			"label": "Freight",
+			"options": "Prepaid\nCollect",
+			"reqd": 1
+		},
+		{
+			"fieldname": "rate_per_kg",
+			"fieldtype": "Currency",
+			"label": "Rate per kg"
+		},
+		{
+			"fieldname": "column_break_charges",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "weight_charge",
+			"fieldtype": "Currency",
+			"label": "Weight Charge"
+		},
+		{
+			"fieldname": "valuation_charge",
+			"fieldtype": "Currency",
+			"label": "Valuation Charge"
+		},
+		{
+			"fieldname": "total_charge",
+			"fieldtype": "Currency",
+			"label": "Total Charge",
+			"read_only": 1
+		},
+		{
+			"collapsible": 1,
+			"fieldname": "remarks_section",
+			"fieldtype": "Section Break",
+			"label": "Remarks"
+		},
+		{
+			"fieldname": "remarks",
+			"fieldtype": "Text",
+			"label": "Remarks"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Air Waybill",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1, "delete": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "System Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock Manager", "share": 1, "write": 1
+		},
+		{
+			"create": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "Stock User", "share": 1, "write": 1
+		}
+	],
+	"search_fields": "awb_type,trade_shipment,airline",
+	"sort_field": "creation",
+	"sort_order": "DESC",
+	"states": [],
+	"title_field": "awb_number",
+	"track_changes": 1
+}

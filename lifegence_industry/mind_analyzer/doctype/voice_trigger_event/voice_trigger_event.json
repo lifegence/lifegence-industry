@@ -1,0 +1,108 @@
+{
+  "actions": [],
+  "autoname": "format:VTE-{####}",
+  "creation": "2025-02-04 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "session",
+    "trigger_type",
+    "timestamp",
+    "column_break_basic",
+    "severity",
+    "details_section",
+    "evidence",
+    "metadata"
+  ],
+  "fields": [
+    {
+      "fieldname": "session",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Session",
+      "options": "Voice Analysis Session",
+      "reqd": 1
+    },
+    {
+      "fieldname": "trigger_type",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Trigger Type",
+      "options": "silence_spike\napology_phrase\nhedge_increase\nspeech_rate_change\nrestart_increase\ninterruption\noverlap\npower_imbalance",
+      "reqd": 1
+    },
+    {
+      "fieldname": "timestamp",
+      "fieldtype": "Datetime",
+      "in_list_view": 1,
+      "label": "Timestamp",
+      "reqd": 1
+    },
+    {
+      "fieldname": "column_break_basic",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "severity",
+      "fieldtype": "Float",
+      "in_list_view": 1,
+      "label": "Severity",
+      "description": "Trigger severity (0-1)"
+    },
+    {
+      "fieldname": "details_section",
+      "fieldtype": "Section Break",
+      "label": "Details"
+    },
+    {
+      "fieldname": "evidence",
+      "fieldtype": "Small Text",
+      "label": "Evidence",
+      "description": "Description of what triggered this event"
+    },
+    {
+      "fieldname": "metadata",
+      "fieldtype": "JSON",
+      "label": "Metadata",
+      "description": "Additional event metadata"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-02-04 10:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Mind Analyzer",
+  "name": "Voice Trigger Event",
+  "naming_rule": "Expression",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "read": 1,
+      "role": "Mind Analyzer User"
+    },
+    {
+      "read": 1,
+      "report": 1,
+      "role": "Mind Analyzer Manager"
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": [],
+  "track_changes": 0
+}

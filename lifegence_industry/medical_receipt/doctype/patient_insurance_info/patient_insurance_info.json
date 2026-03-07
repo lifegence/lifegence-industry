@@ -1,0 +1,184 @@
+{
+ "actions": [],
+ "autoname": "field:insurance_card_id",
+ "creation": "2026-02-11 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_section",
+  "patient_name",
+  "patient_name_kana",
+  "cb_patient",
+  "date_of_birth",
+  "sex",
+  "insurance_section",
+  "insurance_type",
+  "insurer_number",
+  "insurance_card_id",
+  "cb_insurance",
+  "member_type",
+  "copay_rate",
+  "validity_section",
+  "valid_from",
+  "valid_to",
+  "cb_validity",
+  "is_active",
+  "public_expense_section",
+  "public_expense_type",
+  "cb_public",
+  "public_expense_recipient"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_section",
+   "fieldtype": "Section Break",
+   "label": "Patient"
+  },
+  {
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u60a3\u8005\u6c0f\u540d",
+   "reqd": 1
+  },
+  {
+   "fieldname": "patient_name_kana",
+   "fieldtype": "Data",
+   "label": "\u30ab\u30ca",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_patient",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "\u751f\u5e74\u6708\u65e5",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sex",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "\u6027\u5225",
+   "options": "\u7537\n\u5973",
+   "reqd": 1
+  },
+  {
+   "fieldname": "insurance_section",
+   "fieldtype": "Section Break",
+   "label": "Insurance"
+  },
+  {
+   "fieldname": "insurance_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u4fdd\u967a\u7a2e\u5225",
+   "options": "\u793e\u4fdd\n\u56fd\u4fdd\n\u5f8c\u671f\u9ad8\u9f62\u8005\n\u516c\u8cbb\n\u81ea\u8cbb",
+   "reqd": 1
+  },
+  {
+   "fieldname": "insurer_number",
+   "fieldtype": "Data",
+   "label": "\u4fdd\u967a\u8005\u756a\u53f7",
+   "description": "8-digit insurer number (required except for \u81ea\u8cbb)"
+  },
+  {
+   "fieldname": "insurance_card_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u88ab\u4fdd\u967a\u8005\u756a\u53f7",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "cb_insurance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "member_type",
+   "fieldtype": "Select",
+   "label": "\u672c\u4eba/\u5bb6\u65cf",
+   "options": "\u672c\u4eba\n\u5bb6\u65cf",
+   "reqd": 1
+  },
+  {
+   "fieldname": "copay_rate",
+   "fieldtype": "Select",
+   "label": "\u81ea\u5df1\u8ca0\u62c5\u5272\u5408",
+   "options": "10%\n20%\n30%"
+  },
+  {
+   "fieldname": "validity_section",
+   "fieldtype": "Section Break",
+   "label": "Validity"
+  },
+  {
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "\u8cc7\u683c\u53d6\u5f97\u65e5",
+   "reqd": 1
+  },
+  {
+   "fieldname": "valid_to",
+   "fieldtype": "Date",
+   "label": "\u8cc7\u683c\u55aa\u5931\u65e5"
+  },
+  {
+   "fieldname": "cb_validity",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "\u6709\u52b9",
+   "default": "1"
+  },
+  {
+   "fieldname": "public_expense_section",
+   "fieldtype": "Section Break",
+   "label": "Public Expense"
+  },
+  {
+   "fieldname": "public_expense_type",
+   "fieldtype": "Data",
+   "label": "\u516c\u8cbb\u8ca0\u62c5\u8005\u756a\u53f7"
+  },
+  {
+   "fieldname": "cb_public",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "public_expense_recipient",
+   "fieldtype": "Data",
+   "label": "\u53d7\u7d66\u8005\u756a\u53f7"
+  }
+ ],
+ "links": [],
+ "modified": "2026-02-11 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Medical Receipt",
+ "name": "Patient Insurance Info",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "role": "All"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

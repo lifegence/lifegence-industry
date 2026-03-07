@@ -1,0 +1,96 @@
+{
+	"actions": [],
+	"autoname": "field:line_code",
+	"creation": "2026-03-01 00:00:00.000000",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"line_code",
+		"line_name",
+		"column_break_basic",
+		"country",
+		"supplier",
+		"details_section",
+		"website",
+		"column_break_details",
+		"tracking_url_template"
+	],
+	"fields": [
+		{
+			"fieldname": "line_code",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "SCAC Code",
+			"reqd": 1,
+			"unique": 1
+		},
+		{
+			"fieldname": "line_name",
+			"fieldtype": "Data",
+			"in_list_view": 1,
+			"label": "Shipping Line Name",
+			"reqd": 1
+		},
+		{
+			"fieldname": "column_break_basic",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "country",
+			"fieldtype": "Link",
+			"in_list_view": 1,
+			"label": "Country",
+			"options": "Country"
+		},
+		{
+			"fieldname": "supplier",
+			"fieldtype": "Link",
+			"label": "Supplier",
+			"options": "Supplier"
+		},
+		{
+			"fieldname": "details_section",
+			"fieldtype": "Section Break",
+			"label": "Details"
+		},
+		{
+			"fieldname": "website",
+			"fieldtype": "Data",
+			"label": "Website",
+			"options": "URL"
+		},
+		{
+			"fieldname": "column_break_details",
+			"fieldtype": "Column Break"
+		},
+		{
+			"description": "Use {container_no} as placeholder",
+			"fieldname": "tracking_url_template",
+			"fieldtype": "Data",
+			"label": "Tracking URL Template"
+		}
+	],
+	"index_web_pages_for_search": 0,
+	"links": [],
+	"modified": "2026-03-01 00:00:00.000000",
+	"modified_by": "Administrator",
+	"module": "Trade Management",
+	"name": "Shipping Line",
+	"naming_rule": "By fieldname",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1, "delete": 1, "email": 1, "export": 1,
+			"print": 1, "read": 1, "report": 1,
+			"role": "System Manager", "share": 1, "write": 1
+		},
+		{
+			"read": 1, "role": "All"
+		}
+	],
+	"sort_field": "line_name",
+	"sort_order": "ASC",
+	"states": [],
+	"title_field": "line_name",
+	"track_changes": 1
+}
