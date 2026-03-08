@@ -1,9 +1,10 @@
 [project]
 name = "lifegence_industry"
 authors = [
-    { name = "Lifegence", email = "masakazu@lifegence.co.jp"}
+    { name = "Lifegence", email = "info@lifegence.co.jp"}
 ]
 description = "Industry-Specific Modules - Medical, Trade, Mind Analysis"
+license = {file = "LICENSE"}
 requires-python = ">=3.14"
 readme = "README.md"
 dynamic = ["version"]

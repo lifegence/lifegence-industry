@@ -2,7 +2,7 @@ app_name = "lifegence_industry"
 app_title = "Lifegence Industry"
 app_publisher = "Lifegence"
 app_description = "Industry-Specific Modules - Medical, Trade, Mind Analysis"
-app_email = "masakazu@lifegence.co.jp"
+app_email = "info@lifegence.co.jp"
 app_license = "mit"
 
 required_apps = ["frappe", "erpnext"]
