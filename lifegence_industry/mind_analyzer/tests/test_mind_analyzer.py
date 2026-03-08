@@ -153,14 +153,14 @@ class TestVoiceAnalysisSession(FrappeTestCase):
     def test_get_active_session(self):
         """get_active_session returns active session for user."""
         session = _create_test_session()
-        from lifegence_industry.mind_analyzer.mind_analyzer.doctype.voice_analysis_session.voice_analysis_session import VoiceAnalysisSession
+        from lifegence_industry.mind_analyzer.doctype.voice_analysis_session.voice_analysis_session import VoiceAnalysisSession
         active = VoiceAnalysisSession.get_active_session(TEST_USER)
         self.assertIsNotNone(active)
         self.assertEqual(active["name"], session.name)
 
     def test_no_active_session(self):
         """get_active_session returns None when no active session."""
-        from lifegence_industry.mind_analyzer.mind_analyzer.doctype.voice_analysis_session.voice_analysis_session import VoiceAnalysisSession
+        from lifegence_industry.mind_analyzer.doctype.voice_analysis_session.voice_analysis_session import VoiceAnalysisSession
         active = VoiceAnalysisSession.get_active_session(TEST_USER)
         self.assertIsNone(active)
 

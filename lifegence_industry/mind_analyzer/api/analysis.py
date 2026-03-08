@@ -55,7 +55,7 @@ def analyze_audio(session_id: str, audio_data: str, format: str = "webm"):
     stats = processor.process_audio(audio_bytes, format)
 
     # Save statistics
-    from lifegence_industry.mind_analyzer.mind_analyzer.doctype.acoustic_statistics.acoustic_statistics import AcousticStatistics
+    from lifegence_industry.mind_analyzer.doctype.acoustic_statistics.acoustic_statistics import AcousticStatistics
     AcousticStatistics.create_from_stats(session.name, stats)
 
     # Detect triggers
@@ -63,7 +63,7 @@ def analyze_audio(session_id: str, audio_data: str, format: str = "webm"):
     triggers = detector.detect(stats, session.name)
 
     # Save triggers
-    from lifegence_industry.mind_analyzer.mind_analyzer.doctype.voice_trigger_event.voice_trigger_event import VoiceTriggerEvent
+    from lifegence_industry.mind_analyzer.doctype.voice_trigger_event.voice_trigger_event import VoiceTriggerEvent
     for trigger in triggers:
         VoiceTriggerEvent.create_trigger(session.name, trigger)
 
@@ -74,7 +74,7 @@ def analyze_audio(session_id: str, audio_data: str, format: str = "webm"):
         result = analyzer.analyze(stats, triggers)
 
         # Save result
-        from lifegence_industry.mind_analyzer.mind_analyzer.doctype.individual_analysis_result.individual_analysis_result import IndividualAnalysisResult
+        from lifegence_industry.mind_analyzer.doctype.individual_analysis_result.individual_analysis_result import IndividualAnalysisResult
         result_doc = IndividualAnalysisResult.create_from_analysis(session.name, result)
 
         # Publish realtime update
@@ -102,7 +102,7 @@ def analyze_audio(session_id: str, audio_data: str, format: str = "webm"):
         result = analyzer.analyze(stats, triggers)
 
         # Save result
-        from lifegence_industry.mind_analyzer.mind_analyzer.doctype.meeting_analysis_result.meeting_analysis_result import MeetingAnalysisResult
+        from lifegence_industry.mind_analyzer.doctype.meeting_analysis_result.meeting_analysis_result import MeetingAnalysisResult
         result_doc = MeetingAnalysisResult.create_from_analysis(session.name, result)
 
         # Publish realtime update
