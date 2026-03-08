@@ -5,7 +5,6 @@ from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 def after_install():
 	"""Post-install setup for all industry modules."""
 	_install_trade()
-	_install_mind_analyzer()
 	frappe.db.commit()
 
 
@@ -79,46 +78,3 @@ def _create_trade_custom_fields():
 		],
 	}
 	create_custom_fields(custom_fields, update=True)
-
-
-def _install_mind_analyzer():
-	"""Set up Mind Analyzer module defaults and roles."""
-	_create_voice_analyzer_settings()
-	_create_mind_analyzer_roles()
-
-
-def _create_voice_analyzer_settings():
-	if not frappe.db.exists("Voice Analyzer Settings", "Voice Analyzer Settings"):
-		settings = frappe.new_doc("Voice Analyzer Settings")
-		settings.analysis_interval_sec = 10
-		settings.trigger_threshold = 0.3
-		settings.data_retention_days = 90
-		settings.enable_individual_mode = 1
-		settings.enable_meeting_mode = 1
-		settings.insert(ignore_permissions=True)
-
-
-def _create_mind_analyzer_roles():
-	roles = [
-		{
-			"role_name": "Mind Analyzer User",
-			"desk_access": 1,
-			"description": "Can use voice analyzer for self-analysis",
-		},
-		{
-			"role_name": "Mind Analyzer Manager",
-			"desk_access": 1,
-			"description": "Can view team analysis and reports",
-		},
-		{
-			"role_name": "Mind Analyzer Admin",
-			"desk_access": 1,
-			"description": "Can configure voice analyzer settings",
-		},
-	]
-	for role_data in roles:
-		if not frappe.db.exists("Role", role_data["role_name"]):
-			role = frappe.new_doc("Role")
-			role.role_name = role_data["role_name"]
-			role.desk_access = role_data["desk_access"]
-			role.insert(ignore_permissions=True)

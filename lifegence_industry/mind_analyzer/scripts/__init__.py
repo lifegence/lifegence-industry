@@ -1,1 +1,0 @@
-# Lifegence Mind Analyzer Scripts
