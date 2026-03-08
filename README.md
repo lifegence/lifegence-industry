@@ -2,7 +2,12 @@
 
 Industry-specific modules for [Frappe](https://frappeframework.com/) / [ERPNext](https://erpnext.com/).
 
-Provides medical receipt processing, international trade management, and voice-based mind analysis capabilities.
+Provides medical receipt processing and international trade management.
+
+## Migrated Modules
+
+> **Note**: The following module has been extracted to a dedicated app:
+> - **Mind Analyzer (マインド分析)** → [lifegence_agent](https://github.com/lifegence/lifegence-agent) (private)
 
 ## Modules
 
@@ -19,13 +24,6 @@ International trade and logistics management.
 - Integration with Sales Orders, Purchase Orders, Delivery Notes, and Purchase Receipts
 - Custom fields for trade-specific data
 
-### Mind Analyzer (マインド分析)
-Voice-based psychological analysis for workplace well-being.
-- Real-time voice analysis sessions
-- Individual and meeting analysis modes
-- Trigger detection (silence spikes, speech rate changes, power imbalance, etc.)
-- Automatic stale session cleanup
-
 ## Prerequisites
 
 - Python 3.14+
@@ -37,13 +35,6 @@ Voice-based psychological analysis for workplace well-being.
 ```bash
 bench get-app https://github.com/lifegence/lifegence-industry.git
 bench --site your-site install-app lifegence_industry
-```
-
-## After Installation
-
-Run migrations to set up fixtures:
-
-```bash
 bench --site your-site migrate
 ```
 
