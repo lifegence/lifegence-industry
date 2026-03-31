@@ -18,6 +18,7 @@ def export_receipt_csv(batch_id):
 	- Service detail records
 	- Diagnosis records
 	"""
+	frappe.only_for(["Medical Receipt Manager", "System Manager"])
 	batch = frappe.get_doc("Receipt Batch", batch_id)
 	settings = frappe.get_single("Medical Receipt Settings")
 

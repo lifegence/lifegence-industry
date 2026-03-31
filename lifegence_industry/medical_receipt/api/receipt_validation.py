@@ -53,16 +53,29 @@ def validate_receipt(receipt_id):
 		if getdate(insurance.valid_to) < claim_date:
 			_log("Error", "保険期間チェック", "請求月時点で保険資格が失効しています")
 
-	# Check 4: Service code validity
-	for line in receipt.details:
-		if line.medical_service:
-			service = frappe.get_doc("Medical Service Master", line.medical_service)
-			if not service.is_active:
-				_log(
-					"Warning",
-					"診療行為有効性チェック",
-					f"診療行為 {service.service_name} ({service.service_code}) は無効です",
-				)
+	# Check 4: Service code validity — batch-fetch all Medical Service Master records
+	service_names = [
+		line.medical_service for line in receipt.details
+		if line.medical_service
+	]
+	if service_names:
+		unique_service_names = list(set(service_names))
+		service_list = frappe.get_all(
+			"Medical Service Master",
+			filters={"name": ["in", unique_service_names]},
+			fields=["name", "is_active", "service_name", "service_code"],
+		)
+		service_map = {svc.name: svc for svc in service_list}
+
+		for line in receipt.details:
+			if line.medical_service:
+				service = service_map.get(line.medical_service)
+				if service and not service.is_active:
+					_log(
+						"Warning",
+						"診療行為有効性チェック",
+						f"診療行為 {service.service_name} ({service.service_code}) は無効です",
+					)
 
 	# Check 5: Points consistency
 	calculated_total = sum(

@@ -4,8 +4,31 @@ from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
 def after_install():
 	"""Post-install setup for all industry modules."""
+	_install_medical_receipt()
 	_install_trade()
 	frappe.db.commit()
+
+
+def _install_medical_receipt():
+	"""Set up Medical Receipt module: roles."""
+	try:
+		_create_medical_receipt_roles()
+		frappe.msgprint("Medical Receipt: Role setup completed successfully.")
+	except Exception:
+		frappe.log_error("Medical Receipt: Error during post-install setup")
+		raise
+
+
+def _create_medical_receipt_roles():
+	"""Create Medical Receipt Manager role."""
+	for role_name in ("Medical Receipt Manager",):
+		if not frappe.db.exists("Role", role_name):
+			frappe.get_doc({
+				"doctype": "Role",
+				"role_name": role_name,
+				"desk_access": 1,
+			}).insert(ignore_permissions=True)
+			frappe.logger().info(f"Industry [Medical Receipt]: Created role '{role_name}'")
 
 
 def _install_trade():

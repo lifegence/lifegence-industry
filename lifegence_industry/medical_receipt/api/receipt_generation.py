@@ -37,7 +37,7 @@ def generate_monthly_receipts(year, month):
 			"encounter_date": ["between", [f"{year}-{month:02d}-01", f"{year}-{month:02d}-31"]],
 			"docstatus": 1,
 		},
-		fields=["name", "patient_insurance"],
+		fields=["name", "patient_insurance", "encounter_date"],
 	)
 
 	if not encounters:
@@ -54,8 +54,48 @@ def generate_monthly_receipts(year, month):
 
 	# 3. Group by patient_insurance
 	grouped = {}
+	enc_date_map = {}
 	for enc in encounters:
 		grouped.setdefault(enc.patient_insurance, []).append(enc.name)
+		enc_date_map[enc.name] = enc.encounter_date
+
+	# Batch-fetch all patient insurance docs
+	insurance_names = list(grouped.keys())
+	insurance_list = frappe.get_all(
+		"Patient Insurance Info",
+		filters={"name": ["in", insurance_names]},
+		fields=["name", "insurance_type"],
+	)
+	insurance_map = {ins.name: ins for ins in insurance_list}
+
+	# Batch-fetch all encounter service lines (child table)
+	all_enc_names = [enc.name for enc in encounters]
+	service_lines = frappe.get_all(
+		"Encounter Service Line",
+		filters={"parent": ["in", all_enc_names]},
+		fields=[
+			"parent", "medical_service", "service_name",
+			"service_code", "fee_points", "quantity", "line_total_points",
+		],
+	)
+	# Group service lines by parent encounter
+	services_by_enc = {}
+	for line in service_lines:
+		services_by_enc.setdefault(line.parent, []).append(line)
+
+	# Batch-fetch all encounter diagnoses (child table)
+	diagnosis_lines = frappe.get_all(
+		"Encounter Diagnosis",
+		filters={"parent": ["in", all_enc_names]},
+		fields=[
+			"parent", "disease", "disease_name", "icd10_code",
+			"diagnosis_type", "onset_date", "outcome",
+		],
+	)
+	# Group diagnoses by parent encounter
+	diagnoses_by_enc = {}
+	for diag in diagnosis_lines:
+		diagnoses_by_enc.setdefault(diag.parent, []).append(diag)
 
 	# 4. Create receipt per patient
 	total_batch_points = 0
@@ -65,28 +105,28 @@ def generate_monthly_receipts(year, month):
 	settings = frappe.get_single("Medical Receipt Settings")
 
 	for patient_insurance, encounter_names in grouped.items():
-		insurance = frappe.get_doc("Patient Insurance Info", patient_insurance)
+		insurance = insurance_map.get(patient_insurance)
 
 		receipt = frappe.get_doc({
 			"doctype": "Receipt",
 			"patient_insurance": patient_insurance,
 			"claim_year": year,
 			"claim_month": month,
-			"insurance_type": insurance.insurance_type,
+			"insurance_type": insurance.insurance_type if insurance else None,
 			"status": "Draft",
 			"receipt_batch": batch.name,
 		})
 
-		# Collect all service lines and diagnoses from encounters
+		# Collect all service lines and diagnoses from pre-fetched data
 		seen_diagnoses = set()
 
 		for enc_name in encounter_names:
-			enc_doc = frappe.get_doc("Patient Encounter", enc_name)
+			enc_date = enc_date_map.get(enc_name)
 
-			for line in enc_doc.services:
+			for line in services_by_enc.get(enc_name, []):
 				receipt.append("details", {
 					"encounter": enc_name,
-					"encounter_date": enc_doc.encounter_date,
+					"encounter_date": enc_date,
 					"medical_service": line.medical_service,
 					"service_name": line.service_name,
 					"service_code": line.service_code,
@@ -95,7 +135,7 @@ def generate_monthly_receipts(year, month):
 					"line_total_points": line.line_total_points,
 				})
 
-			for diag in enc_doc.diagnoses:
+			for diag in diagnoses_by_enc.get(enc_name, []):
 				diag_key = (diag.disease, diag.diagnosis_type)
 				if diag_key not in seen_diagnoses:
 					seen_diagnoses.add(diag_key)
