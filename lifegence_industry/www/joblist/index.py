@@ -54,9 +54,13 @@ def get_context(context):
 		"description", "modified",
 	]
 
-	total = frappe.db.count("Dispatch Order", filters) if not or_filters else len(
-		frappe.get_all("Dispatch Order", filters=filters, or_filters=or_filters, pluck="name")
-	)
+	# COUNT in SQL — fetching every name just to len() degrades as jobs grow
+	total = frappe.get_all(
+		"Dispatch Order",
+		filters=filters,
+		or_filters=or_filters,
+		fields=["count(name) as total"],
+	)[0].total
 
 	jobs = frappe.get_all(
 		"Dispatch Order",

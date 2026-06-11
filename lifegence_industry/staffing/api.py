@@ -5,6 +5,7 @@ import hashlib
 
 import frappe
 from frappe import _
+from frappe.rate_limiter import rate_limit
 
 
 def _policy_version():
@@ -13,6 +14,7 @@ def _policy_version():
 
 
 @frappe.whitelist(allow_guest=True)
+@rate_limit(limit=5, seconds=300)
 def submit_application(
 	dispatch_order,
 	applicant_name,
