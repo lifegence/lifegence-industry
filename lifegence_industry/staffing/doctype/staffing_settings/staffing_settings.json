@@ -1,0 +1,145 @@
+{
+ "actions": [],
+ "creation": "2026-06-10 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "margin_section",
+  "default_margin_rate",
+  "publish_margin_rate",
+  "column_break_margin",
+  "default_currency",
+  "compliance_section",
+  "personal_unit_period_months",
+  "office_unit_period_months",
+  "column_break_compliance",
+  "cooling_period_months",
+  "enable_double_dispatch_check",
+  "public_site_section",
+  "show_closed_jobs",
+  "default_jobs_per_page",
+  "column_break_public",
+  "privacy_policy"
+ ],
+ "fields": [
+  {
+   "fieldname": "margin_section",
+   "fieldtype": "Section Break",
+   "label": "Margin"
+  },
+  {
+   "description": "Default margin rate (%) applied to dispatch assignments.",
+   "fieldname": "default_margin_rate",
+   "fieldtype": "Percent",
+   "label": "Default Margin Rate"
+  },
+  {
+   "default": "0",
+   "description": "Publish the average margin rate on the public site (Worker Dispatch Act).",
+   "fieldname": "publish_margin_rate",
+   "fieldtype": "Check",
+   "label": "Publish Margin Rate"
+  },
+  {
+   "fieldname": "column_break_margin",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "default_currency",
+   "fieldtype": "Link",
+   "label": "Default Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "compliance_section",
+   "fieldtype": "Section Break",
+   "label": "Compliance (Worker Dispatch Act)"
+  },
+  {
+   "default": "36",
+   "description": "Maximum dispatch period per individual worker (months).",
+   "fieldname": "personal_unit_period_months",
+   "fieldtype": "Int",
+   "label": "Personal Unit Period (Months)"
+  },
+  {
+   "default": "36",
+   "description": "Maximum dispatch period per client business office (months).",
+   "fieldname": "office_unit_period_months",
+   "fieldtype": "Int",
+   "label": "Office Unit Period (Months)"
+  },
+  {
+   "fieldname": "column_break_compliance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "3",
+   "description": "Cooling-off period required before re-dispatch (months).",
+   "fieldname": "cooling_period_months",
+   "fieldtype": "Int",
+   "label": "Cooling Period (Months)"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_double_dispatch_check",
+   "fieldtype": "Check",
+   "label": "Enable Double Dispatch Check"
+  },
+  {
+   "fieldname": "public_site_section",
+   "fieldtype": "Section Break",
+   "label": "Public Site"
+  },
+  {
+   "default": "1",
+   "description": "Allow closed job postings to remain viewable on the public site.",
+   "fieldname": "show_closed_jobs",
+   "fieldtype": "Check",
+   "label": "Show Closed Jobs"
+  },
+  {
+   "default": "20",
+   "fieldname": "default_jobs_per_page",
+   "fieldtype": "Int",
+   "label": "Default Jobs Per Page"
+  },
+  {
+   "fieldname": "column_break_public",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Privacy policy text shown on the application form (consent gate).",
+   "fieldname": "privacy_policy",
+   "fieldtype": "Text Editor",
+   "label": "Privacy Policy"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-06-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Staffing",
+ "name": "Staffing Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,240 @@
+{% extends "templates/staffing_portal/base.html" %}
+
+{% block title %}応募フォーム | {{ brand }}{% endblock %}
+
+{% block head_extra %}
+<style>
+	.step-active { border-color: #004ac6; color: #004ac6; }
+	.step-done { background:#dbe1ff; border-color:#dbe1ff; color:#00174b; }
+	.step-inactive { border-color:#c3c6d7; color:#434655; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="w-full max-w-container-max-width mx-auto px-margin-desktop py-12">
+
+{% if not job %}
+	<div class="text-center py-20">
+		<span class="material-symbols-outlined text-6xl text-outline-variant">error_outline</span>
+		<h1 class="font-headline-md text-headline-md text-on-surface mt-4">お仕事が指定されていません</h1>
+		<p class="font-body-md text-body-md text-on-surface-variant mt-2">お仕事一覧から応募したいお仕事を選んでください。</p>
+		<a href="/jobs" class="inline-block mt-6 bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md text-label-md">お仕事一覧へ</a>
+	</div>
+{% elif is_closed %}
+	<div class="text-center py-20">
+		<span class="material-symbols-outlined text-6xl text-outline-variant">block</span>
+		<h1 class="font-headline-md text-headline-md text-on-surface mt-4">このお仕事の募集は終了しました</h1>
+		<a href="/jobs" class="inline-block mt-6 bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md text-label-md">他のお仕事を探す</a>
+	</div>
+{% else %}
+	<div class="mb-12 text-center">
+		<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">{{ job.job_title }} への応募</h1>
+		<p class="font-body-md text-body-md text-on-surface-variant">必要事項を入力して応募を完了してください（{{ job.dispatch_client }}）</p>
+	</div>
+
+	<!-- Stepper -->
+	<div class="max-w-3xl mx-auto mb-16">
+		<div class="relative flex items-center justify-between">
+			<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[2px] bg-outline-variant -z-10"></div>
+			<div class="absolute left-0 top-1/2 -translate-y-1/2 h-[2px] bg-primary transition-all duration-500 -z-10" id="progress-fill" style="width:0%"></div>
+			{% for label in ["同意", "基本情報", "確認"] %}
+			<div class="flex flex-col items-center bg-background px-2">
+				<div class="w-10 h-10 rounded-full border-2 bg-surface flex items-center justify-center transition-all duration-300 {% if loop.first %}step-active{% else %}step-inactive{% endif %}" id="step-marker-{{ loop.index }}"><span class="font-bold">{{ loop.index }}</span></div>
+				<span class="mt-2 font-label-md text-label-md {% if loop.first %}text-primary{% else %}text-on-surface-variant{% endif %}" id="step-label-{{ loop.index }}">{{ label }}</span>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+	<form id="apply-form" class="max-w-4xl mx-auto" onsubmit="return false;">
+		<input type="hidden" name="dispatch_order" value="{{ job.name }}"/>
+
+		<!-- STEP 1: Agreement -->
+		<section class="rounded-xl border border-outline-variant bg-surface-container-lowest p-10 space-y-8" id="step-content-1">
+			<div class="flex items-start gap-6">
+				<div class="w-16 h-16 rounded-xl bg-primary-fixed flex items-center justify-center flex-shrink-0">
+					<span class="material-symbols-outlined text-on-primary-fixed text-3xl">policy</span>
+				</div>
+				<div>
+					<h2 class="font-headline-md text-headline-md text-on-surface">個人情報の取り扱いについて</h2>
+					<p class="font-body-md text-body-md text-on-surface-variant">下記を最後までお読みのうえ、同意してお進みください。</p>
+				</div>
+			</div>
+			<div class="bg-surface-container-low border border-outline-variant rounded-xl p-6 h-64 overflow-y-auto custom-scrollbar font-body-sm text-body-sm text-on-surface-variant leading-relaxed" id="policy-box">
+				{{ privacy_policy }}
+				<div id="policy-end"></div>
+			</div>
+			<p class="font-label-sm text-label-sm text-on-surface-variant" id="scroll-hint">※ 全文をスクロールして最後までお読みいただくと、同意できます。</p>
+			<div class="flex items-center space-x-3 p-4 bg-primary-fixed/20 rounded-xl">
+				<input class="w-5 h-5 rounded text-primary focus:ring-primary border-outline cursor-pointer disabled:opacity-50" id="agreement-check" type="checkbox" disabled/>
+				<label class="font-label-md text-label-md text-on-surface-variant cursor-pointer select-none" for="agreement-check">個人情報の取り扱いに同意します。</label>
+			</div>
+			<div class="flex justify-end pt-4">
+				<button type="button" class="bg-primary text-on-primary px-8 py-3 rounded-xl font-label-md text-label-md opacity-50 cursor-not-allowed transition-all" disabled id="btn-next-1" onclick="goToStep(2)">同意して次へ</button>
+			</div>
+		</section>
+
+		<!-- STEP 2: Basic Info -->
+		<section class="hidden rounded-xl border border-outline-variant bg-surface-container-lowest p-10 space-y-8" id="step-content-2">
+			<div class="flex items-start gap-6">
+				<div class="w-16 h-16 rounded-xl bg-secondary-fixed flex items-center justify-center flex-shrink-0">
+					<span class="material-symbols-outlined text-on-secondary-fixed text-3xl">person</span>
+				</div>
+				<div>
+					<h2 class="font-headline-md text-headline-md text-on-surface">応募者情報の入力</h2>
+					<p class="font-body-md text-body-md text-on-surface-variant">ご連絡先などの基本情報をご入力ください。</p>
+				</div>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+				<div class="space-y-2"><label class="font-label-md text-label-md text-on-surface">氏名 <span class="text-error">*</span></label><input name="applicant_name" required class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary bg-surface" placeholder="山田 太郎" type="text"/></div>
+				<div class="space-y-2"><label class="font-label-md text-label-md text-on-surface">フリガナ</label><input name="name_kana" class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary bg-surface" placeholder="ヤマダ タロウ" type="text"/></div>
+				<div class="space-y-2"><label class="font-label-md text-label-md text-on-surface">メールアドレス <span class="text-error">*</span></label><input name="email_id" required class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary bg-surface" placeholder="taro@example.com" type="email"/></div>
+				<div class="space-y-2"><label class="font-label-md text-label-md text-on-surface">電話番号 <span class="text-error">*</span></label><input name="phone_number" required class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary bg-surface" placeholder="090-0000-0000" type="tel"/></div>
+				<div class="space-y-2"><label class="font-label-md text-label-md text-on-surface">生年月日</label><input name="birth_date" class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary bg-surface" type="date"/></div>
+				<div class="space-y-2"><label class="font-label-md text-label-md text-on-surface">郵便番号</label><input name="postal_code" class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary bg-surface" placeholder="100-0001" type="text"/></div>
+				<div class="md:col-span-2 space-y-2"><label class="font-label-md text-label-md text-on-surface">住所</label><input name="address" class="w-full h-12 px-4 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary bg-surface" placeholder="東京都千代田区..." type="text"/></div>
+				<div class="md:col-span-2 space-y-2"><label class="font-label-md text-label-md text-on-surface">希望条件・備考</label><textarea name="desired_note" rows="3" class="w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary bg-surface" placeholder="勤務開始時期や希望など"></textarea></div>
+			</div>
+			<div class="flex justify-between pt-4">
+				<button type="button" class="px-8 py-3 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high" onclick="goToStep(1)">戻る</button>
+				<button type="button" class="bg-primary text-on-primary px-8 py-3 rounded-xl font-label-md text-label-md hover:opacity-90" onclick="validateAndReview()">確認へ進む</button>
+			</div>
+		</section>
+
+		<!-- STEP 3: Review -->
+		<section class="hidden rounded-xl border border-outline-variant bg-surface-container-lowest p-10 space-y-8" id="step-content-3">
+			<div class="flex items-start gap-6">
+				<div class="w-16 h-16 rounded-xl bg-surface-container-highest flex items-center justify-center flex-shrink-0">
+					<span class="material-symbols-outlined text-on-surface text-3xl">task_alt</span>
+				</div>
+				<div>
+					<h2 class="font-headline-md text-headline-md text-on-surface">入力内容の確認</h2>
+					<p class="font-body-md text-body-md text-on-surface-variant">内容をご確認のうえ、送信してください。</p>
+				</div>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-outline-variant pt-8" id="review-area"></div>
+			<div id="submit-error" class="hidden p-4 bg-error-container text-on-error-container rounded-xl font-body-sm text-body-sm"></div>
+			<div class="flex justify-between pt-4">
+				<button type="button" class="px-8 py-3 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high" onclick="goToStep(2)">戻る</button>
+				<button type="button" id="submit-btn" class="bg-primary text-on-primary px-12 py-4 rounded-xl font-title-lg text-title-lg hover:shadow-lg transition-all" onclick="submitApplication()">応募を送信する</button>
+			</div>
+		</section>
+
+		<!-- SUCCESS -->
+		<section class="hidden rounded-xl border border-outline-variant bg-surface-container-lowest p-12 text-center space-y-6" id="step-success">
+			<div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto"><span class="material-symbols-outlined text-green-700 text-4xl" style="font-variation-settings:'FILL' 1;">check_circle</span></div>
+			<h2 class="font-headline-lg text-headline-lg text-on-surface">応募を受け付けました</h2>
+			<p class="font-body-md text-body-md text-on-surface-variant">担当者より数日以内にご連絡いたします。受付番号: <span id="app-no" class="font-bold text-on-surface"></span></p>
+			<a href="/jobs" class="inline-block bg-primary text-on-primary px-8 py-3 rounded-xl font-label-md text-label-md">他のお仕事を探す</a>
+		</section>
+	</form>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block script %}
+{% if job and not is_closed %}
+<script>
+const form = document.getElementById('apply-form');
+const policyBox = document.getElementById('policy-box');
+const agreeCheck = document.getElementById('agreement-check');
+const btnNext1 = document.getElementById('btn-next-1');
+const scrollHint = document.getElementById('scroll-hint');
+const progressFill = document.getElementById('progress-fill');
+const labels = ["同意","基本情報","確認"];
+
+// 全文読了ゲート
+function checkScrolled() {
+	if (policyBox.scrollTop + policyBox.clientHeight >= policyBox.scrollHeight - 8) {
+		agreeCheck.disabled = false;
+		scrollHint.textContent = "最後までお読みいただきました。同意してお進みください。";
+		scrollHint.classList.add('text-primary');
+		policyBox.removeEventListener('scroll', checkScrolled);
+	}
+}
+policyBox.addEventListener('scroll', checkScrolled);
+// 内容が短くスクロール不要な場合も同意可能に
+if (policyBox.scrollHeight <= policyBox.clientHeight + 8) { agreeCheck.disabled = false; scrollHint.textContent=""; }
+
+agreeCheck.addEventListener('change', e => {
+	btnNext1.disabled = !e.target.checked;
+	btnNext1.classList.toggle('opacity-50', !e.target.checked);
+	btnNext1.classList.toggle('cursor-not-allowed', !e.target.checked);
+});
+
+function goToStep(n) {
+	for (let i=1;i<=3;i++){
+		document.getElementById(`step-content-${i}`).classList.add('hidden');
+		const m=document.getElementById(`step-marker-${i}`), l=document.getElementById(`step-label-${i}`);
+		m.className = "w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 " + (i<n?"step-done":(i===n?"bg-surface step-active":"bg-surface step-inactive"));
+		m.innerHTML = i<n ? '<span class="material-symbols-outlined text-sm" style="font-variation-settings:\'FILL\' 1">check</span>' : `<span class="font-bold">${i}</span>`;
+		l.className = "mt-2 font-label-md text-label-md " + (i<=n?"text-primary":"text-on-surface-variant");
+	}
+	document.getElementById('step-success').classList.add('hidden');
+	document.getElementById(`step-content-${n}`).classList.remove('hidden');
+	progressFill.style.width = `${((n-1)/2)*100}%`;
+	window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function validateAndReview() {
+	const required = ['applicant_name','email_id','phone_number'];
+	for (const name of required) {
+		const el = form.elements[name];
+		if (!el.value.trim()) { el.focus(); el.classList.add('border-error'); return; }
+		el.classList.remove('border-error');
+	}
+	const fields = {
+		'氏名': form.elements['applicant_name'].value,
+		'フリガナ': form.elements['name_kana'].value,
+		'メールアドレス': form.elements['email_id'].value,
+		'電話番号': form.elements['phone_number'].value,
+		'生年月日': form.elements['birth_date'].value,
+		'郵便番号': form.elements['postal_code'].value,
+		'住所': form.elements['address'].value,
+		'希望条件・備考': form.elements['desired_note'].value,
+	};
+	let html = '<div><h4 class="font-label-md text-label-md text-primary mb-4 uppercase tracking-wider">応募先</h4><div class="space-y-2"><p class="font-body-sm text-body-sm"><span class="text-on-surface-variant">職種:</span> {{ job.job_title }}</p><p class="font-body-sm text-body-sm"><span class="text-on-surface-variant">派遣先:</span> {{ job.dispatch_client }}</p></div></div>';
+	html += '<div><h4 class="font-label-md text-label-md text-primary mb-4 uppercase tracking-wider">入力内容</h4><div class="space-y-2">';
+	for (const [k,v] of Object.entries(fields)) { if (v) html += `<p class="font-body-sm text-body-sm"><span class="text-on-surface-variant">${k}:</span> ${frappe_escape(v)}</p>`; }
+	html += '</div></div>';
+	document.getElementById('review-area').innerHTML = html;
+	goToStep(3);
+}
+
+function frappe_escape(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+async function submitApplication() {
+	const btn = document.getElementById('submit-btn');
+	const errBox = document.getElementById('submit-error');
+	errBox.classList.add('hidden');
+	btn.disabled = true; btn.textContent = '送信中...';
+	const data = new URLSearchParams();
+	['dispatch_order','applicant_name','name_kana','email_id','phone_number','birth_date','postal_code','address','desired_note'].forEach(n=>{
+		if (form.elements[n] && form.elements[n].value) data.append(n, form.elements[n].value);
+	});
+	data.append('privacy_consent', agreeCheck.checked ? '1':'0');
+	try {
+		const res = await fetch('/api/method/lifegence_industry.staffing.api.submit_application', {
+			method:'POST',
+			headers:{ 'Content-Type':'application/x-www-form-urlencoded', 'X-Frappe-CSRF-Token': document.querySelector('meta[name=csrf-token]').content },
+			body: data.toString(),
+		});
+		const json = await res.json();
+		if (!res.ok || json.exc) {
+			let msg = '送信に失敗しました。';
+			try { const m = JSON.parse(json._server_messages||'[]'); if (m.length) msg = JSON.parse(m[0]).message; } catch(e){}
+			throw new Error(msg);
+		}
+		document.getElementById('app-no').textContent = json.message.name;
+		for (let i=1;i<=3;i++) document.getElementById(`step-content-${i}`).classList.add('hidden');
+		document.getElementById('step-success').classList.remove('hidden');
+		progressFill.style.width = '100%';
+		window.scrollTo({top:0,behavior:'smooth'});
+	} catch(e) {
+		errBox.textContent = e.message; errBox.classList.remove('hidden');
+		btn.disabled = false; btn.textContent = '応募を送信する';
+	}
+}
+</script>
+{% endif %}
+{% endblock %}

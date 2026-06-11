@@ -1,0 +1,243 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-06-10 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "has_web_view": 1,
+ "is_published_field": "publish",
+ "field_order": [
+  "naming_series",
+  "job_title",
+  "dispatch_client",
+  "customer",
+  "job_category",
+  "column_break_main",
+  "status",
+  "publish",
+  "route",
+  "closing_date",
+  "details_section",
+  "work_location",
+  "employment_type",
+  "headcount",
+  "column_break_details",
+  "period_from",
+  "period_to",
+  "working_hours",
+  "rate_section",
+  "pay_rate",
+  "pay_rate_unit",
+  "column_break_rate",
+  "bill_rate",
+  "bill_rate_unit",
+  "content_section",
+  "description",
+  "requirements"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "DISP-ORD-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "job_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Job Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dispatch_client",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Dispatch Client",
+   "options": "Dispatch Client",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "dispatch_client.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "job_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Job Category",
+   "options": "Job Category"
+  },
+  {
+   "fieldname": "column_break_main",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Open\nClosed",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "Publish this job on the public site.",
+   "fieldname": "publish",
+   "fieldtype": "Check",
+   "label": "Publish",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route",
+   "read_only": 1
+  },
+  {
+   "fieldname": "closing_date",
+   "fieldtype": "Date",
+   "label": "Closing Date"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "work_location",
+   "fieldtype": "Data",
+   "label": "Work Location"
+  },
+  {
+   "fieldname": "employment_type",
+   "fieldtype": "Link",
+   "label": "Employment Type",
+   "options": "Employment Type"
+  },
+  {
+   "default": "1",
+   "fieldname": "headcount",
+   "fieldtype": "Int",
+   "label": "Headcount"
+  },
+  {
+   "fieldname": "column_break_details",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "period_from",
+   "fieldtype": "Date",
+   "label": "Period From"
+  },
+  {
+   "fieldname": "period_to",
+   "fieldtype": "Date",
+   "label": "Period To"
+  },
+  {
+   "fieldname": "working_hours",
+   "fieldtype": "Data",
+   "label": "Working Hours"
+  },
+  {
+   "fieldname": "rate_section",
+   "fieldtype": "Section Break",
+   "label": "Rates"
+  },
+  {
+   "description": "Pay rate to the worker (public).",
+   "fieldname": "pay_rate",
+   "fieldtype": "Currency",
+   "label": "Pay Rate"
+  },
+  {
+   "default": "Hour",
+   "fieldname": "pay_rate_unit",
+   "fieldtype": "Select",
+   "label": "Pay Rate Unit",
+   "options": "Hour\nDay\nMonth"
+  },
+  {
+   "fieldname": "column_break_rate",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Bill rate to the client (internal, not public).",
+   "fieldname": "bill_rate",
+   "fieldtype": "Currency",
+   "label": "Bill Rate"
+  },
+  {
+   "default": "Hour",
+   "fieldname": "bill_rate_unit",
+   "fieldtype": "Select",
+   "label": "Bill Rate Unit",
+   "options": "Hour\nDay\nMonth"
+  },
+  {
+   "fieldname": "content_section",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Job Description"
+  },
+  {
+   "fieldname": "requirements",
+   "fieldtype": "Text Editor",
+   "label": "Requirements"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Staffing",
+ "name": "Dispatch Order",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
