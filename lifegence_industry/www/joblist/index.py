@@ -54,13 +54,16 @@ def get_context(context):
 		"description", "modified",
 	]
 
-	# COUNT in SQL — fetching every name just to len() degrades as jobs grow
-	total = frappe.get_all(
+	# COUNT in SQL — fetching every name just to len() degrades as jobs grow.
+	# Dict syntax required: string SQL functions in fields raise ValidationError
+	# for non-privileged users (frappe v16).
+	count_rows = frappe.get_all(
 		"Dispatch Order",
 		filters=filters,
 		or_filters=or_filters,
-		fields=["count(name) as total"],
-	)[0].total
+		fields=[{"COUNT": "*"}],
+	)
+	total = count_rows[0]["COUNT(*)"] if count_rows else 0
 
 	jobs = frappe.get_all(
 		"Dispatch Order",
