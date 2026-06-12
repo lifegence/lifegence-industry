@@ -1,0 +1,156 @@
+{% extends "templates/staffing_portal/base.html" %}
+{% set unit_label = {"Hour": "時給", "Day": "日給", "Month": "月給"} %}
+
+{% block title %}{{ job_title }} | {{ brand }}{% endblock %}
+
+{% block head_extra %}
+<style>.sticky-panel { position: sticky; top: 100px; }</style>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-container-max-width mx-auto px-margin-desktop py-12">
+	<!-- Breadcrumbs -->
+	<nav class="flex items-center gap-2 mb-8 text-on-surface-variant font-label-sm text-label-sm flex-wrap">
+		<a class="hover:text-primary" href="/jobs">お仕事を探す</a>
+		<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+		{% if job_category %}<a class="hover:text-primary" href="/jobs?category={{ job_category }}">{{ job_category }}</a>
+		<span class="material-symbols-outlined text-[16px]">chevron_right</span>{% endif %}
+		<span class="text-on-surface">{{ job_title }}</span>
+	</nav>
+
+	<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+		<!-- Main Content -->
+		<div class="lg:col-span-8 space-y-10">
+			<section class="space-y-4">
+				<div class="flex items-center gap-3 flex-wrap">
+					{% if is_closed %}
+					<span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm">募集終了</span>
+					{% else %}
+					<span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-label-sm text-label-sm">募集中</span>
+					{% endif %}
+					{% if employment_type %}<span class="bg-secondary-container text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm">{{ employment_type }}</span>{% endif %}
+					{% if job_category %}<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm">{{ job_category }}</span>{% endif %}
+				</div>
+				<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight leading-tight">{{ job_title }}</h1>
+				<div class="flex items-center gap-6 mt-2 flex-wrap">
+					<div class="flex items-center gap-2">
+						<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+							<span class="material-symbols-outlined text-primary">corporate_fare</span>
+						</div>
+						<div>
+							{% if client %}
+							<p class="font-label-md text-label-md text-on-surface">
+								{% if client.publish_hub and client.route %}<a class="hover:text-primary" href="/{{ client.route }}">{{ client.client_name }}</a>{% else %}{{ client.client_name }}{% endif %}
+							</p>
+							{% if client.headquarters_location %}<p class="font-body-sm text-body-sm text-on-surface-variant">{{ client.headquarters_location }}</p>{% endif %}
+							{% endif %}
+						</div>
+					</div>
+					{% if work_location %}
+					<div class="h-8 w-px bg-outline-variant"></div>
+					<div class="flex items-center gap-2">
+						<span class="material-symbols-outlined text-on-surface-variant">location_on</span>
+						<span class="font-body-sm text-body-sm text-on-surface-variant">{{ work_location }}</span>
+					</div>
+					{% endif %}
+				</div>
+			</section>
+
+			<!-- Visual Anchor -->
+			<section class="rounded-xl overflow-hidden h-[220px] relative bg-primary-container flex items-center justify-center">
+				<span class="material-symbols-outlined text-white/40" style="font-size:120px">work</span>
+			</section>
+
+			<article class="space-y-12">
+				{% if description %}
+				<div class="space-y-4">
+					<h2 class="font-headline-md text-headline-md text-on-surface">仕事内容</h2>
+					<div class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">{{ description }}</div>
+				</div>
+				{% endif %}
+
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					<div class="p-8 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-4">
+						<div class="flex items-center gap-3 text-primary">
+							<span class="material-symbols-outlined">verified</span>
+							<h3 class="font-title-lg text-title-lg">応募条件</h3>
+						</div>
+						<div class="font-body-md text-body-md text-on-surface-variant leading-relaxed">{{ requirements or "未経験者歓迎。詳細はお問い合わせください。" }}</div>
+					</div>
+					<div class="p-8 bg-surface-container-lowest border border-outline-variant rounded-xl space-y-4">
+						<div class="flex items-center gap-3 text-primary">
+							<span class="material-symbols-outlined">card_giftcard</span>
+							<h3 class="font-title-lg text-title-lg">勤務条件</h3>
+						</div>
+						<ul class="space-y-3 font-body-md text-body-md text-on-surface-variant">
+							{% if working_hours %}<li class="flex items-start gap-2"><span class="text-primary mt-1">•</span>勤務時間: {{ working_hours }}</li>{% endif %}
+							{% if period_from or period_to %}<li class="flex items-start gap-2"><span class="text-primary mt-1">•</span>期間: {{ period_from or "" }} 〜 {{ period_to or "" }}</li>{% endif %}
+							{% if headcount %}<li class="flex items-start gap-2"><span class="text-primary mt-1">•</span>募集人数: {{ headcount }}名</li>{% endif %}
+							{% if pay_rate %}<li class="flex items-start gap-2"><span class="text-primary mt-1">•</span>給与: {{ unit_label.get(pay_rate_unit, pay_rate_unit) }} ¥{{ "{:,.0f}".format(pay_rate) }}</li>{% endif %}
+						</ul>
+					</div>
+				</div>
+
+				{% if client and client.about %}
+				<div class="p-8 bg-on-surface text-surface rounded-xl flex flex-col md:flex-row items-center justify-between gap-8">
+					<div class="space-y-3 max-w-lg">
+						<h3 class="font-headline-md text-headline-md">{{ client.client_name }} について</h3>
+						<div class="font-body-md text-body-md text-surface-variant opacity-90">{{ client.about }}</div>
+					</div>
+					{% if client.publish_hub and client.route %}
+					<div class="shrink-0">
+						<a href="/{{ client.route }}" class="inline-block px-8 py-3 bg-primary-fixed text-on-primary-fixed font-label-md text-label-md rounded-xl hover:bg-white transition-colors">会社ページを見る</a>
+					</div>
+					{% endif %}
+				</div>
+				{% endif %}
+			</article>
+		</div>
+
+		<!-- Sticky Sidebar -->
+		<aside class="lg:col-span-4">
+			<div class="sticky-panel space-y-6">
+				<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm space-y-6">
+					{% if pay_rate %}
+					<div>
+						<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">{{ unit_label.get(pay_rate_unit, pay_rate_unit) }}</p>
+						<p class="font-headline-md text-headline-md text-on-surface">¥{{ "{:,.0f}".format(pay_rate) }}</p>
+					</div>
+					{% endif %}
+					<div class="grid grid-cols-1 gap-4">
+						{% if work_location %}
+						<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg">
+							<span class="material-symbols-outlined text-primary">location_on</span>
+							<div><p class="font-label-sm text-label-sm text-on-surface-variant">勤務地</p><p class="font-body-md text-body-md text-on-surface">{{ work_location }}</p></div>
+						</div>
+						{% endif %}
+						<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-lg">
+							<span class="material-symbols-outlined text-primary">badge</span>
+							<div><p class="font-label-sm text-label-sm text-on-surface-variant">お仕事番号</p><p class="font-body-md text-body-md text-on-surface">{{ name }}</p></div>
+						</div>
+					</div>
+					<div class="space-y-3">
+						{% if is_closed %}
+						<button class="w-full py-4 bg-outline text-white font-label-md text-label-md rounded-xl cursor-not-allowed" disabled>このお仕事の募集は終了しました</button>
+						{% else %}
+						<a href="/jobs/apply?job={{ name }}" class="w-full py-4 bg-primary text-on-primary font-label-md text-label-md rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+							このお仕事に応募する <span class="material-symbols-outlined">arrow_forward</span>
+						</a>
+						{% endif %}
+					</div>
+				</div>
+
+				<div class="p-6 bg-secondary-container text-on-secondary-fixed-variant rounded-xl space-y-4">
+					<h4 class="font-title-lg text-title-lg">応募の流れ</h4>
+					<div class="space-y-4">
+						<div class="flex gap-3"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">person_add</span>
+							<div><p class="font-label-md text-label-md">かんたん登録</p><p class="font-body-sm text-body-sm opacity-80">必要事項を入力して応募完了。</p></div></div>
+						<div class="flex gap-3"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">flash_on</span>
+							<div><p class="font-label-md text-label-md">スピード対応</p><p class="font-body-sm text-body-sm opacity-80">担当者から数日以内にご連絡します。</p></div></div>
+					</div>
+				</div>
+			</div>
+		</aside>
+	</div>
+</div>
+{% endblock %}

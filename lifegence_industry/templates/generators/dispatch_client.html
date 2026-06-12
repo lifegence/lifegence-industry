@@ -1,0 +1,97 @@
+{% extends "templates/staffing_portal/base.html" %}
+{% set unit_label = {"Hour": "時給", "Day": "日給", "Month": "月給"} %}
+
+{% block title %}{{ client_name }} の求人 | {{ brand }}{% endblock %}
+
+{% block content %}
+<div class="max-w-container-max-width mx-auto px-margin-desktop py-10 space-y-10">
+
+	<!-- Company Hero -->
+	<section class="relative bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant">
+		<div class="h-40 w-full bg-primary-container"></div>
+		<div class="px-8 pb-8 flex flex-col md:flex-row items-end gap-6 -mt-12 relative z-10">
+			<div class="w-28 h-28 rounded-2xl bg-white p-2 shadow-sm border border-outline-variant flex items-center justify-center">
+				{% if logo %}<img src="{{ logo }}" alt="{{ client_name }}" class="w-full h-full object-contain rounded-xl"/>
+				{% else %}<span class="material-symbols-outlined text-primary" style="font-size:56px">corporate_fare</span>{% endif %}
+			</div>
+			<div class="flex-1 mb-2">
+				<h1 class="font-headline-lg text-headline-lg text-on-surface mb-1">{{ client_name }}</h1>
+				<div class="flex items-center gap-4 text-on-surface-variant font-body-sm text-body-sm flex-wrap">
+					{% if headquarters_location %}<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">location_on</span>{{ headquarters_location }}</span>{% endif %}
+					{% if client_website %}<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">language</span><a href="{{ client_website }}" target="_blank" rel="noopener" class="hover:text-primary">{{ client_website }}</a></span>{% endif %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Stats -->
+	<section class="grid grid-cols-2 md:grid-cols-3 gap-gutter">
+		<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col">
+			<span class="text-on-secondary-container font-label-sm text-label-sm mb-2 uppercase tracking-wider">募集中の求人</span>
+			<span class="text-primary font-headline-md text-headline-md font-bold">{{ open_count }}件</span>
+		</div>
+		<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col">
+			<span class="text-on-secondary-container font-label-sm text-label-sm mb-2 uppercase tracking-wider">掲載求人 合計</span>
+			<span class="text-primary font-headline-md text-headline-md font-bold">{{ total_count }}件</span>
+		</div>
+		<div class="bg-white p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col">
+			<span class="text-on-secondary-container font-label-sm text-label-sm mb-2 uppercase tracking-wider">職種カテゴリ</span>
+			<span class="text-primary font-headline-md text-headline-md font-bold">{{ category_count }}種</span>
+		</div>
+	</section>
+
+	<!-- Layout -->
+	<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+		<!-- Jobs -->
+		<div class="lg:col-span-8 space-y-6">
+			<div class="flex items-center justify-between">
+				<h2 class="font-headline-md text-headline-md text-on-surface">{{ client_name }} のお仕事</h2>
+				<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-sm font-label-sm">募集中</span>
+			</div>
+			{% if jobs %}
+			{% for job in jobs %}
+			{% set closed = job.status == 'Closed' %}
+			<a href="/{{ job.route }}" class="block bg-white p-6 rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-colors group {% if closed %}opacity-70{% endif %}">
+				<div class="flex items-start justify-between gap-4">
+					<div class="space-y-2">
+						<div class="flex items-center gap-2">
+							<h3 class="font-title-lg text-title-lg text-on-surface group-hover:text-primary transition-colors">{{ job.job_title }}</h3>
+							{% if closed %}<span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant rounded-full text-label-sm font-label-sm">募集終了</span>{% endif %}
+						</div>
+						<div class="flex flex-wrap gap-4 text-on-surface-variant font-body-sm text-body-sm">
+							{% if job.employment_type %}<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">schedule</span>{{ job.employment_type }}</span>{% endif %}
+							{% if job.pay_rate %}<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">payments</span>{{ unit_label.get(job.pay_rate_unit, job.pay_rate_unit) }} ¥{{ "{:,.0f}".format(job.pay_rate) }}</span>{% endif %}
+							{% if job.work_location %}<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">location_on</span>{{ job.work_location }}</span>{% endif %}
+						</div>
+						{% if job.job_category %}<div class="flex gap-2 mt-1"><span class="px-3 py-1 bg-surface-container-low text-on-surface-variant rounded-lg text-label-sm font-label-sm">{{ job.job_category }}</span></div>{% endif %}
+					</div>
+					<span class="bg-surface-container-low p-2 rounded-lg group-hover:bg-primary-container group-hover:text-white transition-all material-symbols-outlined">chevron_right</span>
+				</div>
+			</a>
+			{% endfor %}
+			<a href="/jobs?q={{ client_name }}" class="block text-center w-full py-4 border-2 border-dashed border-outline-variant rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low hover:border-primary transition-all">この会社の求人をすべて見る</a>
+			{% else %}
+			<p class="font-body-md text-body-md text-on-surface-variant py-8">現在募集中のお仕事はありません。</p>
+			{% endif %}
+		</div>
+
+		<!-- Profile -->
+		<div class="lg:col-span-4 space-y-6">
+			<div class="bg-white p-8 rounded-xl border border-outline-variant shadow-sm space-y-4">
+				<h2 class="font-headline-md text-headline-md text-on-surface">会社情報</h2>
+				{% if about %}
+				<div class="font-body-md text-body-md text-on-surface-variant leading-relaxed">{{ about }}</div>
+				{% else %}
+				<p class="font-body-md text-body-md text-on-surface-variant">{{ client_name }} の求人情報を掲載しています。</p>
+				{% endif %}
+				{% if headquarters_location %}
+				<div class="pt-4 border-t border-outline-variant">
+					<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">所在地</h3>
+					<p class="font-body-sm text-body-sm text-on-surface">{{ headquarters_location }}</p>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

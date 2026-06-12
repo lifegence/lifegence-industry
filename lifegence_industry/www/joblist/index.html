@@ -1,0 +1,141 @@
+{% extends "templates/staffing_portal/base.html" %}
+{% set unit_label = {"Hour": "時給", "Day": "日給", "Month": "月給"} %}
+
+{% block title %}お仕事を探す | {{ brand }}{% endblock %}
+
+{% block layout %}
+<!-- SideNavBar / Filters -->
+<aside class="fixed left-0 top-20 bottom-0 w-[280px] bg-surface border-r border-outline-variant flex-col p-6 space-y-5 overflow-y-auto hidden lg:flex custom-scrollbar">
+	<div>
+		<h2 class="font-title-lg text-title-lg text-primary">絞り込み</h2>
+		<p class="font-label-md text-label-md text-on-surface-variant">条件でお仕事を探す</p>
+	</div>
+	<form method="GET" action="/jobs" class="space-y-5">
+		<input type="hidden" name="q" value="{{ filters.q }}"/>
+		<div>
+			<label class="font-label-md text-label-md text-on-surface flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-[18px]">work</span>職種カテゴリ</label>
+			<select name="category" class="w-full rounded-lg border-outline-variant bg-surface-container-lowest font-body-sm text-body-sm focus:border-primary focus:ring-primary">
+				<option value="">すべて</option>
+				{% for c in categories %}
+				<option value="{{ c.name }}" {% if filters.category == c.name %}selected{% endif %}>{{ c.category_name }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div>
+			<label class="font-label-md text-label-md text-on-surface flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-[18px]">location_on</span>勤務地</label>
+			<select name="location" class="w-full rounded-lg border-outline-variant bg-surface-container-lowest font-body-sm text-body-sm focus:border-primary focus:ring-primary">
+				<option value="">すべて</option>
+				{% for loc in locations %}
+				<option value="{{ loc }}" {% if filters.location == loc %}selected{% endif %}>{{ loc }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div>
+			<label class="font-label-md text-label-md text-on-surface flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-[18px]">badge</span>募集状況</label>
+			<select name="status" class="w-full rounded-lg border-outline-variant bg-surface-container-lowest font-body-sm text-body-sm focus:border-primary focus:ring-primary">
+				<option value="" {% if not filters.status %}selected{% endif %}>すべて表示</option>
+				<option value="Open" {% if filters.status == 'Open' %}selected{% endif %}>募集中のみ</option>
+				<option value="Closed" {% if filters.status == 'Closed' %}selected{% endif %}>募集終了のみ</option>
+			</select>
+		</div>
+		<button type="submit" class="w-full py-2.5 font-label-md text-label-md bg-primary text-on-primary rounded-xl hover:opacity-90 transition-opacity">この条件で絞り込む</button>
+		<a href="/jobs" class="block text-center w-full py-2 font-label-md text-label-md text-primary border border-outline hover:bg-surface-container-low rounded-xl transition-colors">条件をクリア</a>
+	</form>
+</aside>
+
+<main class="lg:pl-[280px] pt-20">
+	<!-- Hero / Search -->
+	<section class="relative h-[280px] flex items-center justify-center overflow-hidden bg-surface-container">
+		<div class="relative z-10 w-full max-w-4xl px-margin-desktop text-center">
+			<h1 class="font-display-lg text-display-lg text-on-surface mb-6">あなたにぴったりのお仕事を</h1>
+			<form method="GET" action="/jobs" class="bg-surface-container-lowest p-2 rounded-full shadow-lg flex items-center border border-outline-variant max-w-2xl mx-auto">
+				<span class="material-symbols-outlined px-4 text-outline">search</span>
+				<input name="q" value="{{ filters.q }}" class="w-full bg-transparent border-none focus:ring-0 font-body-md text-body-md py-3 text-on-surface" placeholder="職種・キーワード・勤務地・会社名" type="text"/>
+				{% if filters.category %}<input type="hidden" name="category" value="{{ filters.category }}"/>{% endif %}
+				<button type="submit" class="bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md hover:bg-opacity-90 transition-all whitespace-nowrap">検索</button>
+			</form>
+		</div>
+	</section>
+
+	<div class="px-margin-desktop max-w-container-max-width mx-auto py-10">
+		<!-- Header & Sorting -->
+		<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+			<div>
+				<h2 class="font-headline-lg text-headline-lg text-on-surface">お仕事一覧</h2>
+				<p class="font-body-md text-body-md text-on-surface-variant">{{ total }}件のお仕事が見つかりました{% if filters.q %}（「{{ filters.q }}」の検索結果）{% endif %}</p>
+			</div>
+			<form method="GET" action="/jobs" class="flex items-center gap-3">
+				{% for k, v in filters.items() %}{% if v and k != 'sort' %}<input type="hidden" name="{{ k }}" value="{{ v }}"/>{% endif %}{% endfor %}
+				<span class="font-label-md text-label-md text-on-surface-variant">並び替え:</span>
+				<select name="sort" onchange="this.form.submit()" class="bg-surface border-outline-variant rounded-lg font-label-md text-label-md text-on-surface focus:border-primary focus:ring-primary py-2 pr-10">
+					<option value="recent" {% if filters.sort == 'recent' %}selected{% endif %}>新着順</option>
+					<option value="pay_high" {% if filters.sort == 'pay_high' %}selected{% endif %}>給与が高い順</option>
+					<option value="pay_low" {% if filters.sort == 'pay_low' %}selected{% endif %}>給与が低い順</option>
+				</select>
+			</form>
+		</div>
+
+		{% if jobs %}
+		<div class="grid grid-cols-1 xl:grid-cols-2 gap-gutter">
+			{% for job in jobs %}
+			{% set closed = job.status == 'Closed' %}
+			<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 hover:shadow-md transition-shadow group {% if closed %}opacity-75 grayscale hover:grayscale-0 transition-all{% endif %}">
+				<div class="flex justify-between items-start mb-4">
+					<div class="flex gap-4">
+						<div class="w-16 h-16 rounded-xl bg-secondary-container flex items-center justify-center overflow-hidden shrink-0">
+							<span class="material-symbols-outlined text-primary text-3xl">work</span>
+						</div>
+						<div>
+							<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">{{ job.job_title }}</h3>
+							<p class="font-body-sm text-body-sm text-on-surface-variant">{{ job.dispatch_client }}{% if job.work_location %} • {{ job.work_location }}{% endif %}</p>
+						</div>
+					</div>
+					{% if closed %}
+					<span class="px-3 py-1 bg-surface-variant text-on-surface-variant rounded-full font-label-sm text-label-sm uppercase tracking-wider whitespace-nowrap">募集終了</span>
+					{% else %}
+					<span class="px-3 py-1 bg-green-100 text-green-800 rounded-full font-label-sm text-label-sm uppercase tracking-wider whitespace-nowrap">募集中</span>
+					{% endif %}
+				</div>
+				<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-2">{{ job.summary or "" }}</p>
+				<div class="flex flex-wrap gap-2 mb-6">
+					{% if job.job_category %}<span class="bg-yellow-100 px-3 py-1 rounded-full font-label-sm text-label-sm text-yellow-800">{{ job.job_category }}</span>{% endif %}
+					{% if job.pay_rate %}<span class="bg-surface-container-low px-3 py-1 rounded-full font-label-sm text-label-sm text-on-secondary-container">{{ unit_label.get(job.pay_rate_unit, job.pay_rate_unit) }} ¥{{ "{:,.0f}".format(job.pay_rate) }}</span>{% endif %}
+					{% if job.employment_type %}<span class="bg-surface-container-low px-3 py-1 rounded-full font-label-sm text-label-sm text-on-secondary-container">{{ job.employment_type }}</span>{% endif %}
+				</div>
+				<div class="flex justify-between items-center pt-4 border-t border-outline-variant">
+					<span class="font-label-sm text-label-sm text-outline">募集人数 {{ job.headcount or 1 }}名</span>
+					{% if closed %}
+					<a href="/{{ job.route }}" class="bg-outline text-white px-6 py-2 rounded-xl font-label-md text-label-md">詳細を見る</a>
+					{% else %}
+					<a href="/{{ job.route }}" class="bg-primary text-on-primary px-6 py-2 rounded-xl font-label-md text-label-md hover:opacity-90 transition-all">詳細を見る</a>
+					{% endif %}
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+		<!-- Pagination -->
+		{% if total_pages > 1 %}
+		{% set qs = [] %}
+		{% for k, v in filters.items() %}{% if v %}{% set _ = qs.append(k ~ '=' ~ v) %}{% endif %}{% endfor %}
+		{% set base_qs = qs | join('&') %}
+		<div class="mt-12 flex justify-center items-center gap-2">
+			{% if page > 1 %}<a href="/jobs?{{ base_qs }}&page={{ page-1 }}" class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-low"><span class="material-symbols-outlined">chevron_left</span></a>{% endif %}
+			{% for p in page_range %}
+			<a href="/jobs?{{ base_qs }}&page={{ p }}" class="w-10 h-10 flex items-center justify-center rounded-lg font-label-md text-label-md {% if p == page %}bg-primary text-on-primary{% else %}border border-outline-variant text-on-surface-variant hover:bg-surface-container-low{% endif %}">{{ p }}</a>
+			{% endfor %}
+			{% if page < total_pages %}<a href="/jobs?{{ base_qs }}&page={{ page+1 }}" class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-low"><span class="material-symbols-outlined">chevron_right</span></a>{% endif %}
+		</div>
+		{% endif %}
+
+		{% else %}
+		<div class="text-center py-20">
+			<span class="material-symbols-outlined text-6xl text-outline-variant">search_off</span>
+			<p class="font-headline-md text-headline-md text-on-surface mt-4">条件に合うお仕事が見つかりませんでした</p>
+			<p class="font-body-md text-body-md text-on-surface-variant mt-2">検索条件を変更してお試しください。</p>
+			<a href="/jobs" class="inline-block mt-6 bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md text-label-md">すべてのお仕事を見る</a>
+		</div>
+		{% endif %}
+	</div>
+</main>
+{% endblock %}

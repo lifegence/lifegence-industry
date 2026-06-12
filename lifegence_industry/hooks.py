@@ -11,6 +11,12 @@ export_python_type_annotations = True
 
 after_install = "lifegence_industry.install.after_install"
 
+# Staffing public portal: serve our job list at /jobs (overrides other apps' /jobs page).
+# /jobs/apply and /jobs/<client>/<title> are unaffected (different paths).
+website_route_rules = [
+	{"from_route": "/jobs", "to_route": "joblist"},
+]
+
 # Apps Screen
 # -----------
 add_to_apps_screen = [
