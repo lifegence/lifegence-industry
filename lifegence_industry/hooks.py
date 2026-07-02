@@ -11,6 +11,11 @@ export_python_type_annotations = True
 
 after_install = "lifegence_industry.install.after_install"
 
+# AI agent skills (loaded by lifegence_agent when installed alongside)
+chat_agent_skills = [
+	"lifegence_industry.manufacturing.skills.manufacturing_skills",
+]
+
 # Staffing public portal: serve our job list at /jobs (overrides other apps' /jobs page).
 # /jobs/apply and /jobs/<client>/<title> are unaffected (different paths).
 website_route_rules = [
